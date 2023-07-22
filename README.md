@@ -46,3 +46,10 @@
 
 ## Docker
 
+## K8s
+
+## 汇编
+
+>  [汇编](https://www.bilibili.com/video/BV1Wu411B72F?p=1&vd_source=520dac7b196453839c1358f10c86132b)、王爽老师的书
+
+- 2023.7.22/周六:blush: ：第一节概论、环境搭建

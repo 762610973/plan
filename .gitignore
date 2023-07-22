@@ -11,3 +11,4 @@ go.work
 Rust/*/target/debug
 Rust/*/target
 Rust/*/build/
+**/.vscode
