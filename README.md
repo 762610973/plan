@@ -15,7 +15,7 @@
 > PLAN: 每天15分钟多邻国 + TED-ED视频
 > [TED-ED](https://www.bilibili.com/video/BV1Gf4y1y7wc?p=1)
 
-|   2023.7.22:blush:   | 2023.7.23:blush: |      |      |      |      |      |
+|   2023.7.22:blush:   | 2023.7.23:blush: | 2023.7.24:blush: |      |      |      |      |
 | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
 |      |      |      |      |      |      |      |
 
