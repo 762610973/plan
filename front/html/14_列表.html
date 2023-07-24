@@ -7,19 +7,30 @@
 </head>
 <body>
     <ol>
+        <!-- ol和ul的子元素最好是li -->
+        <!-- li最好不要单独使用 -->
+        <!-- 列表可以嵌套 -->
         <li>有序列表</li>
         <li>有序列表</li>
         <li>有序列表</li>
     </ol>
     <ul>
+        <li>
+            <ul>
+                <span>嵌套</span>
+                <li>嵌套1</li>
+                <li>嵌套2</li>
+            </ul>
+        </li>
         <li>无序列表</li>
         <li>无序列表</li>
         <li>无序列表</li>
     </ul>
+    <!-- 自定义列表：术语名称+术语描述 -->
     <dl>
         <dt>title:好好看文档,多练习</dt>
-        <dd>description: 描述</dd>
-        <dd>description: 描述</dd>
+        <dd>description: 描述1</dd>
+        <dd>description: 描述2</dd>
         <dt>title:好好看文档,多练习</dt>
         <dd>description: 描述</dd>
         <dd>description: 描述</dd>
