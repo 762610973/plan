@@ -12,3 +12,4 @@ Rust/*/target/debug
 Rust/*/target
 Rust/*/build/
 **/.vscode
+*.pdb
