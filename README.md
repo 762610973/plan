@@ -25,6 +25,8 @@
 
 ## Go
 
+- 2023.7.24:blush: [uber-go-guide](https://github.com/xxjwxc/uber_go_guide_cn)
+
 ## Redis
 
 ## MySQL
