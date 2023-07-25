@@ -22,7 +22,7 @@
 ## Rust
 
 ### 深入浅出Rust
-
+- 2023.7.24:blush:
 ## Go
 
 - 2023.7.24:blush: [uber-go-guide](https://github.com/xxjwxc/uber_go_guide_cn)
