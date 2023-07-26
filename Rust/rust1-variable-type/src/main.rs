@@ -1,6 +1,5 @@
 mod basic_type;
-
-use std::sync::atomic::AtomicBool;
+mod composite_type;
 
 fn main() {
 	grow(1, 1);
@@ -17,6 +16,7 @@ fn main() {
 	// used binding `unused` isn't initialized
 }
 
+#[allow(unused)]
 fn test(condition: bool) {
 	let x: i32;
 	if condition {
@@ -26,8 +26,9 @@ fn test(condition: bool) {
 	// 如果条件不满足,x没有被初始化
 	// 不使用x就可以
 }
-// 类型没有"默认构造函数",变量没有"默认值"
 
+// 类型没有"默认构造函数",变量没有"默认值"
+#[allow(unused)]
 fn shadow() {
 	let x = "hello, world";
 	println!("{:?}", x);
@@ -35,6 +36,7 @@ fn shadow() {
 	println!("{:?}", x);
 }
 
+#[allow(unused)]
 fn shadow1() {
 	let v = Vec::new();
 	let mut v = v;
@@ -42,6 +44,7 @@ fn shadow1() {
 	println!("{:?}", v);
 }
 
+#[allow(unused)]
 fn get_type() {
 	let elem = 5u8;
 	let mut vec = Vec::new();
@@ -50,6 +53,7 @@ fn get_type() {
 }
 
 // 只允许局部变量/全局变量实现类型推导
+#[allow(unused)]
 fn get_type2() {
 	let play = [
 		("jack", 20), ("jane", 23)
@@ -63,8 +67,10 @@ fn get_type2() {
 }
 
 // 类型别名,Go中的类型别名: type Age = uint32
+#[allow(unused)]
 type Age = u32;
 
+#[allow(unused)]
 fn grow(age: Age, year: u32) -> Age {
 	if age == year {
 		println!("{}", "true");
@@ -82,6 +88,7 @@ fn grow(age: Age, year: u32) -> Age {
 // !全局变量只有一个实例,所有的引用都会指向一个相同的地址
 static GLOBAL: i32 = 0;
 
+#[allow(unused)]
 fn global() {
 	println!("{:?}", GLOBAL);
 	use std::sync::atomic::AtomicBool;
@@ -90,4 +97,5 @@ fn global() {
 
 // const声明常量,不具备类似语句的模式匹配功能
 // 可能会被内联优化
+#[allow(unused)]
 const GLOBAL1: i32 = 0;

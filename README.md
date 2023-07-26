@@ -2,6 +2,14 @@
 
 > 记录定制的计划、进度、笔记
 
+**<span style="font-size: 20px;">[emoji](https://gist.github.com/rxaviers/7360908)</span>**	
+
+
+
+##  Star
+
+- [**Restful Api**](https://restfulapi.cn/)
+
 ## 健身
 
 > 每天二十分钟
@@ -15,14 +23,20 @@
 > PLAN: 每天15分钟多邻国 + TED-ED视频
 > [TED-ED](https://www.bilibili.com/video/BV1Gf4y1y7wc?p=1)
 
-|   2023.7.22:blush:   | 2023.7.23:blush: | 2023.7.24:blush: |      |      |      |      |
+-----------------------------------------------------------
+
+> ==2023==
+
+|   7.22:blush:   | 7.23:blush: | 7.24:blush: |   7.25:blush:   | 7.26:blush: | 7.27:blush: | 7.28:blush: |
 | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
-|      |      |      |      |      |      |      |
+|  |      |      |      |      |      |      |
 
 ## Rust
 
 ### 深入浅出Rust
-- 2023.7.24:blush:
+- 2023.7.24:blush: 第一章
+- 2023.7.25:blush: 第二章:变量声明
+- 2023.7.26:blush: 第二章:基本数据类型+复合数据类型
 ## Go
 
 - 2023.7.24:blush: [uber-go-guide](https://github.com/xxjwxc/uber_go_guide_cn)
@@ -34,8 +48,8 @@
 ## 前端
 
 ### HTML
-- 20232.7.24:blush:List and Table
-
+- 2023.7.24:blush:List and Table
+- 2023.7.26:blush:Table and Common attributes
 ### CSS
 
 ### JavaScript
