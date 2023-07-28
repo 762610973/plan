@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>禁用表单控件</title>
+</head>
+<body>
+	<div>
+		<form action="https://search.jd.com/search" target="_blank">
+			<!--*  type:文本框类型,name:文本框名字      值             长度限制-->
+			账户: <input disabled type="text" name="account" value="默认值" maxlength="10"><br>
+			密码: <input type="password" name="pwd" value="" maxlength="10"><br>
+			性别:
+			<!--        *单选框-->
+			<input type="radio" name="gender" value="male">男
+			<input type="radio" name="gender" value="female">女
+			<br>
+			爱好:
+			<!--        *复选框                                  默认值勾选-->
+			<input type="checkbox" name="Golang" value="Golang" checked>Golang
+			<input type="checkbox" name="Rust" value="Rust">Rust
+			<input type="checkbox" name="TS" value="TS">TS
+			<br>
+			其他:
+			<textarea name="other" cols="23" rows="3"></textarea>
+			<br>
+			籍贯:
+			<select name="place">
+				<option value="冀">河北</option>
+				<option value="">河南</option>
+				<option value="" selected>山东</option>
+				<option value="" disabled>山西</option>
+			</select>
+			<!--!隐藏域,用户不可见,携带一些固定数据-->
+			<input type="hidden" name="from" value="kamier">
+			<!--!确认按钮1-->
+			<br>
+			<!--增加了button就是一个普通的按钮了-->
+			<button type="button">确认</button>
+			<!--!确认按钮2,不能写name-->
+			<input disabled type="submit" value="覆盖默认的`提交`">
+
+			<button type="reset">重置</button>
+			<input type="reset" value="点我重置">
+
+			<!--普通按钮-->
+			<br><button type="button">普通按钮</button>
+			<br><input type="button" value="普通按钮">
+
+			<!--文本域-->
+
+		</form>
+	</div>
+	</body>
+</html>
