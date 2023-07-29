@@ -33,6 +33,7 @@
 - 2023.7.25:blush: 第二章:变量声明
 - 2023.7.26:blush: 第二章:基本数据类型+复合数据类型
 - 2023.7.28:blush: 第三章:语句+表达式
+- 2023.7.29:blush: 第四章:函数
 ## Go
 
 - 2023.7.24:blush: [uber-go-guide](https://github.com/xxjwxc/uber_go_guide_cn)
@@ -46,7 +47,8 @@
 ### HTML
 - 2023.7.24:blush:List and Table
 - 2023.7.26:blush:Table and Common attributes
-- 2023.7.27,2023.7.28:blush:Form 
+- 2023.7.27, 2023.7.28:blush:Form 
+- 2023.7.29:blush:basically complete html4 and start css2
 ### CSS
 
 ### JavaScript

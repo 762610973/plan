@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>框架标签</title>
+</head>
+<body>
+	<div>
+		<iframe src="https://bilibili.com" width="500" height="300"></iframe>
+		<iframe src="../../images/1.jpg" width="500" height="300"></iframe>
+	</div>
+
+	<div>
+
+		<!--iframe和超链接的target属性配合使用-->
+		<a href="https://bilibili.com" target="tt">bilibili</a><br>
+		<iframe name="tt"></iframe>
+	</div>
+
+	<div>
+		<!-- *iframe和表单配合-->
+		<iframe name="container"></iframe>
+		<form action="https://so.toutiao.com/search" target="container">
+			<input type="text" name="keyword">
+			<input type="submit" value="搜索">
+		</form>
+	</div>
+</body>
+</html>

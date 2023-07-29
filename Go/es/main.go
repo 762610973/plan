@@ -9,7 +9,7 @@ import (
 
 const (
 	_account  = "elastic"
-	_password = "*LcQx0*_AB3UrVGlJcl5"
+	_password = "123456"
 	_url      = "https://192.168.31.22:9200"
 )
 
