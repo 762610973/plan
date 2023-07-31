@@ -27,6 +27,9 @@
 |  |      |      |      |      |      |      |
 
 ## Rust
+> **<span style="font-size: 18px;">[Rust镜像代理](https://rsproxy.cn/)</span>**
+> 
+> **<span style="font-size: 18px;">[MSVC](https://visualstudio.microsoft.com/zh-hans/visual-cpp-build-tools/)</span>**
 
 ### 深入浅出Rust
 - 2023.7.24:blush: 第一章
@@ -34,6 +37,7 @@
 - 2023.7.26:blush: 第二章:基本数据类型+复合数据类型
 - 2023.7.28:blush: 第三章:语句+表达式
 - 2023.7.29:blush: 第四章:函数
+- 2023.7.31:blush: 第五章:`trait`成员方法+静态方法
 ## Go
 
 - 2023.7.24:blush: [uber-go-guide](https://github.com/xxjwxc/uber_go_guide_cn)
@@ -50,7 +54,7 @@
 - 2023.7.27, 2023.7.28:blush:Form 
 - 2023.7.29:blush:basically complete html4 and start css2
 ### CSS
-
+- 2023.7.31:blush:css style position
 ### JavaScript
 
 ### TypeScript
