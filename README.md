@@ -55,6 +55,7 @@
 - 2023.7.29:blush:basically complete html4 and start css2
 ### CSS
 - 2023.7.31:blush:css style position
+- 2023.7.31:blush:css 样式优先级和基本选择器
 ### JavaScript
 
 ### TypeScript

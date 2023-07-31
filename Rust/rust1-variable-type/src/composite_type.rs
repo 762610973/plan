@@ -151,7 +151,6 @@ fn test_enum() {
 
 #[allow(unused)]
 fn test_option() {
-	let a = None;
 	// *Some是一个函数类型
 	let b = Some(3_i32);
 }
