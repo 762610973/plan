@@ -13,3 +13,4 @@ Rust/*/target
 Rust/*/build/
 **/.vscode
 *.pdb
+**/go.sum
