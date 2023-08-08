@@ -7,25 +7,6 @@
 - **<span style="font-size: 20px;">[Emoji](https://gist.github.com/rxaviers/7360908)</span>**	
 - **<span style="font-size: 20px;">[Restful](https://restfulapi.cn/)</span>**	
 
-## 健身
-
-> 每天二十分钟
-
-|      |      |      |      |      |      |      |
-| :--: | :--: | :--: | :--: | :--: | :--: | :--: |
-|      |      |      |      |      |      |      |
-
-## 英语
-
-> PLAN: 每天15分钟多邻国 + TED-ED视频
-> [TED-ED](https://www.bilibili.com/video/BV1Gf4y1y7wc?p=1)
-
-#### 2023
-
-|   7.22:blush:   | 7.23:blush: | 7.24:blush: |   7.25:blush:   | 7.26:blush: | 7.27:blush: | 7.28:blush: |
-| :--: | :--: | :--: | :--: | :--: | :--: | :--: |
-|  |      |      |      |      |      |      |
-
 ## Rust
 > **<span style="font-size: 18px;">[Rust镜像代理](https://rsproxy.cn/)</span>**
 > 
@@ -56,6 +37,7 @@
 ### CSS
 - 2023.7.31:blush:css style position
 - 2023.7.31:blush:css 样式优先级和基本选择器
+- 2023.8.8:blush:css子代选择器
 ### JavaScript
 
 ### TypeScript

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>后代选择器</title>
+	<style>
+		ul li {
+			color: red;
+		}
+		ol li {
+			color: green;
+		}
+		ul li p {
+			font-size: 100px;
+		}
+		.subject li {
+			color: chartreuse;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>go</li>
+		<li>rust</li>
+		<li>ts</li>
+		<li>
+			<p>js</p>
+		</li>
+	</ul>
+	<ol>
+		<li>mysql</li>
+		<li>mongo</li>
+		<li>es</li>
+		<li>
+			<p>redis</p>
+		</li>
+	</ol>
+	<hr>
+	<ol class="subject">
+		<li>前端</li>
+		<li>Java</li>
+		<li>大数据</li>
+	</ol>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!--选中同时符合多个条件的元素-->
+	<title>交集选择器</title>
+	<style>
+		.high {
+			color: red;
+		}
+		/*交集选择器,元素在前
+		标签+类名
+		*/
+		h2.mid {
+			font-size: 15px;
+		}
+		.higher {
+			color: chartreuse;
+		}
+		h2.higher {
+			color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<h2 class="high higher" id="high">高级</h2>
+		<h2 class="mid">中级</h2>
+		<hr>
+	</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>并集选择器</title>
+	<style>
+		.go	{
+			color: blue;
+			font-size: 20px;
+            background-color: pink;
+		}
+		.rust {
+			color: red;
+		}
+		.ts {
+			color: green;
+		}
+		/*并集选择器,逗号分割*/
+		.go,
+		.rust,
+		.ts,
+		p,
+		#docker {
+			font-size: 30px;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<h2 class="go">Golang</h2>
+		<h2 class="rust">rust</h2>
+		<h2 class="ts">ts</h2>
+		<p>react</p>
+		<span id="docker">docker</span>
+	</div>
+</body>
+</html>
+
+<!--父元素,子元
+祖先元素
+后代元素
+兄弟元素: 具有相同父元素的元素互为兄弟元素
+-->
