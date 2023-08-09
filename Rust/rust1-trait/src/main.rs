@@ -107,6 +107,7 @@ mod impl_trait {
     }
 }
 
+// 静态函数(go中的方法)
 mod static_function {
     struct T(i32);
 
@@ -122,8 +123,119 @@ mod static_function {
         T::func1(&x);
     }
 
-    // ? trait中也可以定义静态函数
+    // *trait中也可以定义静态函数
     pub trait Default {
         fn default() -> Self;
     }
+}
+
+// 孤儿规则: impl块要么与trait的声明在同一个的crate中，要么与类型的声明在同一个crate中
+#[allow(unused)]
+mod expend_function {
+    trait Double {
+        fn double(&self) -> Self;
+    }
+    impl Double for i32 {
+        fn double(&self) -> i32 { *self * 2 }
+    }
+    fn main() {
+    // 可以像成员方法一样调用
+        let x : i32 = 10.double();
+        println!("{}", x);
+    }
+}
+#[allow(unused)]
+mod fully_call_function {
+    trait Cook {
+        fn start(&self);
+    }
+
+    trait Wash {
+        fn start(&self);
+    }
+
+    struct Chef;
+
+    impl Cook for Chef {
+        fn start(&self) {
+            println!("Cook::start");
+        }
+    }
+
+    impl Wash for Chef {
+        fn start(&self) {
+            println!("Wash::start");
+        }
+    }
+    #[test]
+    fn main() {
+        let me = Chef;
+        // me.start();  不能确定调用哪个
+        <Chef as Wash>::start(&me);
+        <dyn Cook>::start(&me);
+    }
+    struct T(usize);
+    impl T {
+        fn get1(&self) -> usize {self.0}
+        fn get2(&self) -> usize {self.0}
+    }
+    fn get3(t: &T) -> usize { t.0 }
+    fn check_type( _ : fn(&T)->usize ) {}
+
+    #[test]
+    fn main1() {
+        check_type(T::get1);
+        check_type(T::get2);
+        check_type(get3);
+    }
+}
+
+mod bind {
+    // *泛型约束
+    use std::fmt::Debug;
+    // ?要求类型T实现Debug这个trait
+    fn my_print<T : Debug>(x:T) {
+        println!("{:?}", x);
+    }
+    fn my_print1<T>(x:T) where T:Debug {
+        println!("{:?}", x);
+    }
+    // *trait允许继承
+    trait Base{}
+    // 满足derived,也必然满足base
+    trait Derived: Base{}
+}
+#[allow(unused)]
+mod derive {
+    // *derive自动实现trait,编译器机械化得重复模板实现trait
+    #[derive(Copy, Clone, Default, Debug, Hash, PartialEq, Eq, PartialOrd, Ord)]
+    struct Foo {
+        data : i32
+    }
+    fn main() {
+        let v1 = Foo { data : 0 };
+        let v2 = v1;
+        println!("{:?}", v2);
+    }
+}
+// * trait别名
+mod trait_alas {
+    use std::future::Future;
+    pub trait Service {
+        type Request;
+        type Response;
+        type Error;
+        type Future: Future;
+        fn call(&self, req: Self::Request) -> Self::Future;
+    }
+    // trait HttpService = Service<
+    //     Response = http::Response,
+    //     Error = http::Error, Future=(), Request=()>;
+}
+
+mod std_trait {
+    /*
+    * 只有实现了Display trait的类型,才能用{}格式控制打印出来
+    * 只有实现了Debug trait的类型,才能用{:?}和{:#?}格式控制打印出来,编译器提供了自动derive的功能
+    */
 }

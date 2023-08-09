@@ -19,6 +19,7 @@
 - 2023.7.28:blush: 第三章:语句+表达式
 - 2023.7.29:blush: 第四章:函数
 - 2023.7.31:blush: 第五章:`trait`成员方法+静态方法
+- 2023.8.9:blush: 第五章:`trait`
 ## Go
 
 - 2023.7.24:blush: [uber-go-guide](https://github.com/xxjwxc/uber_go_guide_cn)
