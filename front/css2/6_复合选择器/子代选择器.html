@@ -3,10 +3,33 @@
 <head>
 	<meta charset="UTF-8">
 	<title>子代选择器</title>
+	<style>
+		/*只选择子元素*/
+        div > a {
+			color: red;
+		}
+		div > h2 {
+			color: cadetblue;
+		}
+		.k8s > h2 {
+			font-size: 40px;
+		}
+	</style>
 </head>
 <body>
 	<div>
-
+		<h2 class="go">Golang</h2>
+		<h2 class="rust">rust</h2>
+		<h2 class="ts">ts</h2>
+		<div class="k8s">
+			<h2>k8s</h2>
+		</div>
+		<span id="docker">docker</span>
 	</div>
 </body>
 </html>
+
+<!--
+子代选择器: 子元素选择器,子选择器(儿子元素)
+最终选择的是子代
+-->
