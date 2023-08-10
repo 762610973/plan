@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>结构伪类2</title>
+	<style>
+        /*选中的是div的最后一个儿子p元素(按照所有兄弟计算)*/
+        div > p:last-child {
+            color: blue;
+            font-size: 40px;
+        }
+        /*
+        选中的是div2的第n个儿子p元素
+        可以写公式:2n,n从0开始
+        ? 形式: an+b
+        * 前五个:-n+5
+        偶数: even;奇数: odd
+        */
+        .div2 > p:nth-child(2n) {
+            color: red;
+            font-size: 60px;
+        }
+        .div3 p:last-child {
+            color: chartreuse;
+        }
+		/*类型*/
+		.div2 >p:first-of-type{
+            background-color: deeppink;
+		}
+		.div2 >p:last-of-type{
+             background-color: brown;
+         }
+        .div3 >p:nth-of-type(n){
+            background-color: brown;
+        }
+	</style>
+</head>
+<body>
+<div>
+	<p>1</p>
+	<p>2</p>
+	<p>3</p>
+	<p>4</p>
+</div>
+<hr>
+<div class="div2">
+	<span>11</span>
+	<p>22</p>
+	<p>33</p>
+	<p>44</p>
+</div>
+<hr>
+<div class="div3">
+	<marquee>
+		<p>111</p>
+	</marquee>
+	<p>222</p>
+	<p>333</p>
+	<p>444</p>
+</div>
+</body>
+</html>

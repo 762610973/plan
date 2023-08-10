@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动态伪类</title>
+	<style>
+		/*
+		* link 和 visited是a标签独属
+		*/
+        a:link {
+            color: orange;
+        }
+        /*选中的是访问过的a元素*/
+        a:visited {
+            color: red;
+        }
+		/*悬浮*/
+		a:hover {
+			color: blueviolet;
+		}
+		a:active {
+			font-size: 50px;
+		}
+
+		a {
+			color: black;
+		}
+		input:active {
+            background-color: red;
+		}
+		/*获取焦点*/
+		input:focus {
+			color: blue;
+		}
+	</style>
+</head>
+<body>
+<div>
+	<a href="https://www.jd.com" target="_blank">京东</a>
+	<a href="https://www.baidu.com" target="_blank">百度</a>
+	<label>
+		<input type="text">
+	</label>
+</div>
+</body>
+</html>

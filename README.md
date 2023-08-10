@@ -39,6 +39,7 @@
 - 2023.7.31:blush:css style position
 - 2023.7.31:blush:css 样式优先级和基本选择器
 - 2023.8.8:blush:css子代选择器
+- 2023.8.10:blush:css兄弟+属性选择器+伪类选择器
 ### JavaScript
 
 ### TypeScript

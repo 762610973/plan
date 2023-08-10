@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>属性选择器</title>
+	<style>
+		/*第一种写法*/
+		[title] {
+			color: crimson;
+		}
+		/*第二种写法,选择具体的属性*/
+		[title="go"] {
+			color: blueviolet;
+		}
+        /*第三种写法,有属性,并且r开头*/
+		[title^="r"] {
+			font-size: 60px;
+		}
+		/*第四种写法,以o结尾*/
+        [title$="o"] {
+            font-size: 60px;
+        }
+		/*第五种写法,属性值里面有t*/
+		[title*="t"] {
+			color: brown;
+		}
+	</style>
+</head>
+<body>
+	<div title="go">golang</div>
+	<div title="rust">rust</div>
+	<div title="ts">ts</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>结构伪类</title>
+	<style>
+		/*选中的是div的第一个儿子p元素(按照所有兄弟计算)*/
+		div > p:first-child {
+			color: blue;
+			font-size: 40px;
+		}
+		/*选中的是div2的第一个儿子p元素*/
+		.div2 >p:first-child {
+			color: red;
+			font-size: 60px;
+		}
+		.div3 p:first-child {
+			color: chartreuse;
+		}
+		p:first-child {
+            background-color: orange;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<p>1</p>
+		<p>2</p>
+		<p>3</p>
+		<p>4</p>
+	</div>
+	<hr>
+	<div class="div2">
+		<span>11</span>
+		<p>22</p>
+		<p>33</p>
+		<p>44</p>
+	</div>
+	<hr>
+	<div class="div3">
+		<marquee>
+			<p>111</p>
+		</marquee>
+		<p>222</p>
+		<p>333</p>
+		<p>444</p>
+	</div>
+</body>
+</html>
