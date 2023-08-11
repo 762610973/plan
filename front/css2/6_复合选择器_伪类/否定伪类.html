@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>否定伪类</title>
+	<style>
+		/*
+		选中的是div的儿子p元素,但是排除类名为six的元素
+		*/
+		div > p:not(.six) {
+			color: red;
+		}
+		div > p:not([title ^="seven"]) {
+			font-size: 20px;
+		}
+		/*排除第一个儿子p元素*/
+		div > p:not(:first-child) {
+            background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<p>1</p>
+		<p>2</p>
+		<p>3</p>
+		<p>4</p>
+		<p>5</p>
+		<p class="six">6</p>
+		<p class="7" title="seven">7</p>
+	</div>
+</body>
+</html>

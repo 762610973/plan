@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!--选中元素之间的一些特殊位置-->
+	<title>伪元素选择器</title>
+	<style>
+		/*选择的是第一个字符*/
+		div::first-letter {
+			font-size: 30px;
+			color: chartreuse;
+		}
+		/*选中的是第一行*/
+		div::first-line {
+            background-color: pink;
+		}
+		/*选中的是被鼠标选中的文字*/
+		div::selection {
+            background-color: red;
+
+		}
+		/*选中的是input里面的提示文字*/
+		input::placeholder {
+			color: skyblue;
+		}
+		/*选中的是p元素开始的位置,虽有创建一个子元素*/
+		p::before {
+			content: "haha";
+		}
+		p::after {
+			content: "heihei";
+		}
+        .add>p::before {
+            content: "haha";
+        }
+	</style>
+</head>
+<body>
+	<div>
+		Lorem ipsum dolor sit amet.
+		<br>
+		Lorem ipsum dolor sit amet.
+		<br>
+		<label>
+			<input type="text" placeholder="提示语">
+		</label>
+		<div class="add">
+			<p>11</p>
+			<p>11</p>
+			<p>11</p>
+		</div>
+	</div>
+</body>
+</html>

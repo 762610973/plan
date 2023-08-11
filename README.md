@@ -20,6 +20,7 @@
 - 2023.7.29:blush: 第四章:函数
 - 2023.7.31:blush: 第五章:`trait`成员方法+静态方法
 - 2023.8.9:blush: 第五章:`trait`
+- 2023.8.11:blush: 第六章:`array-slice-string`
 ## Go
 
 - 2023.7.24:blush: [uber-go-guide](https://github.com/xxjwxc/uber_go_guide_cn)
@@ -40,6 +41,7 @@
 - 2023.7.31:blush:css 样式优先级和基本选择器
 - 2023.8.8:blush:css子代选择器
 - 2023.8.10:blush:css兄弟+属性选择器+伪类选择器
+- 2023.8.11:blush:伪类选择器,否定伪类,目标伪类,语言伪类,UI伪类,伪元素选择器
 ### JavaScript
 
 ### TypeScript
