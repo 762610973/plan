@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>三大特性</title>
+	<style>
+		div {
+            background-color: skyblue;
+		}
+		span:nth-child(2) {
+            background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		* 层叠性
+			- 样式发生冲突,会根据一定的规则(选择器优先级),进行覆盖
+		* 继承性
+			- 元素会自动拥有其父元素,或者祖先元素上所设置的某些样式
+			- 优先继承距离近的
+			- 常见地可继承属性:text-??,font-??,line-??,color...
+		* 优先级
+			- !important > 行内 > id > 类 > 元素 > * > 继承的样式
+			- 权重计算,并集选择器的每一个部分是分开计算的
+
+		<span>1</span>
+		<span>2</span>
+		<span>3</span>
+	</div>
+</body>
+</html>

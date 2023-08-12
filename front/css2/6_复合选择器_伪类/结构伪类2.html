@@ -5,7 +5,7 @@
 	<title>结构伪类2</title>
 	<style>
         /*选中的是div的最后一个儿子p元素(按照所有兄弟计算)*/
-        div > p:last-child {
+        div > P:last-child {
             color: blue;
             font-size: 40px;
         }
@@ -16,47 +16,47 @@
         * 前五个:-n+5
         偶数: even;奇数: odd
         */
-        .div2 > p:nth-child(2n) {
+        .div2 > P:nth-child(2n) {
             color: red;
             font-size: 60px;
         }
-        .div3 p:last-child {
+        .div3 P:last-child {
             color: chartreuse;
         }
 		/*类型*/
-		.div2 >p:first-of-type{
+		.div2 >P:first-of-type{
             background-color: deeppink;
 		}
-		.div2 >p:last-of-type{
+		.div2 >P:last-of-type{
              background-color: brown;
          }
-        .div3 >p:nth-of-type(n){
+        .div3 >P:nth-of-type(n){
             background-color: brown;
         }
 	</style>
 </head>
 <body>
 <div>
-	<p>1</p>
-	<p>2</p>
-	<p>3</p>
-	<p>4</p>
+	<P>1</P>
+	<P>2</P>
+	<P>3</P>
+	<P>4</P>
 </div>
 <hr>
 <div class="div2">
 	<span>11</span>
-	<p>22</p>
-	<p>33</p>
-	<p>44</p>
+	<P>22</P>
+	<P>33</P>
+	<P>44</P>
 </div>
 <hr>
 <div class="div3">
 	<marquee>
-		<p>111</p>
+		<P>111</P>
 	</marquee>
-	<p>222</p>
-	<p>333</p>
-	<p>444</p>
+	<P>222</P>
+	<P>333</P>
+	<P>444</P>
 </div>
 </body>
 </html>

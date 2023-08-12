@@ -21,6 +21,7 @@
 - 2023.7.31:blush: 第五章:`trait`成员方法+静态方法
 - 2023.8.9:blush: 第五章:`trait`
 - 2023.8.11:blush: 第六章:`array-slice-string`
+- 2023.8.12:blush: 第七章:`pattern-destructure`
 ## Go
 
 - 2023.7.24:blush: [uber-go-guide](https://github.com/xxjwxc/uber_go_guide_cn)
@@ -42,6 +43,8 @@
 - 2023.8.8:blush:css子代选择器
 - 2023.8.10:blush:css兄弟+属性选择器+伪类选择器
 - 2023.8.11:blush:伪类选择器,否定伪类,目标伪类,语言伪类,UI伪类,伪元素选择器
+- 2023.8.12:blush:选择器优先级
+- 2023.8.12:blush:三大特性+像素
 ### JavaScript
 
 ### TypeScript
@@ -54,7 +57,7 @@
 
 ## 汇编
 
->  [汇编](https://www.bilibili.com/video/BV1Wu411B72F?p=1&vd_source=520dac7b196453839c1358f10c86132b)、王爽老师的书
+>  [汇编](https://www.bilibili.com/video/BV1Wu411B72F?P=1&vd_source=520dac7b196453839c1358f10c86132b)、王爽老师的书
 
 - 2023.7.22/周六:blush: ：第一节概论、环境搭建
 

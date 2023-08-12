@@ -5,45 +5,45 @@
 	<title>结构伪类</title>
 	<style>
 		/*选中的是div的第一个儿子p元素(按照所有兄弟计算)*/
-		div > p:first-child {
+		div > P:first-child {
 			color: blue;
 			font-size: 40px;
 		}
 		/*选中的是div2的第一个儿子p元素*/
-		.div2 >p:first-child {
+		.div2 >P:first-child {
 			color: red;
 			font-size: 60px;
 		}
-		.div3 p:first-child {
+		.div3 P:first-child {
 			color: chartreuse;
 		}
-		p:first-child {
+		P:first-child {
             background-color: orange;
 		}
 	</style>
 </head>
 <body>
 	<div>
-		<p>1</p>
-		<p>2</p>
-		<p>3</p>
-		<p>4</p>
+		<P>1</P>
+		<P>2</P>
+		<P>3</P>
+		<P>4</P>
 	</div>
 	<hr>
 	<div class="div2">
 		<span>11</span>
-		<p>22</p>
-		<p>33</p>
-		<p>44</p>
+		<P>22</P>
+		<P>33</P>
+		<P>44</P>
 	</div>
 	<hr>
 	<div class="div3">
 		<marquee>
-			<p>111</p>
+			<P>111</P>
 		</marquee>
-		<p>222</p>
-		<p>333</p>
-		<p>444</p>
+		<P>222</P>
+		<P>333</P>
+		<P>444</P>
 	</div>
 </body>
 </html>

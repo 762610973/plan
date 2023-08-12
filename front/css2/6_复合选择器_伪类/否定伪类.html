@@ -7,27 +7,27 @@
 		/*
 		选中的是div的儿子p元素,但是排除类名为six的元素
 		*/
-		div > p:not(.six) {
+		div > P:not(.six) {
 			color: red;
 		}
-		div > p:not([title ^="seven"]) {
+		div > P:not([title ^="seven"]) {
 			font-size: 20px;
 		}
 		/*排除第一个儿子p元素*/
-		div > p:not(:first-child) {
+		div > P:not(:first-child) {
             background-color: pink;
 		}
 	</style>
 </head>
 <body>
 	<div>
-		<p>1</p>
-		<p>2</p>
-		<p>3</p>
-		<p>4</p>
-		<p>5</p>
-		<p class="six">6</p>
-		<p class="7" title="seven">7</p>
+		<P>1</P>
+		<P>2</P>
+		<P>3</P>
+		<P>4</P>
+		<P>5</P>
+		<P class="six">6</P>
+		<P class="7" title="seven">7</P>
 	</div>
 </body>
 </html>
