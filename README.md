@@ -22,13 +22,12 @@
 - 2023.8.9:blush: 第五章:`trait`
 - 2023.8.11:blush: 第六章:`array-slice-string`
 - 2023.8.12:blush: 第七章:`pattern-destructure`
+- 2023.8.12:blush: 第八章:类型系统初探
+
+
 ## Go
 
 - 2023.7.24:blush: [uber-go-guide](https://github.com/xxjwxc/uber_go_guide_cn)
-
-## Redis
-
-## MySQL
 
 ## 前端
 
@@ -60,6 +59,10 @@
 >  [汇编](https://www.bilibili.com/video/BV1Wu411B72F?P=1&vd_source=520dac7b196453839c1358f10c86132b)、王爽老师的书
 
 - 2023.7.22/周六:blush: ：第一节概论、环境搭建
+
+## Redis
+
+## MySQL
 
 ## ES
 

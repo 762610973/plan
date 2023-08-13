@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本</title>
+    <style>
+        span {
+            color: #ff0111;
+        }
+        .go {
+            /*字符之间的间距*/
+            letter-spacing: 40px;
+        }
+        .go1 {
+            /*单词之间的间距,通过空格识别 */
+            word-spacing: 40px;
+        }
+        .go2 {
+            /*上划线*/
+            text-decoration: overline;
+        }
+        .go3 {
+            /*下划线,波浪线+颜色*/
+            text-decoration: underline wavy green;
+        }
+        .go4 {
+            text-decoration: line-through;
+        }
+        a {
+            text-decoration: none;
+        }
+        .c1 {
+            font-size: 60px;
+            /*首行缩进*/
+            text-indent: 50px;
+        }
+        .c2 {
+            /*对齐方式*/
+            text-align: center;
+        }
+        .study {
+            line-height: 30px;
+        }
+        .study > .s1 {
+            background-color: pink;
+            /*
+            - line-height: normal或者像素或者数字,或者百分比,可以继承,所以推荐使用数字
+            * 行高过小,文字 会重叠,最小值是0,不能为负数
+                * 设置了height,高度就是height的值
+                *  没有设置height,高度的就是 line-height*行数
+            * 行高的应用场景
+                * 调整多行文字的间距
+                * 单行文字的垂直居中:line height=height
+            */
+            /*line-height: 40px;*/
+            /*line-height: normal;*/
+            /*line-height: 1.5;*/
+            line-height: 150%;
+            font-size: 40px;
+            color: skyblue;
+        }
+        #id4 {
+            font-size: 40px;
+            color: red;
+            height: 200px;
+            line-height: 300px;
+            background-color: skyblue;
+        }
+        #id5 {
+            font-size: 100px;
+            height: 300px;
+            background-color: pink;
+        }
+        #id5 > span {
+            font-size: 40px;
+            background-color: orange;
+            /*
+            - 用于指定同一行元素之间,或表格单元格内文字的 垂直对齐方式
+            - 不能控制块元素
+            */
+            vertical-align: middle;
+            /*vertical-align: baseline;*/
+            /*vertical-align: bottom;*/
+            /*vertical-align: top;*/
+
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>golang</span><br>
+        <span class="go">golang</span><br><br>
+        <span class="go1">半年 之后</span><br><br>
+        <span class="go2">Golang</span><br><br>
+        <span class="go3">Golang</span><br><br>
+        <span class="go4">Golang</span><br><br>
+        <a href="https://github.com">Github</a><br>
+        <ins>ins</ins>
+        <del>del</del>
+        <div class="c1">缩进</div>
+        <div class="c2">缩进</div>
+        <div class="study">
+            <div class="s1">Golang</div>
+            <div class="s1">Golang</div>
+            <div>2</div>
+            <div>3</div>
+            <div id="id4">这半年好好学技术!!!!!!</div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div id="id5">
+                云原生x<span>x数据库</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
