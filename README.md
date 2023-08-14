@@ -7,6 +7,11 @@
 - **<span style="font-size: 20px;">[Emoji](https://gist.github.com/rxaviers/7360908)</span>**	
 - **<span style="font-size: 20px;">[Restful](https://restfulapi.cn/)</span>**	
 
+## Books
+- 深入理解计算机系统
+- 现代操作系统
+- 计算机网络自顶向下
+
 ## Rust
 > **<span style="font-size: 18px;">[Rust镜像代理](https://rsproxy.cn/)</span>**
 > 
@@ -27,7 +32,9 @@
 
 ## Go
 
+### Article
 - 2023.7.24:blush: [uber-go-guide](https://github.com/xxjwxc/uber_go_guide_cn)
+- 2023.8.14:blush: [go的net/http有哪些值得关注的细节](https://mp.weixin.qq.com/s/QfeycEFqeqqhRKrYYL5mGA)
 
 ## 前端
 
@@ -36,6 +43,7 @@
 - 2023.7.26:blush:Table and Common attributes
 - 2023.7.27, 2023.7.28:blush:Form 
 - 2023.7.29:blush:basically complete html4 and start css2
+
 ### CSS
 - 2023.7.31:blush:css style position
 - 2023.7.31:blush:css 样式优先级和基本选择器
@@ -43,7 +51,9 @@
 - 2023.8.10:blush:css兄弟+属性选择器+伪类选择器
 - 2023.8.11:blush:伪类选择器,否定伪类,目标伪类,语言伪类,UI伪类,伪元素选择器
 - 2023.8.12:blush:选择器优先级
-- 2023.8.12:blush:三大特性+像素
+- 2023.8.13:blush:三大特性+像素
+- 2023.8.14:blush:列表,表格,背景
+
 ### JavaScript
 
 ### TypeScript

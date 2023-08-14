@@ -4,12 +4,32 @@
     <meta charset="UTF-8">
     <title>列表</title>
 	<style>
-
+		ul {
+			list-style-type: decimal;
+			/*列表符号的位置*/
+			list-style-position: inside;
+			/*自定义列表符号*/
+			list-style-image: url("../../images/7.png");
+		}
+		ul {
+			/*复合属性,没有顺序要求*/
+			list-style: decimal inside url("../../images/7.png");
+		}
+		li {
+			background-color: skyblue;
+		}
 	</style>
 </head>
 <body>
 	<div>
-
+		<ul>
+			<li> 明天的工作是修改完成license </li>
+			<li> 客户端生成机器码</li>
+			<li> 服务端根据license生成压缩包</li>
+			<li> 客户端上传压缩包</li>
+			<li> 服务端解压并验证</li>
+			<li> 每次登录/启动进行读取验证</li>
+		</ul>
 	</div>
 </body>
 </html>
