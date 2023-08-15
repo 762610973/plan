@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"net/http"
 	"runtime"
-	"time"
 )
 
 func main() {
@@ -12,11 +12,9 @@ func main() {
 	n := 5
 	for i := 0; i < n; i++ {
 		resp, _ := http.Get("https://www.baidu.com")
+		_, _ = io.ReadAll(resp.Body)
 		_ = resp.Body.Close()
 	}
-	time.Sleep(time.Millisecond)
-	// *增加休眠之后,只有一个main goroutine
+	// * 此时会输出3,是因为长连接被推入到连接池了,连接会重新复用
 	fmt.Printf("goroutine num is %d\n", runtime.NumGoroutine())
-	// 输出3,main goroutine,read goroutine,write goroutine,长连接没有断开,但是不会在下一次复用
-	// 长连接释放需要时间
 }
