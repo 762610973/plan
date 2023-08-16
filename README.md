@@ -36,6 +36,9 @@
 - 2023.7.24:blush: [uber-go-guide](https://github.com/xxjwxc/uber_go_guide_cn)
 - 2023.8.14:blush: [go的net/http有哪些值得关注的细节](https://mp.weixin.qq.com/s/QfeycEFqeqqhRKrYYL5mGA)
 
+### Package
+- 2023.8.16:blush: errors
+- 2023.8.16:blush: Context初探([参考视频](https://www.bilibili.com/video/BV1EA41127Q3))
 ## 前端
 
 ### HTML
@@ -54,6 +57,7 @@
 - 2023.8.13:blush:三大特性+像素
 - 2023.8.14:blush:列表,表格,背景
 - 2023.8.15:blush:背景,鼠标,长度单位
+- 2023.8.16:blush:元素的显示模式
 
 ### JavaScript
 
