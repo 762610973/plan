@@ -4,7 +4,9 @@
 	<meta charset="UTF-8">
 	<title>元素的显示模式</title>
 	<style>
-		/*
+		/*排列
+			* 默认宽度: 由内容撑开
+			* 默认高度: 由内容撑开
 		- 块元素(block)
 			* html,body,h1~h6,hr,p,pre,div,ul,ol,li,dl,dt,dd,table,tbody,thead,tfoot,tr,caption,form,option
 			* div
@@ -21,13 +23,40 @@
 			* 无法通过css设置宽高
 		- 行内块元素(inline-block)
 			* img,td,th,input,textarea,select,button,iframe
-			* 在页面中不独占一行,一行中容纳不下的,在下一行继续从左到右排列
-			* 默认宽度: 由内容撑开
-			* 默认高度: 由内容撑开
+			* 在页面中不独占一行,一行中容纳不下的,在下一行继续从左到右
 			* 可以通过css设置宽高
 		*/
+		div {
+			font-size: 20px;
+			height: 200px;
+			width: 200px;
+			display: inline;
+		}
+		#id1 {
+			background-color: skyblue;
+		}
+		#id2 {
+			background-color: pink;
+		}
+		#id3 {
+			background-color: green;
+		}
+		a {
+			width: 200px;
+			height: 200px;
+			/*元素会被隐藏*/
+			display: none;
+			/*display: block;*/
+			background-color: aqua;
+		}
 	</style>
 </head>
 <body>
+	<div id="id1">1</div>
+	<div id="id2">2</div>
+	<div id="id3">3</div>
+	<hr>
+	<a id="s1" href="https://www.baidu.com">百度</a>
+	<a id="s2" href="https://www.bilibili.com">哔哩哔哩</a>
 </body>
 </html>
