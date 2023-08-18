@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>margin合并问题</title>
+	<style>
+		div {
+			width: 300px;
+			height: 300px;
+		}
+		/*
+		* 上下兄弟元素合并, 取较大的margin
+		* 上兄弟的下外边距和下兄弟的上外边距
+		*/
+		.inner1 {
+			background-color: deepskyblue;
+			margin-bottom: 50px;
+		}
+		.inner2 {
+			background-color: orchid;
+			margin-top: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div class="inner1">inner1</div>
+	<div class="inner2">inner2</div>
+</body>
+</html>

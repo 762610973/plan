@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>margin塌陷问题</title>
+	<style>
+		.outer {
+			width: 400px;
+			/*height: 400px;*/
+			background-color: gray;
+			/*
+			* margin塌陷,最上面的子元素设置上margin,最下面的子元素设置下margin,会被父元素吞掉
+			* border和padding都可以解决margin塌陷问题
+			*/
+			/*border: 1px solid red;*/
+			/*padding: 1px;*/
+			overflow: hidden;
+		}
+		.inner1 {
+			width: 100px;
+			height: 100px;
+			background-color: orange;
+			/*margin-bottom: 50px;*/
+			/*造成了margin塌陷 */
+			margin-top: 50px;
+		}
+		.inner2 {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			margin-bottom: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="outer">
+		<div  class="inner1">inner1</div>
+		<div  class="inner2">inner2</div>
+	</div>
+	<div>测试文字</div>
+</body>
+</html>
