@@ -41,6 +41,10 @@
 ### Package
 - 2023.8.16:blush: errors
 - 2023.8.16:blush: Context初探([参考视频](https://www.bilibili.com/video/BV1EA41127Q3))
+
+## 设计模式
+- 2023.8.20:star2: 简单工厂模式
+
 ## 前端
 
 ### HTML
