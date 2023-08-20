@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>元素的默认样式</title>
+	<style>
+		#d1 {
+			/*继承过来的样式级别是最低的*/
+			/*
+			! 元素的默认样式>继承的样式
+			* body元素: 8px外边距(四个方向)
+			*/
+
+			font-size: 50px;
+			color: orange;
+		}
+	</style>
+</head>
+<body>
+	<div id="d1">
+		<a href="https://github.com">Github</a>
+		<span>周日也要学习!</span>
+	</div>
+</body>
+</html>

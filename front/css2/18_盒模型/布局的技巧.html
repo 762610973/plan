@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>布局的技巧</title>
+	<style>
+		/*
+		! 行内元素, 行内块元素, 可以被父元素当做文本处理
+		- 如何让子元素, 在父亲中垂直居中
+			* 若子元素为块元素, 给子元素: margin-top
+			* 若子元素为行内元素, 行内块元素: 让父元素的height=line-height,  每个子元素都加上vertical-align:middle
+				*如果绝对垂直居中,父元素的font-size设置为0
+		- 如何让子元素, 在父亲中水平居中
+			* 若子元素为块元素, 给父元素加上: margin: 0 auto
+			* 若子元素为行内元素, 行内块元素, 给父元素加上: text-align: center
+		*/
+		.outer {
+			width: 400px;
+			height: 400px;
+			background-color: greenyellow;
+			overflow: hidden;
+		}
+		.inner {
+			width: 200px;
+			height: 200px;
+			background-color: blue;
+			margin: 100px auto 100px;
+			text-align: center;
+			line-height: 200px;
+			color: red;
+		}
+		.outer1 {
+			width: 400px;
+			height: 400px;
+			background-color: greenyellow;
+			overflow: hidden;
+			text-align: center;
+			line-height: 400px;
+		}
+		span {
+			font-size: 50px;
+			background-color: orange;
+		}
+		.outer3 {
+			width: 400px;
+			height: 400px;
+			background-color: gray;
+			text-align: center;
+			line-height: 400px;
+			font-size: 0;
+		}
+		img	{
+			vertical-align: middle;
+			height: 200px;
+		}
+		#span1 {
+			vertical-align: middle;
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="outer">
+		<div class="inner">布局</div>
+	</div>
+	<hr>
+	<div class="outer1">
+		<span>布局技巧</span>
+	</div>
+	<hr>
+	<div class="outer3">
+		<span id="span1">布局技巧</span>
+		<img src="../../../images/3.jpeg" alt="">
+	</div>
+</body>
+</html>

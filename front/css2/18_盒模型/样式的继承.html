@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>样式的继承</title>
+	<style>
+		#d1 {
+			height: 400px;
+			background-color: gray;
+			padding: 50px;
+		}
+		#d2 {
+			height: 200px;
+			background-color: red;
+			padding: 50px;
+			font-size: 40px;
+			font-weight: bold;
+			color: black;
+		}
+		#d3 {
+			height: 100px;
+			background-color: orchid;
+		}
+		/*
+		- 不会继承的css属性
+			* 边框, 背景, 内外边距, 宽高, 溢出方式等
+		- 会继承的css属性
+			* 字体, 文本属性(除了vertical-align), 文字颜色等
+		! 能继承的属性都是不影响布局的属性, 与盒子模型没关系的
+		*/
+	</style>
+</head>
+<body>
+	<div id="d1">
+		<div id="d2">
+			<div id="d3">今天学到浮动之前</div>
+		</div>
+	</div>
+</body>
+</html>
