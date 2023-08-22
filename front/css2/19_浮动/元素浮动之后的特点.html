@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>元素浮动之后的特点</title>
+	<style>
+		.outer {
+			width: 800px;
+			height: 400px;
+			padding: 10px;
+			background-color: pink;
+			text-align: center;
+		}
+		.box {
+			font-size: 20px;
+			padding: 10px;
+		}
+		.box1 {
+			background-color: #aa1300;
+		}
+		/*
+		* 脱离文档流
+		* 浮动之后宽和高默认都由内容撑开
+		* 可以和其他元素共用一行,不会独占一行
+		* 浮动之后的元素四周的margin和padding可以完美设置,不会margin合并,不会margin塌陷
+		* 不会像行内块一样被当做文本处理(没有行内块的空白问题)
+		*/
+		.box2 {
+			background-color: #7f9f1d;
+			float: left;
+			/*width: 200px;*/
+			/*height: 200px;*/
+		}
+		.box3 {
+			background-color: orchid;
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<div class="outer">
+		<div class="box box1">1</div>
+		<div class="box box2">2</div>
+		<div class="box box3">3</div>
+	</div>
+</body>
+</html>
