@@ -9,6 +9,11 @@ import "fmt"
 - 缺点是工厂类职责过重,违背开闭原则, 添加新产品需要修改工厂逻辑, 工厂越来越复杂
 */
 
+var (
+	_ fruit = (*apple)(nil)
+	_ fruit = (*pear)(nil)
+)
+
 // !抽象层
 type fruit interface {
 	show()
