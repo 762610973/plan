@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>解决浮动之后的影响</title>
+	<style>
+		.outer {
+			width: 600px;
+			background-color: gray;
+			border: 1px solid black;
+			/*第一种方案, 固定height*/
+			/*height: 122px;*/
+
+			/*第二种方案, 父元素浮动*/
+			/*float: left;*/
+
+			/*第三种方案, overflow*/
+			/*overflow: scroll;*/
+
+
+		}
+		.box {
+			margin: 10px;
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+			border: 1px solid black;
+		}
+		.box1,
+		.box2,
+		.box3,
+		.box4{
+			float: left;
+		}
+		.box4 {
+			/*改为行内块*/
+			/*display: inline-block;*/
+			/*clear: both;*/
+		}
+		.empty {
+			/*
+			- 第四种方案
+				* 在所有浮动元素的最后面,添加一个块级元素,并给该块级元素设置clear:both
+				* 使用clear消除浮动影响
+				* 前提是这个元素不能是行内元素
+			*/
+			/*clear: both;*/
+		}
+		/*
+			- 第五种解决方案
+			* 给浮动元素的父元素,设置伪元素,通过伪元素消除浮动,原理和方案四相同
+			! 最佳实践是兄弟元素要么一起浮动,要么一起不浮动
+		*/
+		.outer::after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+	</style>
+</head>
+<body>
+<div class="outer">
+	<div class="box box1">1</div>
+	<div class="box box2">2</div>
+	<div class="box box3">3</div>
+	<div class="box box4">4</div>
+	<!--<div class="empty"></div>-->
+</div>
+<!--<div style="background-color: orange;">-->
+<!--	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias cupiditate eaque eius error impedit, iste, laboriosam possimus repellat sequi sunt suscipit tenetur velit voluptatibus? In libero maxime perferendis velit! Officiis?-->
+<!--</div>-->
+</body>
+</html>
