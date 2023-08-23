@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>浮动布局练习</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.leftfix {
+			float: left;
+		}
+		.rightfix {
+			float: right;
+		}
+		.clearfix::after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+		.container {
+			width: 960px;
+			/*background-color: gray;*/
+			margin: 0 auto;
+			/*可以继承*/
+			text-align: center;
+		}
+		.logo {
+			width: 200px;
+		}
+		.banner1 {
+			width: 540px;
+			margin: 0 10px;
+		}
+		.banner2 {
+			width: 200px;
+		}
+		.logo, .banner1, .banner2 {
+			height: 80px;
+			line-height: 80px;
+			background-color: #ccc;
+		}
+		.menu {
+			height: 30px;
+			background-color: #ccc;
+			margin-top: 10px;
+			line-height: 30px;
+		}
+		.item1, .item2 {
+			width: 368px;
+			height: 198px;
+			border: 1px solid black;
+			margin-right: 10px;
+			line-height: 198px;
+		}
+		.content {
+			margin-top: 10px;
+		}
+		.bottom {
+			margin-top: 10px;
+		}
+		.item3,.item4,.item5,.item6 {
+			width: 178px;
+			height: 198px;
+			line-height: 198px;
+			border: 1px solid black;
+			margin-right: 10px;
+		}
+		.item7,.item8,.item9 {
+			width: 198px;
+			height: 128px;
+			border: 1px solid black;
+			line-height: 128px;
+		}
+		.item8 {
+			margin: 10px 0;
+		}
+		.footer {
+			height: 60px;
+			background-color: #cccccc;
+			line-height: 60px;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<!-- 头部 -->
+		<div class="page-header clearfix">
+			<div class="logo leftfix">logo</div>
+			<div class="banner1 leftfix">banner1</div>
+			<div class="banner2 leftfix">banner2</div>
+		</div>
+		<!-- 菜单 -->
+		<div class="menu">菜单</div>
+		<div class="content clearfix">
+			<div class="left leftfix">
+				<div class="top clearfix">
+					<div class="item1 leftfix">栏目1</div>
+					<div class="item2 leftfix">栏目2</div>
+				</div>
+				<div class="bottom clearfix">
+					<div class="item3 leftfix">栏目3</div>
+					<div class="item4 leftfix">栏目4</div>
+					<div class="item5 leftfix">栏目5</div>
+					<div class="item6 leftfix">栏目6</div>
+				</div>
+			</div>
+			<div class="right leftfix">
+				<div class="item7">栏目7</div>
+				<div class="item8">栏目8</div>
+				<div class="item9">栏目9</div>
+			</div>
+		</div>
+		<!-- 页脚 -->
+		<div class="footer">页脚</div>
+	</div>
+</body>
+</html>
