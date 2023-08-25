@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>粘性定位</title>
+	<style>
+		/*
+		! 不脱离文档流
+		* 不推荐和margin以及浮动一起设置
+		* 和相对定位性质比较相似
+		*/
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			height: 2000px;
+		}
+		.page-header {
+			height: 100px;
+			background-color: orange;
+			text-align: center;
+			line-height: 100px;
+			font-size: 20px;
+		}
+		.item {
+			background-color: gray;
+		}
+		.first {
+			font-size: 40px;
+			background-color: skyblue;
+			position: sticky;
+			/*参考点是距离最近的具有滚动属性的祖先元素*/
+			top: 0;
+		}
+		.content {
+			height: 200px;
+			overflow: scroll;
+		}
+	</style>
+</head>
+<body>
+	<div class="page-header">头部</div>
+	<div class="content">
+		<div class="item">
+			<div class="first">A</div>
+			<h2>A1</h2>
+			<h2>A2</h2>
+			<h2>A3</h2>
+			<h2>A4</h2>
+			<h2>A5</h2>
+			<h2>A6</h2>
+			<h2>A7</h2>
+			<h2>A8</h2>
+			<h2>A9</h2>
+			<h2>A10</h2>
+		</div>
+		<div class="item">
+			<div class="first">B</div>
+			<h2>B1</h2>
+			<h2>B2</h2>
+			<h2>B3</h2>
+			<h2>B4</h2>
+			<h2>B5</h2>
+			<h2>B6</h2>
+			<h2>B7</h2>
+			<h2>B8</h2>
+			<h2>B9</h2>
+			<h2>B10</h2>
+		</div>
+		<div class="item">
+			<div class="first">C</div>
+			<h2>C1</h2>
+			<h2>C2</h2>
+			<h2>C3</h2>
+			<h2>C4</h2>
+			<h2>C5</h2>
+			<h2>C6</h2>
+			<h2>C7</h2>
+			<h2>C8</h2>
+			<h2>C9</h2>
+			<h2>C10</h2>
+		</div>
+	</div>
+</body>
+</html>

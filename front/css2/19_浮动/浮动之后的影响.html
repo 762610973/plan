@@ -24,12 +24,15 @@
 		.box1, .box2, .box3 {
 			float: left;
 		}
-
+		.outer::after {
+			content: '';
+			display: block;
+			clear: both;
+		}
 	</style>
 </head>
 <body>
 	<div  class="outer">
-		<!--<div class="box box0">0</div>-->
 		<div class="box box1">1</div>
 		<div class="box box2">2</div>
 		<div class="box box3">3</div>

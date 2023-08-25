@@ -76,6 +76,7 @@
 - 2023.8.21:blush:浮动简介
 - 2023.8.22:blush:元素浮动之后的特点,影响,解决影响
 - 2023.8.23:blush:浮动布局练习
+- 2023.8.25:blush:固定定位,浮动定位,粘性定位,绝对定位
 
 ### JavaScript
 
@@ -89,7 +90,7 @@
 
 ## 汇编
 
->  [汇编](https://www.bilibili.com/video/BV1Wu411B72F?P=1&vd_source=520dac7b196453839c1358f10c86132b)、王爽老师的书
+>  [汇编](https://www.bilibili.com/video/BV1Wu411B72F)、王爽老师的书
 
 - 2023.7.22/周六:blush: 第一节概论、环境搭建
 
