@@ -47,8 +47,11 @@
 - 2023.8.21:star2: 工厂方法模式,抽象工厂方法模式
 - 2023.8.22:star2: 单例模式: 饿汉+懒汉
 - 2023.8.22:star2: 代理模式,装饰器模式
+- 2023.8.23:star2: 适配器模式
 
 ## 前端
+
+> **<span style="font-size: 18px;">[html+css](https://www.bilibili.com/video/BV1p84y1P7Z5)</span>**
 
 ### HTML
 - 2023.7.24:blush:List and Table
@@ -88,7 +91,7 @@
 
 >  [汇编](https://www.bilibili.com/video/BV1Wu411B72F?P=1&vd_source=520dac7b196453839c1358f10c86132b)、王爽老师的书
 
-- 2023.7.22/周六:blush: ：第一节概论、环境搭建
+- 2023.7.22/周六:blush: 第一节概论、环境搭建
 
 ## Redis
 
