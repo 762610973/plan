@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>新增列表标签</title>
+	<style>
+		label {
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<form action="#">
+			<label>
+				<span>搜索框</span>
+				<input type="text" list="data">
+				<button>搜索</button>
+			</label>
+		</form>
+		<datalist id="data">
+			<option value="Golang">Golang</option>
+			<option value="Rust">Rust</option>
+			<option value="TS">TS</option>
+			<option value="React">React</option>
+		</datalist>
+		<hr>
+		<details>
+			<summary>赶紧学技术!</summary>
+			<span>学完html和css就学js和nginx</span>
+		</details>
+	</div>
+</body>
+</html>
