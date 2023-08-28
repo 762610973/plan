@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>兼容性处理</title>
+	<!--让IE浏览器处于一个最优的渲染模式-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!--针对一些国产的双核浏览器的设置,让浏览器优先使用webkit内核去渲染网页-->
+	<meta name="render" content="webkit">
+	<style>
+		footer {
+			background-color: greenyellow;
+		}
+	</style>
+	<!--[if lt ie 9]>
+	<script src="./html5shiv.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<!--
+	- q
+	-->
+	<div>
+		<header>header: 整个页面,或部分区域的头部</header>
+		<footer>footer: 整个页面,或部分区域的底部</footer>
+		<nav>nav: 导航</nav>
+		<article>article: 文章,帖子,杂志,新闻,博客,评论</article>
+		<section>section: 页面中的某段文字,或文章中的某段文字(里面文字通常会包含标题)</section>
+		<aside>aside: 侧边栏</aside>
+	</div>
+</body>
+</html>
