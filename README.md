@@ -105,3 +105,7 @@
 ## ES
 
 - 2023.7.28:tiger:安装`elasticsearch`以及`kibana`和环境
+
+## KAFKA
+
+- 2023.9.1:tiger:安装`kafka`环境
