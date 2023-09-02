@@ -3,8 +3,62 @@
 <head>
 	<meta charset="UTF-8">
 	<title>新增背景属性</title>
+	<style>
+		.box1 {
+			width: 400px;
+			height: 400px;
+			background-color: skyblue;
+			padding: 50px;
+			border: 50px dashed green;
+			font-size: 40px;
+			/*padding左上角是背景原点*/
+			background-image: url("../../images/css/四月就是秀秀.jpg");
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-origin: border-box;
+			/*background-origin: padding-box;*/
+			margin: 0 auto 100px;
+		}
+		.box2 {
+			width: 400px;
+			height: 400px;
+			background-color: skyblue;
+			margin: 0 auto;
+			padding: 50px;
+			border: 50px dashed green;
+			font-size: 40px;
+			/*padding左上角是背景原点*/
+			background-image: url("../../images/css/四月就是秀秀.jpg");
+			background-size: cover;
+			/*background-size: 500px;*/
+			background-repeat: no-repeat;
+			background-origin: border-box;
+			/*background-origin: padding-box;*/
+			/*padding以外的不呈现*/
+			/*background-clip: padding-box;*/
+			/*在文字上呈现,需要文字透明*/
+			color: transparent;
+			-webkit-background-clip: text;
+		}
+		.box3 {
+			width: 400px;
+			height: 400px;
+			border: 1px solid black;
+			background: url("../../images/css/bg-lt.png") no-repeat left top,
+						url("../../images/css/bg-rt.png") no-repeat right top,
+						url("../../images/css/bg-lb.png") no-repeat left bottom,
+						url("../../images/css/bg-rt.png") no-repeat right bottom;
+		}
+	</style>
 </head>
 <body>
-
+	<div class="box1">background-origin</div>
+	<div class="box2">background-clip</div>
+	<span>
+		复合属性
+		background: color url repeat position / size origin clip
+		size的值必须写在position值的后面,并且用/分开
+	</span>
+	<div class="box3"></div>
 </body>
 </html>

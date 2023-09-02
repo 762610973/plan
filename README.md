@@ -58,7 +58,8 @@
 - 2023.7.26:blush:Table and Common attributes
 - 2023.7.27, 2023.7.28:blush:Form 
 - 2023.7.29:blush:basically complete html4 and start css2
-
+- 2023.8.27:blush:html5简介,新增布局标签,状态标签,列表标签
+- 2023.8.28:blush:html5新增表单控件,type属性,视频标签,音频标签,全局属性,兼容性处理
 ### CSS
 - 2023.7.31:blush:css style position
 - 2023.7.31:blush:css 样式优先级和基本选择器
@@ -79,9 +80,7 @@
 - 2023.8.25:blush:固定定位,浮动定位,粘性定位,绝对定位
 - 2023.8.26:blush:定位的层级,特殊应用,布局(常用类名,版心,重置默认样式)
 - 2023.8.26:blush:尚品汇顶部导航条,头部,主导航,内容区,秒杀,楼层,页脚
-- 2023.8.27:blush:html5简介,新增布局标签,状态标签,列表标签
-- 2023.8.28:blush:html5新增表单控件,type属性,视频标签,音频标签,全局属性,兼容性处理
-
+- 2023.9.2:blush:css3新增盒子属性,背景属性
 ### JavaScript
 
 ### TypeScript
