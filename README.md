@@ -109,3 +109,6 @@
 ## KAFKA
 
 - 2023.9.1:tiger:安装`kafka`环境
+
+## Nginx
+- 2023.9.4:watermelon: 环境搭建
