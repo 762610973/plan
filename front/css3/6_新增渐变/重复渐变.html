@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!--在没有发生渐变的区域,重新渐变-->
+	<title>重复渐变</title>
+	<style>
+		.box {
+			width: 400px;
+			height: 200px;
+			border: 1px solid red;
+			float: left;
+			font-size: 20px;
+		}
+
+		.box4 {
+			background-image: repeating-linear-gradient(red 50px,yellow 100px, black 150px);
+		}
+		.box6 {
+			background-image: repeating-radial-gradient(red 50px,yellow 100px,green 150px);
+		}
+	</style>
+</head>
+<body>
+	<div class="box box4">纯色部分,重复线性渐变</div>
+	<div class="box box6">纯色部分,重复径向渐变</div>
+</body>
+</html>

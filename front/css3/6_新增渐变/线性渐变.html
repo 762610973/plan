@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>线性渐变</title>
+	<style>
+		.box {
+			width: 300px;
+			height: 200px;
+			border: 1px solid red;
+			float: left;
+			font-size: 20px;
+		}
+		.box1 {
+			background-image: linear-gradient(red,yellow,green,blue,pink);
+		}
+		.box2 {
+			background-image: linear-gradient(to right,red,yellow,green,blue,black);
+			/*background-image: linear-gradient(to right top,red,yellow,green,blue,black);*/
+		}
+		.box3 {
+			background-image: linear-gradient(20deg,red,yellow,green,blue,black);
+		}
+		.box4 {
+			background-image: linear-gradient(45deg,red 50px,yellow 100px, black 150px);
+		}
+		.box5 {
+			background-image: linear-gradient(red 50px,yellow 100px, black 150px);
+			color: transparent;
+			text-align: center;
+			line-height: 200px;
+			font-weight: bold;
+			-webkit-background-clip: text;
+		}
+	</style>
+</head>
+<body>
+	<div class="box box1">默认从上到下</div>
+	<div class="box box2">通过关键词调整线性渐变方向</div>
+	<div class="box box3">通过角度调整渐变方向</div>
+	<div class="box box4">调整渐变区域</div>
+	<div class="box box5">线性渐变</div>
+</body>
+</html>

@@ -2,10 +2,9 @@ package main
 
 import (
 	"crypto/tls"
+	"github.com/elastic/go-elasticsearch/v8"
 	"log"
 	"net/http"
-
-	"github.com/elastic/go-elasticsearch/v8"
 )
 
 const (
