@@ -3,8 +3,85 @@
 <head>
 	<meta charset="UTF-8">
 	<title>新增文本属性</title>
+	<style>
+		h1 {
+			font-size: 80px;
+			text-align: center;
+			/*文本阴影: 大小,便宜,模糊值,颜色*/
+			/*text-shadow: 5px 3px 10px red;*/
+			text-shadow: 0 0 15px black;
+		}
+		.line {
+			width: 400px;
+			height: 400px;
+			border: 1px solid black;
+			font-size: 20px;
+			/*按照原文显示*/
+			/*white-space: pre;*/
+			/*pre基础上超出元素边界自动换行*/
+			/*white-space: pre-wrap;*/
+			/*pre基础上,超出元素边界自动换行,且只识别文本中的换行*/
+			white-space: pre-line;
+			/*强制不换行*/
+			/*white-space: nowrap;*/
+			margin-bottom:20px;
+		}
+		.over {
+			width: 400px;
+			height: 400px;
+			border: 1px solid black;
+			font-size: 20px;
+			list-style:none;
+			padding-left: 0;
+		}
+		.over ul li {
+			margin-bottom: 10px;
+			white-space: nowrap;
+			overflow: hidden;
+			/*text-overflow: clip;*/
+			text-overflow: ellipsis;
+		}
+		span {
+			color: red;
+			font-size: 40px;
+		}
+		h2 {
+			font-size: 50px;
+			text-decoration-line: overline;
+			text-decoration-style: dashed;
+			text-decoration-color: blue;
+			/*text-decoration: underline deepskyblue dashed;*/
+		}
+		h3 {
+			font-size: 50px;
+			-webkit-text-stroke: 1px red;
+			color: transparent;
+		}
+	</style>
 </head>
 <body>
-
+	<div>
+		<h1>文本阴影</h1>
+		<div class="line">
+			<span>文本换行</span>
+			山回路转不见君
+			雪上空留马行处 雪上空留马行处 雪上空留马行处
+			山回路转不见君
+			雪上空留马行处
+			山回路转不见君
+			雪上空留马行处
+		</div>
+		<div class="over">
+			<span>文本溢出</span>
+			<ul>
+				<li>GolangRustReactDockerNginxMysqlRedisEtcd</li>
+				<li>Golang</li>
+				<li>Golang</li>
+				<li>Golang</li>
+			</ul>
+		</div>
+		<h2>文本修饰</h2>
+		<h3>文本描边,只有webkit内核可以</h3>
+	</div>
 </body>
 </html>

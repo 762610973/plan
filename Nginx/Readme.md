@@ -52,3 +52,42 @@ systemctl daemon-reload
 systemctl start nginx.service
 systemctl enable nginx
 ```
+## 最小核心配置文件
+```shell
+# 工作进程数量, 推荐物理CPU内核数
+worker_processes  1;
+events {
+	# 每个worker的连接数
+    worker_connections  1024;
+}
+
+http {
+	# 导入其他文件. mime.types: 定义解析类型
+    include       mime.types;
+    # 默认类型
+    default_type  application/octet-stream;
+    # 数据零拷贝
+    sendfile        on;
+    # 长连接超时时间
+    keepalive_timeout  65;
+    server {
+      	# 监听的端口号
+        listen       80;
+        # 主机名,可以配置域名或者主机名
+        server_name  localhost;
+        # uri
+        location / {
+          	# 指明根路径, 该location下的所有文件和子目录都相对于该根目录进行访问
+            root   html;
+            # 匹配到index路由要展示的页面
+            index  index.html index.htm;
+        }
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+          	# 从根目录找50x.html
+            root   html;
+        }
+    }
+}
+
+```
