@@ -117,3 +117,4 @@
 ## Nginx
 - 2023.9.4:watermelon: 环境搭建
 - 2023.9.4:watermelon: 最小核心配置文件
+- 2023.9.5:watermelon: 域名解析, 多hosts

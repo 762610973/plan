@@ -52,8 +52,9 @@ systemctl daemon-reload
 systemctl start nginx.service
 systemctl enable nginx
 ```
-## 最小核心配置文件
+#### 最小核心配置文件
 ```shell
+user root;
 # 工作进程数量, 推荐物理CPU内核数
 worker_processes  1;
 events {
@@ -89,5 +90,28 @@ http {
         }
     }
 }
-
 ```
+#### 域名解析
+- 修改hosts文件, 192.168.31.23 kamier.com(本机虚拟)
+- 公网域名解析
+- 泛域名解析
+#### 配置多hosts
+> **如果没有匹配到,会从上至下匹配, 匹配是有顺序的**
+1. server_name
+2. port
+- 匹配规则
+  - 一个server可以配置多个server_name,使用空格分割
+  - 完整匹配
+  - 通配符匹配: `server_name: *.kamier.top;`
+  - 通配符结束匹配: `server_name: www.kamier.*;`
+  - 正则匹配
+- 多用户二级域名
+- 短网址
+- HttpDns(基于http的dns,c/s架构或手机APP)
+
+## 反向代理
+- 网关, 代理与反向代理
+- 反向代理在系统架构中的应用场景
+- Nginx的反向代理配置
+- 基于反向代理的负载均衡器
+- 负载均衡策略
