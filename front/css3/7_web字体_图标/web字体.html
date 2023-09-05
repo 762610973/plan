@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>web字体</title>
+	<style>
+		@font-face {
+			font-family: 'JBM';
+			/*src: url('JetBrainsMono-Light.ttf');*/
+			src: url('JetBrainsMono-ExtraBold.ttf');
+		}
+
+		@font-face {
+			font-family: 'webfont';
+			src: url('webfont.eot');
+			src: url('webfont.eot?#iefix') format('embedded-opentype'),
+			url('webfont.woff2') format('woff2'),
+			url('webfont.woff') format('woff'),
+			url('webfont.ttf') format('truetype'),
+			url('webfont.svg#webfont') format('svg');
+			font-style: normal;
+			font-weight: normal;
+		}
+		span {
+			font-size: 100px;
+			font-family: JBM,serif;
+		}
+		h1 {
+			font-family: webfont,serif;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<span>font</span>
+		<h1>还没来得及去沾花惹草，就被人拔光了</h1>
+	</div>
+</body>
+</html>

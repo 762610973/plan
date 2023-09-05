@@ -1,0 +1,30 @@
+{
+  "id": "4237888",
+  "name": "plan",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "36791216",
+      "name": "三明治",
+      "font_class": "sanmingzhi-01",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "36791234",
+      "name": "鲷鱼饼",
+      "font_class": "diaoyubing-01",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "36791289",
+      "name": "寿司",
+      "font_class": "shousi-01",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    }
+  ]
+}
