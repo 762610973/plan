@@ -3,8 +3,44 @@
 <head>
 	<meta charset="UTF-8">
 	<title>位移</title>
+	<style>
+		.outer {
+			width: 200px;
+			height: 200px;
+			border: 1px solid blue;
+			margin: 100px auto 0;
+			position: relative;
+		}
+		.inner {
+			height: 200px;
+			width: 200px;
+			border: 1px solid blue;
+			background-color: pink;
+			transform: translate(100px,50px);
+			/*此处百分比是自身*/
+			/*transform: translateX(50%);*/
+			/*transform: translateX(50%) translateY(50%);*/
+		}
+		/*实现元素水平垂直居中*/
+		.inner2 {
+			width: 60px;
+			height: 60px;
+			background-color: orange;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+	</style>
 </head>
 <body>
-
+	<div class="outer">
+		<div class="inner">2D变换-位移,不脱离文档流,不影响其他元素</div>
+	</div>
+	<div class="outer">
+		<div class="inner2">2D变换-位移,不脱离文档流</div>
+	</div>
+	<span>相比定位, 浏览器处理位移的效率更高, 位移对行内元素无效</span>
+	<span>位移配合定位,可实现元素水平垂直居中</span>
 </body>
 </html>

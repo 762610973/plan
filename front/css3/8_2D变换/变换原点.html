@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>变换原点</title>
+	<style>
+		.outer {
+			width: 200px;
+			height: 200px;
+			border: 1px solid blue;
+			margin: 100px auto 0;
+			position: relative;
+		}
+		.inner {
+			height: 200px;
+			width: 200px;
+			border: 1px solid blue;
+			background-color: pink;
+			/*通过关键词调整变换原点*/
+			/*transform-origin: left top;*/
+			transform-origin: 200px 50px;
+			transform: rotateZ(45deg);
+		}
+	</style>
+</head>
+<body>
+<div class="outer">
+	<div class="inner">变换原点, 对位移没影响</div>
+</div>
+</body>
+</html>
