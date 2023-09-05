@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script>
+		function myFunc1() {
+			document.getElementById("demo2").innerHTML = "我的第一段JavaScript";
+		}
+	</script>
+	<!--还可以使用完整的url引用外部的js-->
+	<script src="./index.js"></script>
+	<meta charset="UTF-8">
+	<title>index</title>
+</head>
+<body>
+	<p id="demo">js可以改变html属性值,可以改变css样式</p>
+	<p id="demo1" style="display:none">Hello JavaScript!</p>
+	<p id="demo2"></p>
+	<button type="button" onclick='document.getElementById("demo").innerHTML = "Hello JavaScript!"'>改变html</button>
+	<button type="button" onclick="document.getElementById('demo').style.display='none'">改变css</button>
+	<button type="button" onclick="document.getElementById('demo1').style.display='block'">显示隐藏的html元素</button>
+	<button type="button" onclick="myFunc1()">使用单独的脚本</button>
+	<button type="button" onclick="demo1()">外部脚本</button>
+</body>
+</html>

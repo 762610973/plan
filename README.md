@@ -5,6 +5,7 @@
 ##  Star
 
 - **<span style="font-size: 20px;">[Emoji](https://gist.github.com/rxaviers/7360908)</span>**	
+- **<span style="font-size: 20px;">[Emoji](https://emojixd.com/)</span>**	
 - **<span style="font-size: 20px;">[Restful](https://restfulapi.cn/)</span>**	
 
 ## Books
@@ -38,9 +39,12 @@
 - 2023.8.14:blush: [go的net/http有哪些值得关注的细节](https://mp.weixin.qq.com/s/QfeycEFqeqqhRKrYYL5mGA)
 - 2023.8.18:blush: [泛型](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU2ODc4NzUxMg==&action=getalbum&album_id=2218002393592627201&scene=173&from_msgid=2247485263&from_itemidx=1&count=3&nolastread=1#wechat_redirect)
 
-### Package
+### Source
 - 2023.8.16:blush: errors
 - 2023.8.16:blush: Context初探([参考视频](https://www.bilibili.com/video/BV1EA41127Q3))
+
+#### channel
+- 2023.9.5:money_mouth_face: 无缓冲channel读写顺序(终于明白之前不理解的一个点了)
 
 ## 设计模式
 - 2023.8.20:star2: 简单工厂模式
@@ -87,6 +91,9 @@
 - 2023.9.4:blush:css3新增渐变: 线性,径向,重复渐变
 
 ### JavaScript
+> [JavaScript](https://www.w3school.com.cn/js/index.asp)
+- 2023.9.5:dart: js的基本使用
+
 
 ### TypeScript
 
