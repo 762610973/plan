@@ -1,10 +1,12 @@
 services:
   kafka:
-    image: docker.io/bitnami/kafka:3.5
+    container_name: kafka
+    image: bitnami/kafka:latest
+    user: root
     ports:
-      - "9092:9092"
+      - 9092:9092
     volumes:
-      - "kafka_data:/bitnami"
+      - ./kafka_data:/bitnami
     environment:
       # KRaft 设置
       # !节点id
@@ -12,20 +14,20 @@ services:
       # !角色
       - KAFKA_CFG_PROCESS_ROLES=controller,broker
       # !集群地址
-      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@localhost:9093
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@127.0.0.1:9093
       # controller 协议
       # !important
       - KAFKA_CFG_SASL_MECHANISM_INTER_BROKER_PROTOCOL=PLAIN
       - KAFKA_CFG_SASL_ENABLED_MECHANISMS=PLAIN
-#      - KAFKA_CFG_SASL_MECHANISM_CONTROLLER_PROTOCOL=PLAIN
-      # !定义外网访问地址
-      - KAFKA_CFG_ADVERTISED_LISTENERS=SASL_PLAINTEXT://192.168.31.22:9092
+      #      - KAFKA_CFG_SASL_MECHANISM_CONTROLLER_PROTOCOL=PLAIN
+      # !定义外网访问地址,这里一定要填写正确
+      - KAFKA_CFG_ADVERTISED_LISTENERS=SASL_PLAINTEXT://192.168.10.221:9092
       # !定义安全协议
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,SSL:SSL,SASL_PLAINTEXT:SASL_PLAINTEXT,SASL_SSL:SASL_SSL
       # !指定供外部使用的控制类请求信息
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-      # !定义kafka服务端socket监听端口
-      - KAFKA_CFG_LISTENERS=SASL_PLAINTEXT://:9092,CONTROLLER://:9093
+      # !定义kafka服务端socket监听端口,0.0.0.1或者不填写
+      - KAFKA_CFG_LISTENERS=SASL_PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
       # !important
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=SASL_PLAINTEXT
       # !允许自动创建topic
@@ -35,6 +37,3 @@ services:
       - KAFKA_HEAP_OPTS=-Xmx512M -Xms256M
       - KAFKA_INTER_BROKER_USER=admin
       - KAFKA_INTER_BROKER_PASSWORD=admin
-volumes:
-  kafka_data:
-    driver: local

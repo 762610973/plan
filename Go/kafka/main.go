@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"github.com/segmentio/kafka-go"
 	"github.com/segmentio/kafka-go/sasl/plain"
 	"log/slog"
@@ -10,7 +9,8 @@ import (
 )
 
 const (
-	_address  = "192.168.31.22:9092"
+	_address = "192.168.10.221:9092"
+	//_address  = "192.168.31.22:9092"
 	_username = "admin"
 	_password = "admin"
 	_topic    = "first"
@@ -39,13 +39,13 @@ func main() {
 			slog.Error("write failed", err.Error())
 			return
 		}
+		slog.Info("write to kafka success")
 		_ = writer.Close()
 	}()
 	go func() {
 		reader := kafka.NewReader(kafka.ReaderConfig{
 			StartOffset: kafka.LastOffset,
 			Brokers:     []string{_address},
-			GroupID:     _topic,
 			Topic:       _topic,
 			Dialer: &kafka.Dialer{
 				DualStack:     true,
@@ -62,7 +62,7 @@ func main() {
 		if message.Value == nil {
 			return
 		}
-		fmt.Println(string(message.Value))
+		slog.Info(string(message.Value))
 		_ = reader.Close()
 		exitCh <- struct{}{}
 	}()

@@ -17,7 +17,7 @@ cd /usr/local/nginx/sbin
 systemctl stop firewalld.service
 # 禁用开机自启
 systemctl disable firewalld.service
-firewalld-cmd --zone=public --add-port=80/tcp --permanent
+firewall-cmd --zone=public --add-port=80/tcp --permanent
 ```
 ```shell
 # 启动
