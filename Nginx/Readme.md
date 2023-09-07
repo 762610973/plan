@@ -115,3 +115,43 @@ http {
 - Nginx的反向代理配置
 - 基于反向代理的负载均衡器
 - 负载均衡策略
+
+### 反向代理/负载均衡
+```Nginx
+# 负载均衡配置
+upstream httpds {
+server 192.168.31.22:80;
+server 192.168.31.23:80;
+}
+# 配合下面进行负载均衡
+# proxy_pass http://httpds;
+http {
+	# 导入其他文件. mime.types: 定义解析类型
+    include       mime.types;
+    # 默认类型
+    default_type  application/octet-stream;
+    # 数据零拷贝
+    sendfile        on;
+    # 长连接超时时间
+    keepalive_timeout  65;
+    server {
+      	# 监听的端口号
+        listen       80;
+        # 主机名,可以配置域名或者主机名
+        server_name  localhost;
+        # uri
+        location / {
+            # 反向代理服务器, 如果没有配置https, 不能代理到https协议的服务器
+            proxy_pass  http://www.baidu.com;
+            root   html;
+            # 匹配到index路由要展示的页面
+            index  index.html index.htm;
+        }
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+          	# 从根目录找50x.html
+            root   html;
+        }
+    }
+}
+```
