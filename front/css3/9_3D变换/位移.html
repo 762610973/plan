@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>位移</title>
+	<style>
+		.outer {
+			width: 200px;
+			height: 200px;
+			border: 2px solid black;
+			margin: 100px auto 0;
+			/*开启3d空间*/
+			transform-style: preserve-3d;
+			/*设置景深(近大远小), z轴的高度, 指定观察者与z=0平面的距离*/
+			perspective: 500px;
+			perspective-origin: 102px 102px;
+		}
+		.inner {
+			width: 200px;
+			height: 200px;
+			line-height: 200px;
+			text-align: center;
+			background-color: rgba(0,191,255,0.7);
+			/*不能写百分比*/
+			/*transform: translateZ(200px);*/
+			transform: translate3d(100px,100px,200px);
+			box-shadow: 0 0 10px black;
+		}
+	</style>
+</head>
+<body>
+<div class="outer">
+	<div class="inner">位移</div>
+</div>
+</body>
+</html>
