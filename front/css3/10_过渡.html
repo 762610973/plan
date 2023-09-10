@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>过渡</title>
+	<style>
+		.box1 {
+			width: 200px;
+			height: 200px;
+			background-color: orange;
+			/*设置过渡属性*/
+			/*transition-property: height,width;*/
+			transition-property: all;
+			/*设置过渡持续时间,ms/s*/
+			transition-duration: 3s;
+			/*延迟*/
+			/*transition-delay: 4s;*/
+			/*速度*/
+			/*transition-timing-function: ease;*/
+			/*transition-timing-function: steps(20,start);*/
+			transition-timing-function: cubic-bezier(1,1,1,1);
+			/*transition-timing-function: cubic-bezier(1,1,1,1);*/
+			transition: 2s all 1s linear;
+		}
+		.box1:hover {
+			height: 400px;
+			width: 800px;
+			/*transform: rotate(45deg);*/
+		}
+	</style>
+</head>
+<body>
+	<div class="box1"></div>
+</body>
+</html>

@@ -97,6 +97,7 @@
 - 2023.9.4:blush:css3新增渐变: 线性,径向,重复渐变
 - 2023.9.5:blush:css3新增2D变换: 位移,缩放,旋转,扭曲,多重变换,变换原点
 - 2023.9.10:blush:css3新增3D变换: 空间与景深, 透视点位置, 位移, 缩放, 旋转, 多重变换, 背部
+- 2023.9.10:blush:css3新增过渡
 ### JavaScript
 > [JavaScript](https://www.w3school.com.cn/js/index.asp)
 - 2023.9.5:dart: js的基本使用
