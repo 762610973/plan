@@ -3,8 +3,34 @@
 <head>
 	<meta charset="UTF-8">
 	<title>多列布局</title>
+	<style>
+		.outer {
+			width: 1000px;
+			margin: 0 auto;
+			/*直接指定列数*/
+			column-count: 5;
+			/*制定每一列的宽度, 会自动计算列数*/
+			/*column-width: 25px;*/
+			/*调整列间距*/
+			column-gap: 20px;
+			column-rule-width: 2px;
+			column-rule-style: dashed;
+			column-rule-color: red;
+		}
+		.outer img {
+			width: 100%;
+		}
+	</style>
 </head>
 <body>
-
+	<div class="outer">
+		<h1>这个月赶紧把css学完, 不能再拖了</h1>
+		<p>[九月] 的目标是完成css,ts,nginx,es, 然后十月的目标是看书(docker和etcd), 11月的计划就是开始每天4道LeetCode, 学习数据库和云原生了[]</p>
+		<img src="../../images/2.jpg" alt="">
+		<p>[九月] 的目标是完成css,ts,nginx,es, 然后十月的目标是看书(docker和etcd), 11月的计划就是开始每天4道LeetCode, 学习数据库和云原生了[]</p>
+		<p>[九月] 的目标是完成css,ts,nginx,es, 然后十月的目标是看书(docker和etcd), 11月的计划就是开始每天4道LeetCode, 学习数据库和云原生了[]</p>
+		<p>[九月] 的目标是完成css,ts,nginx,es, 然后十月的目标是看书(docker和etcd, 黑皮书, 数据库, rust), 11月的计划就是开始每天4道LeetCode, 学习数据库和云原生了, 然后要赶紧看源码[]</p>
+		<p>[九月] 的目标是完成css,ts,nginx,es, 然后十月的目标是看书(docker和etcd), 11月的计划就是开始每天4道LeetCode, 学习数据库和云原生了[]</p>
+	</div>
 </body>
 </html>

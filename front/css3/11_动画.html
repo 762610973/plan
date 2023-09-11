@@ -3,8 +3,76 @@
 <head>
 	<meta charset="UTF-8">
 	<title>动画</title>
+	<style>
+		.outer {
+			height: 200px;
+			width: 1000px;
+			border: 1px solid black;
+		}
+		.inner {
+			width: 100px;
+			height: 100px;
+			background-color: deepskyblue;
+			/*应用动画*/
+			animation-name: toRight;
+			animation-duration: 5s;
+		}
+		.inner1 {
+			width: 100px;
+			height: 100px;
+			background-color: deepskyblue;
+			/*应用动画*/
+			animation-name: toRight1;
+			/*动画持续时间*/
+			animation-duration: 5s;
+			/*动画延迟*/
+			animation-delay: 1s;
+			/*设置动画的方式*/
+			animation-timing-function: linear;
+			/*播放次数*/
+			animation-iteration-count: infinite;
+			/*播放方向*/
+			animation-direction: normal;
+			/*动画以外的状态, 不发生动画的时候在哪里*/
+			animation-fill-mode: forwards;
+			/*动画的播放状态*/
+			animation-play-state: paused;
+		}
+		/*定义一组关键帧*/
+		@keyframes toRight {
+			/*第一帧*/
+			from {
+
+			}
+			/*最后一帧*/
+			to {
+				transform: translateX(900px);
+				background-color: red;
+			}
+		}
+		@keyframes toRight1 {
+			/*第一帧*/
+			0% {
+
+			}
+
+			50% {
+				background-color: orange;
+				border-radius: 50%;
+			}
+
+			/*最后一帧*/
+			100% {
+				transform: translateX(900px);
+				background-color: red;
+			}
+		}
+	</style>
 </head>
 <body>
-
+	<div class="outer">
+		<div class="inner"></div>
+		<div class="inner1"></div>
+	</div>
 </body>
 </html>
