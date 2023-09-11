@@ -2,15 +2,16 @@ package main
 
 import (
 	"crypto/tls"
-	"github.com/elastic/go-elasticsearch/v8"
-	"log"
+	"log/slog"
 	"net/http"
+
+	"github.com/elastic/go-elasticsearch/v8"
 )
 
 const (
 	_account  = "elastic"
 	_password = "123456"
-	_url      = "https://192.168.31.22:9200"
+	_url      = "http://192.168.31.22:9200"
 )
 
 func main() {
@@ -25,8 +26,14 @@ func main() {
 		},
 	})
 	if err != nil {
-		log.Fatalln(err)
+		slog.Error(err.Error())
+		return
 	}
-	log.Println(elasticsearch.Version)
-	log.Println(es.Info())
+	slog.Info(elasticsearch.Version)
+	info, err := es.Info()
+	if err != nil {
+		slog.Error(err.Error())
+		return
+	}
+	slog.Info(info.String())
 }
