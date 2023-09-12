@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>伸缩性</title>
+	<style>
+		.outer {
+			width: 600px;
+			height: 600px;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: row;
+			/*伸缩时不要换行*/
+			/*flex-wrap: wrap;*/
+			background-color: grey;
+			justify-content: flex-start;
+			/*侧轴的对齐方式*/
+			align-items: flex-start;
+			/*align-items: flex-end;*/
+			align-content: center;
+		}
+		.inner {
+			width: 200px;
+			height: 200px;
+			background-color: orange;
+			border: 1px skyblue solid;
+			/*压缩*/
+			flex-shrink: 1;
+			box-sizing: border-box;
+		}
+		.inner0 {
+			flex-grow: 1;
+		}
+		.inner1 {
+			flex-grow: 1;
+		}
+		.inner2 {
+			width: 200px;
+			flex-grow: 1;
+		}
+	</style>
+</head>
+<body>
+	<div class="outer">
+		<div class="inner inner0"></div>
+		<div class="inner inner1"></div>
+		<div class="inner inner2"></div>
+		<div class="inner inner3"></div>
+	</div>
+</body>
+</html>

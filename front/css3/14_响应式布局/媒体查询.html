@@ -3,8 +3,44 @@
 <head>
 	<meta charset="UTF-8">
 	<title>媒体查询</title>
+	<style>
+		h1 {
+			width: 400px;
+			height: 300px;
+			line-height: 300px;
+			text-align: center;
+			/*background-image: linear-gradient(30deg, red, yellow, green);*/
+			margin:0 auto;
+		}
+		@media print {
+			h1 {
+				background-color: deeppink;
+			}
+		}
+		@media screen {
+			h1 {
+				font-size: 20px;
+			}
+		}
+		@media (width: 800px) {
+			
+		}
+		@media (max-width: 1920px) {
+			h1 {
+				background-color: darkgreen;
+			}
+		}
+		@media (min-width: 700px) and (max-width: 800px) {
+			
+		}
+		@media (min-width: 700px) or  (max-width: 800px) {
+
+		}
+	</style>
 </head>
 <body>
-
+	<div>
+		<h1>媒体查询</h1>
+	</div>
 </body>
 </html>
