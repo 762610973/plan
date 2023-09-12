@@ -26,7 +26,7 @@ docker run -d --name kb --net es -p 5601:5601 kibana:8.9.2
 - 海量数据的分布式存储
 - 近实时搜索
 - 海量数据的近实时分析(聚合)
-- ![](../../images/elastic_stack.png)
+- ![](../../../images/elastic_stack.png)
 - logstash: 开源的服务器端数据数据处理管道
   - 实时解析和转换数据
   - 可扩展

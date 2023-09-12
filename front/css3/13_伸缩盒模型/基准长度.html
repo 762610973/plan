@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>基准长度</title>
+	<style>
+		.outer {
+			width: 400px;
+			height: 400px;
+			background-color: grey;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: flex-start;
+		}
+		.inner {
+			width: 200px;
+			height: 200px;
+			background-color: skyblue;
+			border: 1px solid black;
+			box-sizing: border-box;
+		}
+		.inner1 {
+			flex-basis: 300px;
+		}
+	</style>
+</head>
+<body>
+	<div class="outer">
+		<div class="inner"></div>
+		<div class="inner1"></div>
+	</div>
+</body>
+</html>
