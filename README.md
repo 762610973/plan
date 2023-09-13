@@ -105,7 +105,7 @@
 ### JavaScript
 > [JavaScript](https://www.w3school.com.cn/js/index.asp)
 - 2023.09.05:dart: js的基本使用
-
+- 2023.09.13:dart: js的输出, 语句, 语法, 注释, 变量, Let, const, 运算符
 
 ### TypeScript
 - 2023.09.12:headphones:强类型和弱类型, 动态类型和静态类型
