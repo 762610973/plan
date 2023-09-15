@@ -59,7 +59,7 @@ impl Circle {
 
 //? trait中可以包含方法的默认实现,如果这个方法已经在trait中有了方法体,那么针对具体类型实现
 //? 可以选择不用重写, 当然也可以override
-//? impl的对象甚至可以使trait
+//? impl的对象甚至可以是trait
 
 mod impl_trait {
     trait Shape {
