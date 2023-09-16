@@ -50,8 +50,8 @@
 #### channel
 - 2023.09.05:money_mouth_face: 无缓冲channel读写顺序(终于明白之前不理解的一个点了)
 
-## 设计模式
-### 刘丹冰
+### 设计模式
+#### 刘丹冰
 - 2023.08.20:star2: 简单工厂模式
 - 2023.08.21:star2: 工厂方法模式,抽象工厂方法模式
 - 2023.08.22:star2: 单例模式: 饿汉+懒汉
@@ -61,7 +61,7 @@
 - 2023.09.07:star2: 模板方法模式
 - 2023.09.07:star2: 命令模式
 - 2023.09.09:star2: 观察者模式
-### 鸟窝
+#### 鸟窝
 - 2023.09.13:star2: 原型模式
 - 2023.09.13:star2: 生产者-消费者模式
 - 2023.09.13:star2: Go可以使用设计模式, 但绝不是<<设计模式>>中的那样, 真实世界的Go设计模式-工厂模式
@@ -114,9 +114,10 @@
 - 2023.09.13:dart: js的输出, 语句, 语法, 注释, 变量, Let, const, 运算符
 
 ### TypeScript
+> **<span style="font-size: 18px;">[html+css](https://www.tslang.cn/index.html)</span>**
 - 2023.09.12:headphones:强类型和弱类型, 动态类型和静态类型
 ### React
-
+> **<span style="font-size: 18px;">[html+css](https://react.docschina.org/)</span>**
 ## Docker
 
 ## K8s
@@ -135,6 +136,7 @@
 
 - 2023.07.28:tiger:安装`elasticsearch`以及`kibana`和环境
 - 2023.09.11:tiger:geek time elasticsearch简介
+- 2023.09.16:tiger:geek time 文档, 索引, 分片
 
 ## KAFKA
 
