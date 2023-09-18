@@ -113,9 +113,7 @@
 - 2023.09.05:dart: js的基本使用
 - 2023.09.13:dart: js的输出, 语句, 语法, 注释, 变量, Let, const, 运算符
 
-### TypeScript
-> **<span style="font-size: 18px;">[html+css](https://www.tslang.cn/index.html)</span>**
-- 2023.09.12:headphones:强类型和弱类型, 动态类型和静态类型
+
 ### React
 > **<span style="font-size: 18px;">[html+css](https://react.docschina.org/)</span>**
 ## Docker
@@ -147,6 +145,7 @@
 - 2023.09.04:watermelon: 最小核心配置文件
 - 2023.09.05:watermelon: 域名解析, 多hosts
 - 2023.09.07:watermelon: 负载均衡和反向代理的基本概念与基本配置
+- 2023.09.18:watermelon: 负载均衡策略, 动静分离
 
 ## ETCD
 > 极客时间实战课
