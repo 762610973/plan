@@ -115,7 +115,9 @@
 
 
 ### React
-> **<span style="font-size: 18px;">[html+css](https://react.docschina.org/)</span>**
+> **<span style="font-size: 18px;">[React](https://www.bilibili.com/video/BV1wy4y1D7JT/)</span>**
+- 2023.09.18:camping: React的简介, 虚拟dom, jsx语法, 练习
+
 ## Docker
 
 ## K8s
