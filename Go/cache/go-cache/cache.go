@@ -45,11 +45,15 @@ type cache struct {
 	janitor *janitor
 }
 
+// Set 如果d为DefaultExpiration, 则次对k,v使用初始化New时的全局默认过期时间
 func (c *cache) Set(k string, x any, d time.Duration) {
 	var e int64
+	// 允许用户在不显示指定过期时间的情况下, 仍然能够使用缓存的默认过期时间
+	// 语义化更强
 	if d == DefaultExpiration {
 		d = c.defaultExpiration
 	}
+	// 判断一下默认的过期时间是否大于0
 	if d > 0 {
 		e = time.Now().Add(d).UnixNano()
 	}
@@ -1091,6 +1095,17 @@ func New(defaultExpiration, cleanupInterval time.Duration) *Cache {
 	return newCacheWithJanitor(defaultExpiration, cleanupInterval, items)
 }
 
+func newCacheWithJanitor(de time.Duration, ci time.Duration, m map[string]Item) *Cache {
+	c := newCache(de, m)
+	C := &Cache{c}
+	if ci > 0 {
+		// 如果设置了清理时间
+		runJanitor(c, ci)
+		runtime.SetFinalizer(C, stopJanitor)
+	}
+	return C
+}
+
 func newCache(de time.Duration, m map[string]Item) *cache {
 	// 过期时间为0, 设置为-1, 永不过期
 	if de == 0 {
@@ -1101,22 +1116,6 @@ func newCache(de time.Duration, m map[string]Item) *cache {
 		items:             m,
 	}
 	return c
-}
-
-func newCacheWithJanitor(de time.Duration, ci time.Duration, m map[string]Item) *Cache {
-	c := newCache(de, m)
-	// This trick ensures that the janitor goroutine (which--granted it
-	// was enabled--is running DeleteExpired on c forever) does not keep
-	// the returned C object from being garbage collected. When it is
-	// garbage collected, the finalizer stops the janitor goroutine, after
-	// which c can be collected.
-	C := &Cache{c}
-	if ci > 0 {
-		// 如果设置了清理时间
-		runJanitor(c, ci)
-		runtime.SetFinalizer(C, stopJanitor)
-	}
-	return C
 }
 
 func runJanitor(c *cache, ci time.Duration) {

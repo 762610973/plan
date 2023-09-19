@@ -1,7 +1,7 @@
 package main
 
-import c "github.com/patrickmn/go-cache"
+import gocache "github.com/patrickmn/go-cache"
 
 func main() {
-	_ = c.New(c.DefaultExpiration, c.DefaultExpiration)
+	_ = gocache.New(gocache.DefaultExpiration, gocache.DefaultExpiration)
 }
