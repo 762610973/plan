@@ -14,4 +14,21 @@ for (let i = 0; i < cars.length; i++) {
 let person = {
     name: "xl",
     age:22,
+    func: function () {
+        console.log(this.age,this.name);
+    }
 };
+console.log(person.age);
+
+let n = null;
+let n2;
+
+console.log(typeof n2);
+
+function func(arg1, arg2) {
+    return arg1+arg2;
+}
+
+person.func();
+
+let z = Boolean();

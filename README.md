@@ -42,6 +42,7 @@
 
 ### Cache
 - 2023.09.06:blush: init three projects
+- 2023.09.19:blush: go-cache部分源码解读
 
 ### Source
 - 2023.08.16:blush: errors
@@ -110,6 +111,7 @@
 
 ### JavaScript
 > [JavaScript](https://www.w3school.com.cn/js/index.asp)
+> [JavaScript](https://www.w3school.com.cn/js/index_pro.asp)
 - 2023.09.05:dart: js的基本使用
 - 2023.09.13:dart: js的输出, 语句, 语法, 注释, 变量, Let, const, 运算符
 
