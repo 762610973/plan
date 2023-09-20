@@ -122,7 +122,9 @@ type t4 interface{ float64 | any } // 没有特定类型
 type t5 interface {
 	int
 	string
-} // 没有特定类型
+}
+
+// 没有特定类型
 type t6 interface {
 	int
 	any
