@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-	// contextWithValue()
 	// contextWithTimeout()
 	// contextWithCancel()
 	// contextWithDeadLine()

@@ -121,6 +121,7 @@
 ### React
 > **<span style="font-size: 18px;">[React](https://www.bilibili.com/video/BV1wy4y1D7JT/)</span>**
 - 2023.09.18:camping: React的简介, 虚拟dom, jsx语法, 练习
+- 2023.09.31:camping: React函数式组件
 
 ## Docker
 
@@ -156,3 +157,7 @@
 ## ETCD
 > 极客时间实战课
 - 2023.09.12:cloud: 开篇词
+
+## CPP
+> C++ Primer
+- 2023.09.31:atom_symbol: hello world

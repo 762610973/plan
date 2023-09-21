@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"reflect"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -19,7 +20,7 @@ type Context interface {
 	Value(key any) any
 }
 
-// Canceled context被cancel时会报此错误
+// Canceled context被cancel时,ctx.Err()会返回此信息
 var Canceled = errors.New("context canceled")
 
 // DeadlineExceeded context超时会报此错误
@@ -84,9 +85,12 @@ func TODO() Context {
 // CancelFunc 调用一个操作去停止, 可以被多个goroutine同时调用,第一次调用之后,后面的操作没有不会执行操作
 type CancelFunc func()
 
+// WithCancel 调用cancel()来触发信号, 然后接收到Done()信号
 func WithCancel(parent Context) (ctx Context, cancel CancelFunc) {
 	c := withCancel(parent)
-	return c, func() { c.cancel(true, Canceled, nil) }
+	return c, func() {
+		c.cancel(true, Canceled, nil)
+	}
 }
 
 // A CancelCauseFunc behaves like a [CancelFunc] but additionally sets the cancellation cause.
@@ -101,17 +105,7 @@ func WithCancel(parent Context) (ctx Context, cancel CancelFunc) {
 //     then Cause(parentContext) == cause1 and Cause(childContext) == cause2
 type CancelCauseFunc func(cause error)
 
-// WithCancelCause behaves like [WithCancel] but returns a [CancelCauseFunc] instead of a [CancelFunc].
-// Calling cancel with a non-nil error (the "cause") records that error in ctx;
-// it can then be retrieved using Cause(ctx).
-// Calling cancel with nil sets the cause to Canceled.
-//
-// Example use:
-//
-//	ctx, cancel := context.WithCancelCause(parent)
-//	cancel(myError)
-//	ctx.Err() // returns context.Canceled
-//	context.Cause(ctx) // returns myError
+// WithCancelCause 对比WithCancel, 增加了一个cause
 func WithCancelCause(parent Context) (ctx Context, cancel CancelCauseFunc) {
 	c := withCancel(parent)
 	return c, func(cause error) { c.cancel(true, Canceled, cause) }
@@ -128,18 +122,14 @@ func withCancel(parent Context) *cancelCtx {
 	return c
 }
 
-// Cause returns a non-nil error explaining why c was canceled.
-// The first cancellation of c or one of its parents sets the cause.
-// If that cancellation happened via a call to CancelCauseFunc(err),
-// then [Cause] returns err.
-// Otherwise Cause(c) returns the same value as c.Err().
-// Cause returns nil if c has not been canceled yet.
+// Cause 返回context被取消的原因, 如果还没有被取消, 返回nil
 func Cause(c Context) error {
 	if cc, ok := c.Value(&cancelCtxKey).(*cancelCtx); ok {
 		cc.mu.Lock()
 		defer cc.mu.Unlock()
 		return cc.cause
 	}
+
 	return nil
 }
 
@@ -206,10 +196,9 @@ type stopCtx struct {
 	stop func() bool
 }
 
-// goroutines counts the number of goroutines ever created; for testing.
 var goroutines atomic.Int32
 
-// &cancelCtxKey is the key that a cancelCtx returns itself for.
+// &cancelCtxKey 用来判定一个context是cancelCtx
 var cancelCtxKey int
 
 // parentCancelCtx returns the underlying *cancelCtx for parent.
@@ -220,7 +209,7 @@ var cancelCtxKey int
 // different done channel, in which case we should not bypass it.)
 func parentCancelCtx(parent Context) (*cancelCtx, bool) {
 	done := parent.Done()
-	if done == closedchan || done == nil {
+	if done == closedChan || done == nil {
 		return nil, false
 	}
 	p, ok := parent.Value(&cancelCtxKey).(*cancelCtx)
@@ -234,7 +223,7 @@ func parentCancelCtx(parent Context) (*cancelCtx, bool) {
 	return p, true
 }
 
-// removeChild removes a context from its parent.
+// removeChild 移除context从它的父context中.
 func removeChild(parent Context, child canceler) {
 	if s, ok := parent.(stopCtx); ok {
 		s.stop()
@@ -251,18 +240,17 @@ func removeChild(parent Context, child canceler) {
 	p.mu.Unlock()
 }
 
-// A canceler is a context type that can be canceled directly. The
-// implementations are *cancelCtx and *timerCtx.
+// canceler 监听到done信号, *cancelCtx, *timerCtx, *afterFuncCtx
 type canceler interface {
 	cancel(removeFromParent bool, err, cause error)
 	Done() <-chan struct{}
 }
 
-// closedchan is a reusable closed channel.
-var closedchan = make(chan struct{})
+// closedChan is a reusable closed channel.
+var closedChan = make(chan struct{})
 
 func init() {
-	close(closedchan)
+	close(closedChan)
 }
 
 // cancelCtx 可以被取消,还会取消所有实现了canceler的子项
@@ -288,7 +276,7 @@ func (c *cancelCtx) Value(key any) any {
 	return value(c.Context, key)
 }
 
-// 懒汉模式,原子读写+互斥锁, 双检测, 确保done只有一个
+// Done 懒汉模式,原子读写+互斥锁, 双检测, 确保done只有一个
 func (c *cancelCtx) Done() <-chan struct{} {
 	d := c.done.Load()
 	// done有值, 直接返回, 避免不要的锁操作
@@ -316,17 +304,19 @@ func (c *cancelCtx) Err() error {
 }
 
 func (c *cancelCtx) propagateCancel(parent Context, child canceler) {
-	// 首先将父context复制给cancelCtx
+	// 将父context保存到自己的结构中
 	c.Context = parent
 
 	done := parent.Done()
 	if done == nil {
+		// done==nil,无法从监听ctx.Done()
 		// 父context永远不会取消,没有必有传播取消这个特性了
 		return
 	}
 
 	select {
 	case <-done:
+		// done不为nil之后, 监听父context的done信号
 		// 可以从父context的done中接收到值,说明父context已经取消
 		child.cancel(false, parent.Err(), Cause(parent))
 		return
@@ -380,22 +370,19 @@ type stringer interface {
 	String() string
 }
 
+// contextName 返回context的名字
 func contextName(c Context) string {
 	if s, ok := c.(stringer); ok {
 		return s.String()
 	}
-	// return reflectlite.TypeOf(c).String()
-	return ""
+	return reflect.TypeOf(c).String()
 }
 
 func (c *cancelCtx) String() string {
 	return contextName(c.Context) + ".WithCancel"
 }
 
-// cancel closes c.done, cancels each of c's children, and, if
-// removeFromParent is true, removes c from its parent's children.
-// cancel sets c.cause to cause if this is the first time c is canceled.
-// cancel
+// cancel 关闭c.done, 取消每一个子context.
 func (c *cancelCtx) cancel(removeFromParent bool, err, cause error) {
 	if err == nil {
 		panic("context: internal error: missing cancel error")
@@ -412,7 +399,7 @@ func (c *cancelCtx) cancel(removeFromParent bool, err, cause error) {
 	c.cause = cause
 	d, _ := c.done.Load().(chan struct{})
 	if d == nil {
-		c.done.Store(closedchan)
+		c.done.Store(closedChan)
 	} else {
 		close(d)
 	}
@@ -565,34 +552,23 @@ func WithTimeoutCause(parent Context, timeout time.Duration, cause error) (Conte
 	return WithDeadlineCause(parent, time.Now().Add(timeout), cause)
 }
 
-// WithValue returns a copy of parent in which the value associated with key is
-// val.
-//
-// Use context Values only for request-scoped data that transits processes and
-// APIs, not for passing optional parameters to functions.
-//
-// The provided key must be comparable and should not be of type
-// string or any other built-in type to avoid collisions between
-// packages using context. Users of WithValue should define their own
-// types for keys. To avoid allocating when assigning to an
-// interface{}, context keys often have concrete type
-// struct{}. Alternatively, exported context key variables' static
-// type should be a pointer or interface.
+// WithValue only for request-scoped data that transits processes and APIs
+// 每调用以此, 就生成一层
 func WithValue(parent Context, key, val any) Context {
 	if parent == nil {
 		panic("cannot create context from nil parent")
 	}
+	// key必须是可比较的非nil值
 	if key == nil {
 		panic("nil key")
 	}
-	// if !reflectlite.TypeOf(key).Comparable() {
-	// 	panic("key is not comparable")
-	// }
+	if !reflect.TypeOf(key).Comparable() {
+		panic("key is not comparable")
+	}
 	return &valueCtx{parent, key, val}
 }
 
-// A valueCtx carries a key-value pair. It implements Value for that key and
-// delegates all other calls to the embedded Context.
+// valueCtx 无须实现Context接口, 它组合/继承了Context
 type valueCtx struct {
 	Context
 	key, val any
@@ -612,19 +588,21 @@ func stringify(v any) string {
 }
 
 func (c *valueCtx) String() string {
-	// return contextName(c.Context) + ".WithValue(type " +
-	// 		reflectlite.TypeOf(c.key).String() +
-	// 		", val " + stringify(c.val) + ")"
-	return ""
+	return contextName(c.Context) + ".WithValue(type " +
+		reflect.TypeOf(c.key).String() +
+		", val " + stringify(c.val) + ")"
 }
 
 func (c *valueCtx) Value(key any) any {
+	// 从第一层查找值
 	if c.key == key {
 		return c.val
 	}
+	// c.Context是当前Context的父Context
 	return value(c.Context, key)
 }
 
+// value 查找key对应的value, 找到了就返回, 如果发现context是其他类型就返回context, 而不是value
 func value(c Context, key any) any {
 	// c = ctx.Context: 取出父context,向上寻找
 	for {
@@ -654,6 +632,8 @@ func value(c Context, key any) any {
 		case backgroundCtx, todoCtx:
 			return nil
 		default:
+			// 如果输入的context.Context不是上述任何类型, 那么就调用其Value方法, 传入输入的key, 返回其结果
+			// 用于自己实现Context接口的类型
 			return c.Value(key)
 		}
 	}
