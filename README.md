@@ -120,7 +120,7 @@
 
 ### Vue
 > **<span style="font-size: 18px;">[React](https://www.bilibili.com/video/BV1Zy4y1K7SH)</span>**
-- 2023.09.22:camping: Vue简介, 环境搭建, 模板语法, 数据绑定, el与data的写法
+- 2023.09.22:camping: Vue简介, 环境搭建, 模板语法, 数据绑定, el与data的写法, MVVM模型, 数据代理
 
 
 ## Docker

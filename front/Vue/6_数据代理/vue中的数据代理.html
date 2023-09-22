@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue中的数据代理</title>
+	<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+	<div id="root">
+		<h2>学校名称: {{name}}</h2>
+		<h2>学校地址: {{addr}}</h2>
+		<script type="text/javascript">
+			const vm = new Vue({
+				data:{
+					name:'河北大学',
+					addr:'保定市莲池区五四东路'
+				},
+				el:'#root'
+			})
+			vm.$data.name = "河大"
+			vm._data.name = "HBU"
+			vm.name = '河大本部'
+		</script>
+	<!--
+	通过vm对象来代理data对象中属性的操作
+	更加方便操作data中的对象
+	-->
+	</div>
+</body>
+</html>

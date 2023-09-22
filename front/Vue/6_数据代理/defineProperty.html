@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数据代理</title>
+</head>
+<body>
+	<h1>object.defineproperty方法</h1>
+	<script type="text/javascript">
+		let person = {
+			name:'张三',
+			sex:'男',
+			// today:{}
+		}
+		// Object.defineProperty(person.today,'age',{
+		// 	value:15
+		// })
+		let number = 23
+		Object.defineProperty(person,'age',{
+			// value:22,
+			enumerable:true,//控制属性是否可以枚举, 默认是false
+			// writable:true, //控制属性是否可以被修改, 默认是false
+			configurable:true,//控制属性是否可以被删除, 默认是false
+			// 设置get后不能写value和writable
+			get:function() {
+				return number
+			},
+			// age被修改, set函数就会被调用
+			set:function (value) {
+				console.log('修改age')
+				number = value
+			}
+		})
+		console.log(person)
+	</script>
+</body>
+</html>
