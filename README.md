@@ -118,10 +118,10 @@
 - 2023.09.13:dart: js的输出, 语句, 语法, 注释, 变量, Let, const, 运算符
 
 
-### React
-> **<span style="font-size: 18px;">[React](https://www.bilibili.com/video/BV1wy4y1D7JT/)</span>**
-- 2023.09.18:camping: React的简介, 虚拟dom, jsx语法, 练习
-- 2023.09.31:camping: React函数式组件
+### Vue
+> **<span style="font-size: 18px;">[React](https://www.bilibili.com/video/BV1Zy4y1K7SH)</span>**
+- 2023.09.22:camping: Vue简介, 环境搭建, 模板语法, 数据绑定, el与data的写法
+
 
 ## Docker
 

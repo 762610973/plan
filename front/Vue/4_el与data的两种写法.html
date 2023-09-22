@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>el与data的两种写法</title>
+	<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+<div>
+	<div id="root">
+		单向数据绑定
+		<input type="text" v-bind:value="name">
+		<hr>
+		<!--v-model只能用在表单类元素(输入类元素)-->
+		<!--双向绑定-->
+		<input type="text" v-model:value="name">
+	</div>
+	<script type="text/javascript">
+		/*let vm = new Vue({
+			// el: "#root",
+			data:{
+				name:"xl"
+			}
+		});
+		setTimeout(() => {
+			// 挂载
+			vm.$mount("#root")
+		},1000);
+		*/
+		new Vue({
+			el: '#root',
+			// 函数式绑定数据
+			// 由vue管理的函数, 一定不要用箭头函数
+			data: function () {
+				console.log(this)
+				return {
+					name: 'xl'
+				}
+			}
+		})
+	</script>
+</div>
+</body>
+</html>
