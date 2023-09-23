@@ -84,6 +84,8 @@ func (e *joinError) Unwrap() []error {
 ```go
 package errors
 
+import "reflect"
+
 // Unwrap 用于得到一个错误的底层错误,这个错误必须实现[Unwrap() error]方法
 func Unwrap(err error) error {
 	// 将err断言成一个接口类型
@@ -109,7 +111,7 @@ func Is(err, target error) bool {
 		return err == target
 	}
 	// 利用反射判断target类型是否具有可比性 
-	isComparable := reflectlite.TypeOf(target).Comparable()
+	isComparable := reflect.TypeOf(target).Comparable()
 	// 递归调用Unwrap拆包,返回下一层的err去判断是否相等
 	for {
 		// 如果可以比较, 并且两个err相等,返回true
@@ -151,21 +153,21 @@ func As(err error, target any) bool {
 		// 要求target不能为nil
 		panic("errors: target cannot be nil")
 	}
-	val := reflectlite.ValueOf(target)
+	val := reflect.ValueOf(target)
 	typ := val.Type()
-	if typ.Kind() != reflectlite.Ptr || val.IsNil() {
+	if typ.Kind() != reflect.Ptr || val.IsNil() {
 		// 要求target必须为指针类型,并且不能为空
 		panic("errors: target must be a non-nil pointer")
 	}
 	targetType := typ.Elem()
-	if targetType.Kind() != reflectlite.Interface && !targetType.Implements(errorType) {
+	if targetType.Kind() != reflect.Interface && !targetType.Implements(errorType) {
 		// 要求target是一个接口类型或者实现了errorType
 		panic("errors: *target must be interface or implement error")
 	}
 	// 深度优先搜搜, 使用Unwrap, 递归调用As
 	for {
 		// 判断是否可以将err分配给targetType 
-		if reflectlite.TypeOf(err).AssignableTo(targetType) {
+		if reflect.TypeOf(err).AssignableTo(targetType) {
 			// 如果可以分配,Set值
 			val.Elem().Set(reflectlite.ValueOf(err))
 			return true
@@ -194,5 +196,5 @@ func As(err error, target any) bool {
 	}
 }
 
-var errorType = reflectlite.TypeOf((*error)(nil)).Elem()
+var errorType = reflect.TypeOf((*error)(nil)).Elem()
 ```

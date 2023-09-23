@@ -89,6 +89,7 @@ type CancelFunc func()
 func WithCancel(parent Context) (ctx Context, cancel CancelFunc) {
 	c := withCancel(parent)
 	return c, func() {
+		// 需要取消context时, 调用此方法
 		c.cancel(true, Canceled, nil)
 	}
 }
@@ -201,25 +202,25 @@ var goroutines atomic.Int32
 // &cancelCtxKey 用来判定一个context是cancelCtx
 var cancelCtxKey int
 
-// parentCancelCtx returns the underlying *cancelCtx for parent.
-// It does this by looking up parent.Value(&cancelCtxKey) to find
-// the innermost enclosing *cancelCtx and then checking whether
-// parent.Done() matches that *cancelCtx. (If not, the *cancelCtx
-// has been wrapped in a custom implementation providing a
-// different done channel, in which case we should not bypass it.)
+// parentCancelCtx 从父context中查找是否存在cancelCtx类型
 func parentCancelCtx(parent Context) (*cancelCtx, bool) {
 	done := parent.Done()
+	// 已经取消, 或者为nil, 无法从父context中获取到*cancelCtx
 	if done == closedChan || done == nil {
 		return nil, false
 	}
+	// 判断父context是否是cancelCtx类型
 	p, ok := parent.Value(&cancelCtxKey).(*cancelCtx)
 	if !ok {
 		return nil, false
 	}
+	// 如果父context是cancelCtx类型, 取出来
 	pdone, _ := p.done.Load().(chan struct{})
+	// 父context的done和刚刚取出来的done不相等, 说明父context的done已经发生了变化
 	if pdone != done {
 		return nil, false
 	}
+
 	return p, true
 }
 
@@ -246,7 +247,7 @@ type canceler interface {
 	Done() <-chan struct{}
 }
 
-// closedChan is a reusable closed channel.
+// closedChan context取消时, 使用这个值, 然后其他地方就可以用这个值判断context是否取消了
 var closedChan = make(chan struct{})
 
 func init() {
@@ -306,34 +307,34 @@ func (c *cancelCtx) Err() error {
 func (c *cancelCtx) propagateCancel(parent Context, child canceler) {
 	// 将父context保存到自己的结构中
 	c.Context = parent
-
 	done := parent.Done()
 	if done == nil {
 		// done==nil,无法从监听ctx.Done()
 		// 父context永远不会取消,没有必有传播取消这个特性了
 		return
 	}
-
 	select {
 	case <-done:
 		// done不为nil之后, 监听父context的done信号
 		// 可以从父context的done中接收到值,说明父context已经取消
+		// 此时,child也要取消, 由于这个child就是当前这一层的, 所以就是取消自身, 不需要从父context中移除自身, 因为父context已经取消
 		child.cancel(false, parent.Err(), Cause(parent))
 		return
 	default:
 	}
+	// 父context还没有取消
 	// 如果父context也是一个cancelCtx类型
 	if p, ok := parentCancelCtx(parent); ok {
 		// parent is a *cancelCtx, or derives from one.
 		p.mu.Lock()
 		if p.err != nil {
-			// parent has already been canceled
+			// 父context已经取消
 			child.cancel(false, p.err, p.cause)
 		} else {
 			if p.children == nil {
 				p.children = make(map[canceler]struct{})
 			}
-			// 添加到父context的set中
+			// 父context没有取消, 添加到父context的set中
 			p.children[child] = struct{}{}
 		}
 		p.mu.Unlock()
@@ -391,33 +392,35 @@ func (c *cancelCtx) cancel(removeFromParent bool, err, cause error) {
 		cause = err
 	}
 	c.mu.Lock()
+	// 检查自身是否已经被取消(ctx可能被并发访问), 所以cancel可以被多次调用
 	if c.err != nil {
 		c.mu.Unlock()
-		return // already canceled
+		return // 已经取消了
 	}
 	c.err = err
 	c.cause = cause
 	d, _ := c.done.Load().(chan struct{})
 	if d == nil {
+		// d==nil, 说明c.Done还没有被调用, 此时给done赋值
 		c.done.Store(closedChan)
 	} else {
+		// 关闭通道, 此时<-c.Done()可以接收到值, 即使是零值, 但是就不会阻塞住了
 		close(d)
 	}
 	for child := range c.children {
-		// NOTE: acquiring the child's lock while holding parent's lock.
+		// 传入false的目的是为了在取消子context时避免死锁, 因为这里的cancel是在父context中的cancel中进行的
+		// 父context的锁已经被获取, 所以在取消子context时, 也已经持有了父context的锁
+		// 传入false的目的是为了在取消子context时避免死锁情况的发生
 		child.cancel(false, err, cause)
 	}
 	c.children = nil
 	c.mu.Unlock()
-
 	if removeFromParent {
+		// 将自身从父context中移除
 		removeChild(c.Context, c)
 	}
 }
 
-// WithoutCancel returns a copy of parent that is not canceled when parent is canceled.
-// The returned context returns no Deadline or Err, and its Done channel is nil.
-// Calling [Cause] on the returned context returns nil.
 func WithoutCancel(parent Context) Context {
 	if parent == nil {
 		panic("cannot create context from nil parent")

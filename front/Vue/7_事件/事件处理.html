@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件处理</title>
+	<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+	<h2>事件处理学习{{name}}</h2>
+	<button v-on:click="showInfo">点我提示信息</button>
+	<button @click="showInfo2($event,66)">点我提示信息</button>
+	<script type="text/javascript">
+		new Vue({
+			el:'#root',
+			data:{
+				name:"尚硅谷vue"
+			},
+			methods:{
+				showInfo(event){
+					alert("周六也不能停下来")
+				},
+				showInfo2(event,number){
+					console.log(event)
+					alert(number)
+				}
+			}
+		})
+		/*
+		* 事件的基本使用:
+		* 使用v-on:xxx或@xxx绑定事件
+		* 事件的回调需要配置在methods中
+		* methods中配置的函数, 不要用箭头函数, 否则this就不是vm
+		* methods中配置的函数, 都是被vue管理的函数, this的指向是vm或组件实例化对象
+		* */
+	</script>
+</div>
+</body>
+</html>

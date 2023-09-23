@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件修饰符</title>
+	<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+	<h2>事件处理学习{{name}}</h2>
+	<!--事件修饰符-->
+	<a href="https://www.baidu.com" @click.prevent="showInfo">点我提示信息</a>
+	<button @click.stop="showInfo">点我提示信息</button>
+	<button @click.once="showInfo2($event,3)">事件只触发一次</button>
+	<script type="text/javascript">
+		new Vue({
+			el:'#root',
+			data:{
+				name:"尚硅谷vue"
+			},
+			methods:{
+				showInfo(event){
+					alert("周六也不能停下来")
+				},
+				showInfo2(event,number){
+					console.log(event)
+					alert(number)
+				}
+			}
+		})
+		/*
+		* prevent: 阻止默认事件
+		* stop: 阻止事件冒泡
+		* once: 事件只触发一次
+		* capture: 使用事件的捕获模式
+		* self:
+		* passive: 事件的默认行为立即执行, 无需等待事件回调执行完毕
+		* */
+	</script>
+</div>
+</body>
+</html>

@@ -49,6 +49,7 @@
 - 2023.08.16:blush: errors
 - 2023.08.16:blush: Context初探([参考视频](https://www.bilibili.com/video/BV1EA41127Q3))
 - 2023.09.20:blush: Context用例
+- 2023.09.23:blush: cancelCtx源码阅读完成
 
 #### channel
 - 2023.09.05:money_mouth_face: 无缓冲channel读写顺序(终于明白之前不理解的一个点了)
@@ -121,6 +122,7 @@
 ### Vue
 > **<span style="font-size: 18px;">[React](https://www.bilibili.com/video/BV1Zy4y1K7SH)</span>**
 - 2023.09.22:camping: Vue简介, 环境搭建, 模板语法, 数据绑定, el与data的写法, MVVM模型, 数据代理
+- 2023.09.23:camping: 事件处理
 
 
 ## Docker
@@ -143,9 +145,6 @@
 - 2023.09.11:tiger:geek time elasticsearch简介
 - 2023.09.16:tiger:geek time 文档, 索引, 分片
 
-## KAFKA
-
-- 2023.09.01:tiger:安装`kafka`环境
 
 ## Nginx
 - 2023.09.04:watermelon: 环境搭建
