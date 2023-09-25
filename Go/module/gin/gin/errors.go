@@ -22,7 +22,7 @@ const (
 	ErrorTypePublic ErrorType = 1 << 1
 	// ErrorTypeAny indicates any other error.
 	ErrorTypeAny ErrorType = 1<<64 - 1
-	// ErrorTypeNu indicates any other error.
+	// ErrorTypeNu 标明任何其他error
 	ErrorTypeNu = 2
 )
 
@@ -35,9 +35,10 @@ type Error struct {
 
 type errorMsgs []*Error
 
+// 实现error接口
 var _ error = (*Error)(nil)
 
-// SetType sets the error's type.
+// SetType set the error's type
 func (msg *Error) SetType(flags ErrorType) *Error {
 	msg.Type = flags
 	return msg
@@ -71,13 +72,13 @@ func (msg *Error) JSON() any {
 	return jsonData
 }
 
-// MarshalJSON implements the json.Marshaller interface.
+// MarshalJSON 实现Marshaller接口
 func (msg *Error) MarshalJSON() ([]byte, error) {
 	return json.Marshal(msg.JSON())
 }
 
 // Error implements the error interface.
-func (msg Error) Error() string {
+func (msg *Error) Error() string {
 	return msg.Err.Error()
 }
 
@@ -86,7 +87,7 @@ func (msg *Error) IsType(flags ErrorType) bool {
 	return (msg.Type & flags) > 0
 }
 
-// Unwrap returns the wrapped error, to allow interoperability with errors.Is(), errors.As() and errors.Unwrap()
+// Unwrap 实现errors包的接口
 func (msg *Error) Unwrap() error {
 	return msg.Err
 }
@@ -109,8 +110,7 @@ func (a errorMsgs) ByType(typ ErrorType) errorMsgs {
 	return result
 }
 
-// Last returns the last error in the slice. It returns nil if the array is empty.
-// Shortcut for errors[len(errors)-1].
+// Last 返回最后一个error
 func (a errorMsgs) Last() *Error {
 	if length := len(a); length > 0 {
 		return a[length-1]
@@ -118,13 +118,7 @@ func (a errorMsgs) Last() *Error {
 	return nil
 }
 
-// Errors returns an array with all the error messages.
-// Example:
-//
-//	c.Error(errors.New("first"))
-//	c.Error(errors.New("second"))
-//	c.Error(errors.New("third"))
-//	c.Errors.Errors() // == []string{"first", "second", "third"}
+// Errors 返回一个err数组
 func (a errorMsgs) Errors() []string {
 	if len(a) == 0 {
 		return nil
@@ -151,7 +145,7 @@ func (a errorMsgs) JSON() any {
 	}
 }
 
-// MarshalJSON implements the json.Marshaller interface.
+// MarshalJSON 实现Marshaller接口
 func (a errorMsgs) MarshalJSON() ([]byte, error) {
 	return json.Marshal(a.JSON())
 }

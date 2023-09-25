@@ -1,7 +1,3 @@
-// Copyright 2014 Manu Martinez-Almeida. All rights reserved.
-// Use of this source code is governed by a MIT style
-// license that can be found in the LICENSE file.
-
 package gin
 
 import (
@@ -44,13 +40,13 @@ var defaultTrustedCIDRs = []*net.IPNet{
 var regSafePrefix = regexp.MustCompile("[^a-zA-Z0-9/-]+")
 var regRemoveRepeatedChar = regexp.MustCompile("/{2,}")
 
-// HandlerFunc defines the handler used by gin middleware as return value.
+// HandlerFunc the core of the gin func
 type HandlerFunc func(*Context)
 
-// HandlersChain defines a HandlerFunc slice.
+// HandlersChain 函数调用链
 type HandlersChain []HandlerFunc
 
-// Last returns the last handler in the chain. i.e. the last handler is the main one.
+// Last 返回最后一个handlerFunc
 func (c HandlersChain) Last() HandlerFunc {
 	if length := len(c); length > 0 {
 		return c[length-1]
@@ -58,7 +54,7 @@ func (c HandlersChain) Last() HandlerFunc {
 	return nil
 }
 
-// RouteInfo represents a request route's specification which contains method and path and its handler.
+// RouteInfo 表示一个接口的基本信息, 请求方法/路由/函数
 type RouteInfo struct {
 	Method      string
 	Path        string
@@ -79,8 +75,7 @@ const (
 	PlatformCloudflare = "CF-Connecting-IP"
 )
 
-// Engine is the framework's instance, it contains the muxer, middleware and configuration settings.
-// Create an instance of Engine, by using New() or Default()
+// Engine the core of gin
 type Engine struct {
 	RouterGroup
 
@@ -212,7 +207,7 @@ func New() *Engine {
 	return engine
 }
 
-// Default returns an Engine instance with the Logger and Recovery middleware already attached.
+// Default 返回一个默认的, 同时使用Logger()和Recovery()中间件
 func Default() *Engine {
 	debugPrintWARNINGDefault()
 	engine := New()
@@ -301,9 +296,7 @@ func (engine *Engine) NoMethod(handlers ...HandlerFunc) {
 	engine.rebuild405Handlers()
 }
 
-// Use attaches a global middleware to the router. i.e. the middleware attached through Use() will be
-// included in the handlers chain for every single request. Even 404, 405, static files...
-// For example, this is the right place for a logger or error management middleware.
+// Use 定义全局中间件
 func (engine *Engine) Use(middleware ...HandlerFunc) IRoutes {
 	engine.RouterGroup.Use(middleware...)
 	engine.rebuild404Handlers()

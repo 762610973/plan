@@ -10,8 +10,7 @@ import (
 
 const ginSupportMinGoVer = 18
 
-// IsDebugging returns true if the framework is running in debug mode.
-// Use SetMode(gin.ReleaseMode) to disable debug mode.
+// IsDebugging 判断gin是否运行在debug模式下
 func IsDebugging() bool {
 	return ginMode == debugCode
 }
@@ -24,6 +23,7 @@ func debugPrintRoute(httpMethod, absolutePath string, handlers HandlersChain) {
 		nuHandlers := len(handlers)
 		handlerName := nameOfFunction(handlers.Last())
 		if DebugPrintRouteFunc == nil {
+			// 打印http方法, 绝对路径, 函数名, handler数量
 			debugPrint("%-6s %-25s --> %s (%d handlers)\n", httpMethod, absolutePath, handlerName, nuHandlers)
 		} else {
 			DebugPrintRouteFunc(httpMethod, absolutePath, handlerName, nuHandlers)

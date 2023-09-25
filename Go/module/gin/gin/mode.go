@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin/binding"
 )
 
-// EnvGinMode indicates environment name for gin mode.
+// EnvGinMode gin mode的环境变量名
 const EnvGinMode = "GIN_MODE"
 
 const (
@@ -26,17 +26,12 @@ const (
 	testCode
 )
 
-// DefaultWriter is the default io.Writer used by Gin for debug output and
-// middleware output like Logger() or Recovery().
-// Note that both Logger and Recovery provides custom ways to configure their
-// output io.Writer.
-// To support coloring in Windows use:
-//
-//	import "github.com/mattn/go-colorable"
-//	gin.DefaultWriter = colorable.NewColorableStdout()
+//		DefaultWriter
+//	 gin默认将信息输出到标准输出中
+//		import "github.com/mattn/go-colorable"
 var DefaultWriter io.Writer = os.Stdout
 
-// DefaultErrorWriter is the default io.Writer used by Gin to debug errors
+// DefaultErrorWriter debug error默认写入标准错误
 var DefaultErrorWriter io.Writer = os.Stderr
 
 var (
@@ -45,11 +40,12 @@ var (
 )
 
 func init() {
+	// 可以从环境变量中读取mode
 	mode := os.Getenv(EnvGinMode)
 	SetMode(mode)
 }
 
-// SetMode sets gin mode according to input string.
+// SetMode 设置gin的模式
 func SetMode(value string) {
 	if value == "" {
 		if flag.Lookup("test.v") != nil {
@@ -73,24 +69,18 @@ func SetMode(value string) {
 	modeName = value
 }
 
-// DisableBindValidation closes the default validator.
 func DisableBindValidation() {
 	binding.Validator = nil
 }
 
-// EnableJsonDecoderUseNumber sets true for binding.EnableDecoderUseNumber to
-// call the UseNumber method on the JSON Decoder instance.
 func EnableJsonDecoderUseNumber() {
 	binding.EnableDecoderUseNumber = true
 }
 
-// EnableJsonDecoderDisallowUnknownFields sets true for binding.EnableDecoderDisallowUnknownFields to
-// call the DisallowUnknownFields method on the JSON Decoder instance.
 func EnableJsonDecoderDisallowUnknownFields() {
 	binding.EnableDecoderDisallowUnknownFields = true
 }
 
-// Mode returns current gin mode.
 func Mode() string {
 	return modeName
 }

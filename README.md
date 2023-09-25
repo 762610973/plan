@@ -50,6 +50,7 @@
 - 2023.08.16:blush: Context初探([参考视频](https://www.bilibili.com/video/BV1EA41127Q3))
 - 2023.09.20:blush: Context用例
 - 2023.09.23:blush: cancelCtx源码阅读完成
+- 2023.09.25:blush: gin源码阅读`mode.go,errors.go`
 
 #### channel
 - 2023.09.05:money_mouth_face: 无缓冲channel读写顺序(终于明白之前不理解的一个点了)
