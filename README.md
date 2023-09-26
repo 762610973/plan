@@ -12,6 +12,7 @@
 - 深入理解计算机系统
 - 现代操作系统
 - 计算机网络自顶向下
+  - 2023.09.25:open_book: 第一章
 
 ## Rust
 > **<span style="font-size: 18px;">[Rust镜像代理](https://rsproxy.cn/)</span>**
@@ -51,6 +52,7 @@
 - 2023.09.20:blush: Context用例
 - 2023.09.23:blush: cancelCtx源码阅读完成
 - 2023.09.25:blush: gin源码阅读`mode.go,errors.go`
+- 2023.09.26:blush: `reflect testcase`
 
 #### channel
 - 2023.09.05:money_mouth_face: 无缓冲channel读写顺序(终于明白之前不理解的一个点了)
