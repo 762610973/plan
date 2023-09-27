@@ -1,3 +1,31 @@
+<!-- TOC -->
+* [PLAN](#plan)
+  * [Star](#star)
+  * [Books](#books)
+  * [Rust](#rust)
+    * [深入浅出Rust](#深入浅出rust)
+  * [Go](#go)
+    * [Article](#article)
+    * [Cache](#cache)
+    * [Source](#source)
+    * [设计模式](#设计模式)
+      * [刘丹冰](#刘丹冰)
+      * [鸟窝](#鸟窝)
+  * [前端](#前端)
+    * [HTML](#html)
+    * [CSS](#css)
+    * [JavaScript](#javascript)
+    * [Vue](#vue)
+  * [Docker](#docker)
+  * [K8s](#k8s)
+  * [汇编](#汇编)
+  * [Redis](#redis)
+  * [MySQL](#mysql)
+  * [ES](#es)
+  * [Nginx](#nginx)
+  * [ETCD](#etcd)
+  * [CPP](#cpp)
+<!-- TOC -->
 # PLAN
 
 > 记录定制的计划、进度、笔记
@@ -53,8 +81,6 @@
 - 2023.09.23:blush: cancelCtx源码阅读完成
 - 2023.09.25:blush: gin源码阅读`mode.go,errors.go`
 - 2023.09.26:blush: `reflect testcase`
-
-#### channel
 - 2023.09.05:money_mouth_face: 无缓冲channel读写顺序(终于明白之前不理解的一个点了)
 
 ### 设计模式
@@ -161,5 +187,6 @@
 - 2023.09.12:cloud: 开篇词
 
 ## CPP
+[](./CPP)
 > C++ Primer
 - 2023.09.31:atom_symbol: hello world

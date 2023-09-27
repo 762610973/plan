@@ -17,9 +17,11 @@ func TestInt(t *testing.T) {
 	fmt.Println(tf.Kind())
 	fmt.Println(tf.Kind().String())
 	// 返回这个类型的大小
-	fmt.Println(tf.Size())
+	fmt.Println("size: ", tf.Size())
 	// 返回此类型的内存对齐大小
-	fmt.Println(tf.Align())
+	fmt.Println("align: ", tf.Align())
+	fmt.Println("bits: ", tf.Bits())
+
 	// 返回此类型的字符串表达形式
 	fmt.Println(tf.String())
 	// 没有方法不能调用Method()
@@ -28,14 +30,29 @@ func TestInt(t *testing.T) {
 	//fmt.Println(tf.NumField())
 	// 非map类型, 不能调用Key()
 	//fmt.Println(tf.Key())
+	// 是否可比较
+	fmt.Println("comparable: ", tf.Comparable())
+	fmt.Println(tf.PkgPath())
 }
 
 func TestMap(t *testing.T) {
-	m := map[int]int{}
-	m[1] = 1
+	m := make(map[int]string)
+	m[1] = "one"
 	tf := reflect.TypeOf(m)
 	// 返回key的类型
-	fmt.Println(tf.Key())
+	fmt.Println("map's key string: ", tf.Key().String())
+	fmt.Println("map's key name: ", tf.Key().Name())
+	fmt.Println("map's key kind: ", tf.Key().Kind())
 	fmt.Println(tf.Key().Kind() == reflect.Int)
-	fmt.Println(tf.Kind())
+	fmt.Println("kind: ", tf.Kind())
+	fmt.Println("kind string: ", tf.Kind().String())
+	fmt.Println("name: ", tf.Name())
+	fmt.Println("num method: ", tf.NumMethod())
+	fmt.Println("map's string: ", tf.String())
+	fmt.Println("align: ", tf.Align())
+	fmt.Println("size: ", tf.Size())
+	fmt.Println("comparable: ", tf.Comparable())
+	// 返回val的类型
+	fmt.Println(tf.Elem())
+	fmt.Println(tf.PkgPath())
 }

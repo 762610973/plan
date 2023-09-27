@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>姓名案例</title>
+	<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+	<label>
+		姓: <input type="text" v-model:value="firstName">
+	</label>
+	<br>
+	<label>
+		名: <input type="text" v-model:value="lastName">
+	</label>
+	<br>
+	全名: <span>{{firstName.slice(0,3)}}{{lastName}}</span>
+	<br>
+	全名: <span>{{fullName()}}</span>
+	<script type="text/javascript">
+		new Vue({
+			el:"#root",
+			data:{
+				firstName:"张",
+				lastName:"三"
+			},
+			methods:{
+				// 效率不高
+				fullName(){
+					return this.firstName+this.lastName
+				}
+			}
+		})
+	</script>
+</div>
+</body>
+</html>
