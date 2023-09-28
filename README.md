@@ -192,4 +192,5 @@
 ## CPP
 [](./CPP)
 > C++ Primer
-- 2023.09.31:atom_symbol: hello world
+- 2023.09.27:atom_symbol: hello world
+- 2023.09.28:atom_symbol: begin
