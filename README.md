@@ -150,8 +150,11 @@
 
 ### Vue
 > **<span style="font-size: 18px;">[React](https://www.bilibili.com/video/BV1Zy4y1K7SH)</span>**
+> **<span style="font-size: 18px;">[React](https://cn.vuejs.org/)</span>**
 - 2023.09.22:camping: Vue简介, 环境搭建, 模板语法, 数据绑定, el与data的写法, MVVM模型, 数据代理
 - 2023.09.23:camping: 事件处理
+- 2023.09.28:camping: 计算属性, 监视属性, 绑定样式
+- 2023.09.28:camping: vue终结:sob:
 
 
 ## Docker
