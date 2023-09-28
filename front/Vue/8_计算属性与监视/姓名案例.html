@@ -15,9 +15,14 @@
 		名: <input type="text" v-model:value="lastName">
 	</label>
 	<br>
+	<!--插值语法实现-->
 	全名: <span>{{firstName.slice(0,3)}}{{lastName}}</span>
 	<br>
+	<!--methods实现-->
 	全名: <span>{{fullName()}}</span>
+	<br>
+	<!--计算属性实现-->
+	全名: <span>{{fullNameWithCompute}}</span>
 	<script type="text/javascript">
 		new Vue({
 			el:"#root",
@@ -29,6 +34,19 @@
 				// 效率不高
 				fullName(){
 					return this.firstName+this.lastName
+				}
+			},
+			computed:{
+				fullNameWithCompute:{
+					// 可以缓存
+					// get调用: 初次读取或者依赖的数据发生变化时
+					get() {
+						return this.firstName+this.lastName
+					},
+					set(value) {
+						this.firstName = value
+						this.lastName = value+123
+					}
 				}
 			}
 		})

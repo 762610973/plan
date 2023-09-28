@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>绑定class样式</title>
+	<script type="text/javascript" src="../js/vue.js"></script>
+	<style>
+		.basic {
+			background-color: orange;
+			width: 200px;
+			height: 200px;
+		}
+		.happy {
+			background-color: red;
+		}
+		.s1 {
+			background-color: black;
+		}
+		.s2 {
+
+		}
+	</style>
+</head>
+<body>
+<div id="root">
+	<!--绑定class样式--字符串写法, 适用于样式的类名不确定, 需要动态指定-->
+	<div class="basic" :class="mood" id="demo" @click="change">{{name}}</div>
+	<!--绑定class样式--对象写法, 适用于绑定的样式个数确定,名字也确定-->
+	<div class="basic" :class="classObj">{{name}}</div>
+	<script type="text/javascript">
+		new Vue({
+			el:"#root",
+			data:{
+				name:"xl",
+				mood:"normal"
+			},
+			methods:{
+				change(){
+					this.mood = 'happy'
+				}
+			},
+			classObj:{
+				s1:true,
+				s2:false,
+			}
+		})
+	</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算属性缩写</title>
+	<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+	<label>
+		姓: <input type="text" v-model:value="firstName">
+	</label>
+	<br>
+	<label>
+		名: <input type="text" v-model:value="lastName">
+	</label>
+	<br>
+	全名: <span>{{fullNameWithCompute}}</span>
+	<script type="text/javascript">
+		new Vue({
+			el:"#root",
+			data:{
+				firstName:"张",
+				lastName:"三"
+			},
+			methods:{
+				// 效率不高
+				fullName(){
+					return this.firstName+this.lastName
+				}
+			},
+			computed:{
+				fullNameWithCompute() {
+					return this.firstName+this.lastName
+				}
+			}
+		})
+	</script>
+</div>
+</body>
+</html>
