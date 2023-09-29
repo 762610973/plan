@@ -1,9 +1,7 @@
 #include <iostream>
 
-void work()
-{
-	std::clog << "test std::clog";
-}
+// 声明函数
+void work();
 
 int main()
 {
@@ -17,3 +15,8 @@ int main()
 	return 0;
 }
 
+void work()
+{
+	std::clog << "test std::clog" << std::endl;
+	std::cerr << "test std::cerr" << std::endl;
+}
