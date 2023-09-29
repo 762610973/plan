@@ -10,7 +10,7 @@ func TestInt(t *testing.T) {
 	var a int
 	tf := reflect.TypeOf(a)
 	// 类型名
-	fmt.Println(tf.Name())
+	fmt.Println("name: ", tf.Name())
 	// 类型方法数量
 	fmt.Println(tf.NumMethod())
 	// 返回这个Type的特定类型
@@ -40,6 +40,7 @@ func TestMap(t *testing.T) {
 	m[1] = "one"
 	tf := reflect.TypeOf(m)
 	// 返回key的类型
+	fmt.Println("type of string: ", tf.String())
 	fmt.Println("map's key string: ", tf.Key().String())
 	fmt.Println("map's key name: ", tf.Key().Name())
 	fmt.Println("map's key kind: ", tf.Key().Kind())
@@ -55,4 +56,14 @@ func TestMap(t *testing.T) {
 	// 返回val的类型
 	fmt.Println(tf.Elem())
 	fmt.Println(tf.PkgPath())
+}
+
+func TestSlice(t *testing.T) {
+	s := []int{1}
+	tf := reflect.TypeOf(s)
+	fmt.Println(tf.String())
+	fmt.Println("name: ", tf.Name())
+	fmt.Println("kind: ", tf.Kind())
+	fmt.Println("kind string: ", tf.Kind().String())
+	fmt.Println("kind string: ", tf.PkgPath())
 }
