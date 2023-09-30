@@ -75,13 +75,16 @@
 - 2023.09.20:blush: go-cache源码阅读完成
 
 ### Source
-- 2023.08.16:blush: errors
-- 2023.08.16:blush: Context初探([参考视频](https://www.bilibili.com/video/BV1EA41127Q3))
-- 2023.09.20:blush: Context用例
-- 2023.09.23:blush: cancelCtx源码阅读完成
-- 2023.09.25:blush: gin源码阅读`mode.go,errors.go`
-- 2023.09.26:blush: `reflect testcase`
+- 2023.08.16:money_mouth_face: errors
+- 2023.08.16:money_mouth_face: Context初探([参考视频](https://www.bilibili.com/video/BV1EA41127Q3))
+- 2023.09.20:money_mouth_face: Context用例
+- 2023.09.23:money_mouth_face: cancelCtx源码阅读完成
+- 2023.09.25:money_mouth_face: gin源码阅读`mode.go,errors.go`
+- 2023.09.26:money_mouth_face: `reflect testcase`
 - 2023.09.05:money_mouth_face: 无缓冲channel读写顺序(终于明白之前不理解的一个点了)
+- 2023.09.29:money_mouth_face: interface implement verify.
+- 2023.09.30:money_mouth_face: net/http source code read.
+
 
 ### 设计模式
 #### 刘丹冰
@@ -194,4 +197,4 @@
 > C++ Primer
 - 2023.09.27:atom_symbol: hello world
 - 2023.09.28:atom_symbol: begin
-- 2023.09.28:atom_symbol: 基本内置类型, 变量, 复合类型(引用和指针)
+- 2023.09.29:atom_symbol: 基本内置类型, 变量, 复合类型(引用和指针)
