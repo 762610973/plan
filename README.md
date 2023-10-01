@@ -84,6 +84,7 @@
 - 2023.09.05:money_mouth_face: 无缓冲channel读写顺序(终于明白之前不理解的一个点了)
 - 2023.09.29:money_mouth_face: interface implement verify.
 - 2023.09.30:money_mouth_face: net/http source code read.
+- 2023.10.01:money_mouth_face: net/http source code read(learned a lot).
 
 
 ### 设计模式
@@ -205,3 +206,4 @@
 ### LeetCode
 #### HOT100
 #### 代码随想录
+#### 剑指offer

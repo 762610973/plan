@@ -78,8 +78,8 @@ type Server struct {
 	// is derived from the base context and has a ServerContextKey
 	// value.
 	ConnContext func(ctx context.Context, c net.Conn) context.Context
-
-	inShutdown atomic.Bool // true when server is in shutdown
+	// true: server关闭
+	inShutdown atomic.Bool
 
 	disableKeepAlives atomic.Bool
 	nextProtoOnce     sync.Once // guards setupHTTP2_* init
@@ -91,6 +91,63 @@ type Server struct {
 	onShutdown []func()
 
 	listenerGroup sync.WaitGroup
+}
+// ListenAndServe 监听tcp, 然后启动服务处理请求
+func (srv *Server) ListenAndServe() error {
+	// 利用srv.InShutdown字段判断server是否已经关闭
+	if srv.shuttingDown() {
+		return ErrServerClosed
+	}
+	addr := srv.Addr
+	if addr == "" {
+		addr = ":http"
+	}
+	ln, err := net.Listen("tcp", addr)
+	if err != nil {
+		return err
+	}
+	return srv.Serve(ln)
+}
+// Serve 接受传入的连接, 并未每个连接创建一个新的goroutine来处理请求
+func (srv *Server) Serve(l net.Listener) error {
+	// 设置http2
+	// 追踪所有的连接, 如果服务已经关闭, 不再接受新地连接, 无法运行服务(一个server可能监听不同的端口, 有多个监听器)
+	for {
+		l.Accept()
+		// 失败重试机制
+		c := srv.newConn()
+		c.setState()
+		go c.serve()
+	}	
+}
+
+// 追踪所有的连接, 如果服务已经关闭, 则无法接受新的连接
+// set: 
+// srv := &http.Server{}
+// go srv.Serve(listener1)
+// go srv.Serve(listener2)
+func (s *Server) trackListener(ln *net.Listener, add bool) bool {
+	if s.listeners == nil {
+		s.listeners = make(map[*net.Listener]struct{})
+	}
+	if add {
+		if s.shuttingDown() {
+			return false
+		}
+	}
+	
+	return true
+}
+
+func (c *conn) serve(ctx context.Context) {
+	// tls处理
+	// 创建一个reader, bufReader, bufWriter
+	for {
+		w,err := c.readRequest()
+		// 标记状态, 处理错误等
+		// 调用ServeHTTP处理请求
+		serverHandler{c.server}.ServeHTTP(w, w.req)
+	}
 }
 ```
 
@@ -104,6 +161,7 @@ type Handler interface {
 }
 
 ```
+
 ```go
 // ServeMux 维护path到pathHandler的映射关系
 type ServeMux struct {
