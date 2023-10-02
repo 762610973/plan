@@ -202,6 +202,7 @@
 ### Hello Algorithm
 > **<span style="font-size: 18px;">[hello-algo](https://www.hello-algo.com/)</span>**
 - 2023.10.01:wind_chime:算法复杂度分析
+- 2023.10.02:wind_chime:数据结构
 
 ### LeetCode
 #### HOT100
