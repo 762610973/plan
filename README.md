@@ -17,6 +17,7 @@
     * [JavaScript](#javascript)
     * [Vue](#vue)
   * [Docker](#docker)
+    * [深入浅出Docker](#深入浅出docker)
   * [K8s](#k8s)
   * [汇编](#汇编)
   * [Redis](#redis)
@@ -25,6 +26,12 @@
   * [Nginx](#nginx)
   * [ETCD](#etcd)
   * [CPP](#cpp)
+  * [算法](#算法)
+    * [Hello Algorithm](#hello-algorithm)
+    * [LeetCode](#leetcode)
+      * [HOT100](#hot100)
+      * [代码随想录](#代码随想录)
+      * [剑指offer](#剑指offer)
 <!-- TOC -->
 # PLAN
 
@@ -68,6 +75,7 @@
 - 2023.07.24:blush: [uber-go-guide](https://github.com/xxjwxc/uber_go_guide_cn)
 - 2023.08.14:blush: [go的net/http有哪些值得关注的细节](https://mp.weixin.qq.com/s/QfeycEFqeqqhRKrYYL5mGA)
 - 2023.08.18:blush: [泛型](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU2ODc4NzUxMg==&action=getalbum&album_id=2218002393592627201&scene=173&from_msgid=2247485263&from_itemidx=1&count=3&nolastread=1#wechat_redirect)
+- 2023.10.03:blush: [slice](https://www.bilibili.com/video/BV1Bz4y1s7g1)
 
 ### Cache
 - 2023.09.06:blush: init three projects
@@ -204,6 +212,7 @@
 > **<span style="font-size: 18px;">[hello-algo](https://www.hello-algo.com/)</span>**
 - 2023.10.01:wind_chime:算法复杂度分析
 - 2023.10.02:wind_chime:数据结构
+- 2023.10.03:wind_chime:数组与链表
 
 ### LeetCode
 #### HOT100
