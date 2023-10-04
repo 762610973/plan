@@ -41,6 +41,7 @@
   - daemon实现了docker engine的api
   - Linux: client和daemon之间的通信是通过本地IPC/UNIX socket完成的(/var/run/docker.sock)
   - Windows: 通过npipe://// ./pipe/docker_engine的管道来完成的.
+## Docker基本命令
 - ```shell
   docker image ls
   # it参数会将shell切换到容器终端, 开启容器的交互模式并且用户当前shell连接到容器终端
@@ -64,3 +65,28 @@
   - -t(--tty): 分配一个伪终端
   - -u(--user) [string]: 用户名或uid(format: "<name|uid>[:<group|gid>]")
   - -w(--workdir) [string]: 容器内工作/运行目录
+
+
+
+## Docker Engine
+> 用来运行和管理容器的核心软件
+- ![DockerEngine](../images/DockerEngine1.png)
+- 组成: Docker Client, Docker daemon, containerd, runc
+- Docker daemon: API和其他特性, 不再包含任何容器运行时的代码, 所有的容器运行代码在一个单独的OCI兼容层(runc)来实现
+  - daemon使用一种CRUD风格的api, 通过grpc与containerd进行通信
+  - 镜像管理, 镜像构建, REST API, 身份验证, 安全, 核心网络以及编排
+- containerd: 容器的生命周期管理, 镜像管理等
+  - containerd将Docker镜像转换为OCI bundle, 并让runc基于此创建一个新的容器
+  - 然后runc与操作系统内核接口进行通信, 基于所有必要的工具来创建容器
+  - 容器进程作为runc的子进程启动, 启动完毕后, runc自动退出
+  - **已成为kubernetes中默认的常见的容器运行时**
+- ![DockerStart](../images/DockerStart.png)
+- 将所有的用于启动, 管理容器的逻辑和代码从daemon中移除, 意味着容器运行时与Docker daemon是解耦的, 有时称之为"无守护进程的容器"
+  - 旧模型中, 所有容器运行时的逻辑都在daemon中实现, 启动和停止daemon都会导致宿主机上所有运行中的容器被砍掉.
+- shim: 实现无daemon容器
+  - 每次创建一个容器时containerd会fork一个runc实例, 创建完毕, 对应的runc进程就会退出(因此即使运行上百个容器, 也无需保持上百个运行中的runc实例)
+  - 一旦容器进程的父进程runc退出, 相关联的containerd-shim进程就会成为容器的父进程.
+    - 保持所有的STDIN和STDOUT流是开启状态,从而当daemon重启的时候, 容器不会因为管道的关闭而终止
+    - 将容器的退出状态反馈给daemon
+- runc: 默认的容器运行时, 实质上是一个轻量的, 针对Libcontainer进行了包装的命令行交互工具, 作用是创建容器
+  - runc所在那一层称为OCI层

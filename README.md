@@ -2,6 +2,11 @@
 * [PLAN](#plan)
   * [Star](#star)
   * [Books](#books)
+    * [深入理解计算机系统](#深入理解计算机系统)
+    * [现代操作系统](#现代操作系统)
+    * [计算机网络自顶向下](#计算机网络自顶向下)
+    * [七周七数据库](#七周七数据库)
+    * [数据库系统概论](#数据库系统概论)
   * [Rust](#rust)
     * [深入浅出Rust](#深入浅出rust)
   * [Go](#go)
@@ -44,10 +49,17 @@
 - **<span style="font-size: 20px;">[Restful](https://restfulapi.cn/)</span>**	
 
 ## Books
-- 深入理解计算机系统
-- 现代操作系统
-- 计算机网络自顶向下
-  - 2023.09.25:open_book: 第一章
+
+### 深入理解计算机系统
+- 2023.10.04:open_book: 第一章: 计算机系统漫游
+### 现代操作系统
+
+### 计算机网络自顶向下
+- 2023.09.25:open_book: 第一章
+
+### 七周七数据库
+
+### 数据库系统概论
 
 ## Rust
 > **<span style="font-size: 18px;">[Rust镜像代理](https://rsproxy.cn/)</span>**
@@ -172,6 +184,7 @@
 ## Docker
 ### 深入浅出Docker
 - 2023.10.02:whale2: 容器发展, 简介, 安装, 纵观
+- 2023.10.04:whale2: Docker Engine
 ## K8s
 
 ## 汇编
