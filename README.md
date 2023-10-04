@@ -76,6 +76,7 @@
 - 2023.08.14:blush: [go的net/http有哪些值得关注的细节](https://mp.weixin.qq.com/s/QfeycEFqeqqhRKrYYL5mGA)
 - 2023.08.18:blush: [泛型](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU2ODc4NzUxMg==&action=getalbum&album_id=2218002393592627201&scene=173&from_msgid=2247485263&from_itemidx=1&count=3&nolastread=1#wechat_redirect)
 - 2023.10.03:blush: [slice](https://www.bilibili.com/video/BV1Bz4y1s7g1)
+- 2023.10.03:blush: [slice-case](https://mp.weixin.qq.com/s/uNajVcWr4mZpof1eNemfmQ)
 
 ### Cache
 - 2023.09.06:blush: init three projects
@@ -176,7 +177,6 @@
 ## 汇编
 
 >  [汇编](https://www.bilibili.com/video/BV1Wu411B72F)、王爽老师的书
-
 - 2023.07.22/周六:blush: 第一节概论、环境搭建
 
 ## Redis
@@ -213,6 +213,7 @@
 - 2023.10.01:wind_chime:算法复杂度分析
 - 2023.10.02:wind_chime:数据结构
 - 2023.10.03:wind_chime:数组与链表
+- 2023.10.04:wind_chime:栈与队列
 
 ### LeetCode
 #### HOT100
