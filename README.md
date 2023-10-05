@@ -39,7 +39,6 @@
       * [剑指offer](#剑指offer)
 <!-- TOC -->
 # PLAN
-
 > 记录定制的计划、进度、笔记
 
 ##  Star
@@ -185,6 +184,7 @@
 ### 深入浅出Docker
 - 2023.10.02:whale2: 容器发展, 简介, 安装, 纵观
 - 2023.10.04:whale2: Docker Engine
+
 ## K8s
 
 ## 汇编
@@ -227,6 +227,7 @@
 - 2023.10.02:wind_chime:数据结构
 - 2023.10.03:wind_chime:数组与链表
 - 2023.10.04:wind_chime:栈与队列
+- 2023.10.05:wind_chime:哈希表
 
 ### LeetCode
 #### HOT100
