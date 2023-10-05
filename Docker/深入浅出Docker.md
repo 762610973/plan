@@ -90,3 +90,67 @@
     - 将容器的退出状态反馈给daemon
 - runc: 默认的容器运行时, 实质上是一个轻量的, 针对Libcontainer进行了包装的命令行交互工具, 作用是创建容器
   - runc所在那一层称为OCI层
+
+## Docker Image
+- 镜像有多个层组成, 每层叠加之后, 从外部看来如同一个独立的对象.
+- 镜像内部是一个精简的操作系统, 同时还包含着应用运行所必须的文件和依赖包.
+- Docker镜像追求快速和小巧, 构建镜像时会才减掉不必要的东西.
+  - 通常Docker镜像中只有一个精简的shell, 甚至没有shell.
+  - 镜像中不包含内核: **容器都是共享宿主机的内核**
+  - 容器仅包含必要的操作系统(通常只有操作系统文件和文件系统对象)
+- 本地镜像仓库: `/var/lib/docker/<storage-driver>`
+
+- `docker image pull repository:tag`
+- `docker image ls` 
+  - `-a --all`: 显示所有的镜像(默认隐藏中间镜像)
+     - `--digests`: 显示摘要
+  - `-f --filter [filter]`: 基于给定的条件过滤输出
+     `--format [string]`: 使用自定义模板格式化输出: `docker image ls --format "{{.Size}}"`
+        table: 表格
+        table TEMPLATE: 使用给定的Go模板
+        json: 使用json格式
+        TEMPLATE: 使用被给定的Go模板
+     --no-trunc: 不要截断输出
+  - `-q --quiet`: 只显示镜像id
+  - filter
+    - dangling [bool]: 是否返回悬虚镜像
+    - before: 需要镜像名称或者ID作为参数, 返回在之前被创建的全部镜像
+    - since: 与before类似, 不过返回的是指定镜像之后创建的全部镜像
+    - label: 根据标注(label)的名称或者值, 对镜像进行过滤. docker image ls命令输出中不显示标注内容
+    - reference: 其他过滤方式, 比如: `docker image ls --filter=reference="*:latest"`
+- `docker image pull [OPTIONS] NAME[:TAG|@DIGEST]`
+  - `alias: docker image ls, docker image list, docker images`
+  - `-a --all-tags`: 下载仓库中所有打标签的镜像
+    - `--disable-content-trust`: 跳过镜像验证
+    - `--platform [string]`: 如果服务器支持多平台, 则设置平台
+  - `-q --quiet`:    抑制详细输出
+- `docker image prune`: 移除全部的悬虚镜像
+
+- 镜像可以有多个标签, latest不一定是最新的镜像
+- 没有标签的镜像被称为悬虚对象: `<none>:<none>`, 原因是构建了一个新镜像, 然后为该镜像打了一个已经存在的标签.
+- docker search命令允许通过cli的方式搜索docker hub
+  - `docker search alpine --filter "is-official=true"`
+  - 官方: `docker search alpine --filter=is-official=true`
+  - 自动创建的仓库: `docker search alpine --filter=is-automated=true`
+  - 增加返回的行数: `--limit=xx`
+- 镜像由一些松耦合的只读镜像层组成. docker负责堆叠这些景象层, 并且将他们表示为单个统一的对象.
+- `docker image inspect container`
+- 所有的docker镜像都起始于一个基础镜像层, 当进行修改或增加新的内容时, 就会在当前镜像层之上, 创建新的镜像层.
+- Docker通过存储引擎(新版本通过快照机制)的方式来实现镜像层堆叠, 并保证多镜像层对外展示为统一的文件系统.
+- Linux上可用的存储引擎
+  - AUFS
+  - Overlay2
+  - Device Mapper
+  - Btrfs
+  - ZFS
+- 多个镜像之间可以并且确实会共享镜像层, 节省空间+提升性能
+- Docker在Linux上支持很多存储引擎(snapshotter), 每个存储引擎都有自己的镜像分层, 镜像层共享以及写时复制(COW)技术的具体实现
+- 每个镜像都有单独的签名(digest)
+- 镜像层之间是完全独立的, 是实际数据存储的地方
+- 镜像的唯一标识是一个加密ID, 即配置对象本身的散列值. 每个镜像层也由一个加密ID区分, 值为镜像层本身内容的散列值
+- 镜像内容或其中任意的镜像层发生改动, 都会导致散列值变化, 这就是内容散列(content hash)
+- 为了避免压缩带来的散列改变, 每个镜像层还回包含一个分发散列值(压缩版镜像的散列值). 用于校验拉取的镜像是否被篡改过.
+- Manifest: 某个镜像标签支持的架构列表
+- 多架构镜像
+- 删除操作会在当前主机上删除该镜像以及相关的镜像层.
+- 如果某个镜像层被多个镜像共享, 那只有当全部依赖该镜像层的镜像都被删除后, 该镜像层才会被删除.
