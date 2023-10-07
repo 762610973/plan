@@ -53,20 +53,6 @@
   docker container stop
   docker container rm
   ```
-- `docker exec`: execute a command in a running container
-  - usage: docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
-  - aliases: docker container exec, docker exec
-  - -d(--detach): 分离模式, 在后台运行命令;
-  - --detach-keys [string]: Override the key sequence for detaching a container
-  - -e(--env) [list]: 设置环境变量
-  - --env-file [list]: 从文件中读取环境变量
-  - -i(--interactive): 即使没有连接, 也要保持运行.
-  - --previleged: 为命令授予权限
-  - -t(--tty): 分配一个伪终端
-  - -u(--user) [string]: 用户名或uid(format: "<name|uid>[:<group|gid>]")
-  - -w(--workdir) [string]: 容器内工作/运行目录
-
-
 
 ## Docker Engine
 > 用来运行和管理容器的核心软件
@@ -99,7 +85,6 @@
   - 镜像中不包含内核: **容器都是共享宿主机的内核**
   - 容器仅包含必要的操作系统(通常只有操作系统文件和文件系统对象)
 - 本地镜像仓库: `/var/lib/docker/<storage-driver>`
-
 - `docker image pull repository:tag`
 - `docker image ls` 
   - `-a --all`: 显示所有的镜像(默认隐藏中间镜像)
@@ -154,3 +139,79 @@
 - 多架构镜像
 - 删除操作会在当前主机上删除该镜像以及相关的镜像层.
 - 如果某个镜像层被多个镜像共享, 那只有当全部依赖该镜像层的镜像都被删除后, 该镜像层才会被删除.
+
+## Docker Container
+
+- **容器会共享宿主机的操作系统/内核**
+- Hypervisor是**硬件虚拟化**, 将硬件物理资源划分为虚拟资源
+- 容器是**操作系统虚拟化**, 容器将系统资源划分为虚拟资源
+- 对比虚拟机
+  - 只需要一个OS需要授权
+  - 只有一个OS需要升级和打补丁
+  - 只有一个OS消耗CPU, RAM和存储资源
+  - **容器内部并不需要内核**, 也就没有定位, 解压以及初始化的过程. 也不需要在内核启动过程中对硬件的遍历和初始化.
+- `systemctl is-active docker`
+- docker run之后, 查询本地缓存, 如果没有查询docker hub, 本地有了镜像之后, daemon就会创建容器
+- **容器如果不运行任何进程则无法存在--杀死Bash Shell即杀死了容器唯一运行的进程, 导致这个容器也被杀死**
+- `Ctrl-PQ` 会退出容器但不终止容器运行.
+- 停止容器运行并不会损毁
+- 优雅停止容器: `docker container stop, docker container rm`, stop命令向容器内的PID1进程发送SIGTERM信号, 10s内进程没有终止, 会受到SIGKILL信号
+- 重启策略: `always`,`unless-stopped`, `on-failed`
+  - `--restart always`: daemon重启的时候, 停止的容器也会被重启.
+  - `--restart on-failure`: 退出容器并且返回值不是0的时候, 重启容器.
+  - `--restart unless-stopped`: 正常退出和异常退出都会重启, 使用`docker stop`不会重启
+
+
+# 命令
+
+## `docker container COMMAND`
+- `attach`: 将本地标准输入, 输出和错误流附加到正在运行的容器
+- `commit`: 根据容器的更改创建一个新镜像
+- `cp`: 在容器和本地文件系统之间复制文件/文件夹
+  - docker container cp [OPTIONS] 容器:源路径 目标路径|-
+  - `-`表示从标准输入读取一个tar, 解压到容器的指定目录
+  - docker cp [OPTIONS] 源路径|- 容器:目标路径
+  - `-`从标准输入读取一个tar, 流式传输到容器中
+  - `cat file.txt | docker container cp - my_container:/app`
+  - `-a, --archive`: 存档模式, 复制所有的uid/gid信息
+  - `-L, --follow-link`: 总是跟随源路径中的符号链接
+  - `-q, --quiet`: 在复制过程中抑制进度输出, 如果没有附加终端, 自动抑制进度输出.
+- `create` 创建一个新容器
+- `diff`: 检查容器文件系统中文件或目录的更改
+- `exec`: 在正在运行的容器中执行命令
+  - usage: docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
+  - -d(--detach): 分离模式, 在后台运行命令;
+  - --detach-keys [string]: Override the key sequence for detaching a container
+  - -e(--env) [list]: 设置环境变量
+    - --env-file [list]: 从文件中读取环境变量
+  - -i(--interactive): 即使没有连接, 也要保持运行.
+    - --previleged: 为命令授予权限
+  - -t(--tty): 分配一个伪终端
+  - -u(--user) [string]: 用户名或uid(format: "<name|uid>[:<group|gid>]")
+  - -w(--workdir) [string]: 容器内工作/运行目录
+- `export`: 将容器的文件系统导出为一个tar存档
+- `inspect`: 显示一个或多个容器的详细信息
+- `kill`: 终止一个或多个正在运行的容器
+- `logs`: 获取容器的日志
+- `ls`: 列出容器
+  - usage: `docker container ls [OPTIONS]`
+  - aliases: `docker container ls, docker container list, docker container ps, docker ps`
+  - `-a, -all`: 展示所有的容器(默认只展示正在运行的)
+  - `-f, --filter [filter]`
+  - `-- format [string]`: table, table TEMPLATE, json, TEMPLATE
+- `pause`: 暂停一个或多个容器内的所有进程
+- `port`: 列出容器的端口映射或特定映射
+  - usage: `docker container port CONTAINER [PRIVATE_PORT[/PROTO]]`
+  - aliases: `docker container port, docker port`
+- `prune`: 删除所有已停止的容器
+- `rename`: 重命名一个容器(停止的容器也可以)
+- `restart`: 重新启动一个或多个容器
+- `rm`: 删除一个或多个容器
+- `run`: 从一个镜像创建并运行一个新容器
+- `start`: 启动一个或多个已停止的容器
+- `stats`: 显示容器(s)资源使用统计的实时流
+- `stop`: 停止一个或多个正在运行的容器
+- `top`: 显示一个容器的运行进程
+- `unpause`: 恢复一个或多个容器内的所有进程
+- `update`: 更新一个或多个容器的配置
+- `wait`: 阻塞, 直到一个或多个容器停止, 然后打印它们的退出状态码

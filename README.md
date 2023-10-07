@@ -124,7 +124,6 @@
 - 2023.09.13:star2: Go可以使用设计模式, 但绝不是<<设计模式>>中的那样, 真实世界的Go设计模式-工厂模式
 
 ## 前端
-
 > **<span style="font-size: 18px;">[html+css](https://www.bilibili.com/video/BV1p84y1P7Z5)</span>**
 
 ### HTML
@@ -175,6 +174,7 @@
 ### Vue
 > **<span style="font-size: 18px;">[React](https://www.bilibili.com/video/BV1Zy4y1K7SH)</span>**
 > **<span style="font-size: 18px;">[React](https://cn.vuejs.org/)</span>**
+
 - 2023.09.22:camping: Vue简介, 环境搭建, 模板语法, 数据绑定, el与data的写法, MVVM模型, 数据代理
 - 2023.09.23:camping: 事件处理
 - 2023.09.28:camping: 计算属性, 监视属性, 绑定样式
@@ -182,9 +182,12 @@
 
 ## Docker
 ### 深入浅出Docker
+> [](./books/深入浅出Docker.pdf)
+
 - 2023.10.02:whale2: 容器发展, 简介, 安装, 纵观
 - 2023.10.04:whale2: Docker Engine
 - 2023.10.04:whale2: Docker Image
+- 2023.10.07:whale2: Docker Container
 
 ## K8s
 
@@ -204,6 +207,7 @@
 - 2023.09.16:tiger:geek time 文档, 索引, 分片
 
 ## Nginx
+
 - 2023.09.04:watermelon: 环境搭建
 - 2023.09.04:watermelon: 最小核心配置文件
 - 2023.09.05:watermelon: 域名解析, 多hosts
@@ -212,11 +216,13 @@
 
 ## ETCD
 > 极客时间实战课
+
 - 2023.09.12:cloud: 开篇词
 
 ## CPP
 [](./CPP)
 > C++ Primer
+
 - 2023.09.27:atom_symbol: hello world
 - 2023.09.28:atom_symbol: begin
 - 2023.09.29:atom_symbol: 基本内置类型, 变量, 复合类型(引用和指针)
@@ -224,6 +230,7 @@
 ## 算法
 ### Hello Algorithm
 > **<span style="font-size: 18px;">[hello-algo](https://www.hello-algo.com/)</span>**
+
 - 2023.10.01:wind_chime:算法复杂度分析
 - 2023.10.02:wind_chime:数据结构
 - 2023.10.03:wind_chime:数组与链表
