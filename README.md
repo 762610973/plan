@@ -105,6 +105,7 @@
 - 2023.09.29:money_mouth_face: interface implement verify.
 - 2023.09.30:money_mouth_face: net/http source code read.
 - 2023.10.01:money_mouth_face: net/http source code read(learned a lot).
+- 2023.10.01:money_mouth_face: channel case.
 
 
 ### 设计模式
