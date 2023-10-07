@@ -229,6 +229,7 @@
 - 2023.10.03:wind_chime:数组与链表
 - 2023.10.04:wind_chime:栈与队列
 - 2023.10.05:wind_chime:哈希表
+- 2023.10.07:wind_chime:树
 
 ### LeetCode
 #### HOT100
