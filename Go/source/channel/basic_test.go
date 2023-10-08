@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"sync"
 	"testing"
 	"time"
 )
@@ -135,5 +136,55 @@ func Test_ticker(t *testing.T) {
 		case <-exit:
 			return
 		}
+	}
+}
+
+// 无缓冲channel读取
+func Test_channel10(t *testing.T) {
+	var num int
+	ch := make(chan int)
+	go func() {
+		for {
+			if num == 20 {
+				// 生产者关闭
+				close(ch)
+				break
+			}
+			ch <- rand.Intn(10)
+			num++
+		}
+	}()
+	for v := range ch {
+		time.Sleep(time.Second)
+		fmt.Println(v)
+	}
+}
+
+// 多生产者单消费者, 同时阻塞式消费
+func Test_channel11(t *testing.T) {
+	ch := make(chan string)
+	wg := sync.WaitGroup{}
+	wg.Add(2)
+	go func() {
+		defer wg.Done()
+		for i := 0; i < 2; i++ {
+			time.Sleep(time.Second)
+			ch <- "first goroutine"
+		}
+	}()
+	go func() {
+		wg.Done()
+		for i := 0; i < 3; i++ {
+			time.Sleep(time.Millisecond * 500)
+			ch <- "second goroutine"
+		}
+	}()
+	go func() {
+		wg.Wait()
+		close(ch)
+	}()
+
+	for i := range ch {
+		fmt.Println(i)
 	}
 }
