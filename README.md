@@ -193,10 +193,10 @@
 ## K8s
 
 ## 汇编
-
 >  [汇编](https://www.bilibili.com/video/BV1Wu411B72F)、王爽老师的书
+
 - 2023.07.22:keyboard: 第一节概论、环境搭建
-- 2023.10.09:keyboard: 寄存器, mov和add指令, 内存的分段表示.
+- 2023.10.09:keyboard: 寄存器, mov和add指令, 内存的分段表示. Debug使用, CS,IP和代码段 
 
 ## Redis
 
