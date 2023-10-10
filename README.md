@@ -197,6 +197,7 @@
 
 - 2023.07.22:keyboard: 第一节概论、环境搭建
 - 2023.10.09:keyboard: 寄存器, mov和add指令, 内存的分段表示. Debug使用, CS,IP和代码段 
+- 2023.10.10:keyboard: jmp指令, 内存中字的存储.
 
 ## Redis
 
@@ -241,6 +242,7 @@
 - 2023.10.07:wind_chime:树
 - 2023.10.08:wind_chime:堆
 - 2023.10.09:wind_chime:图
+- 2023.10.09:wind_chime:搜索
 
 ### LeetCode
 #### HOT100
