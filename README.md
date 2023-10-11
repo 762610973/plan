@@ -189,6 +189,7 @@
 - 2023.10.04:whale2: Docker Engine
 - 2023.10.04:whale2: Docker Image
 - 2023.10.07:whale2: Docker Container
+- 2023.10.11:whale2: 应用容器化
 
 ## K8s
 
