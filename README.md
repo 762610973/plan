@@ -203,6 +203,9 @@
 ## Redis
 
 ## MySQL
+### MySQL实战45讲
+### 高性能MySQL
+
 
 ## ES
 
@@ -234,7 +237,6 @@
 ## 算法
 ### Hello Algorithm
 > **<span style="font-size: 18px;">[hello-algo](https://www.hello-algo.com/)</span>**
-
 - 2023.10.01:wind_chime:算法复杂度分析
 - 2023.10.02:wind_chime:数据结构
 - 2023.10.03:wind_chime:数组与链表
@@ -245,6 +247,7 @@
 - 2023.10.09:wind_chime:图
 - 2023.10.09:wind_chime:搜索
 - 2023.10.09:wind_chime:排序
+- 2023.10.09:wind_chime:分治, 动态规划, 贪心, 回溯
 
 ### LeetCode
 #### HOT100
