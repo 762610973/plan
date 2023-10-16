@@ -175,7 +175,10 @@
 - Docker的构建过程利用了缓存机制.
 - `docker image build`命令从顶层开始解析Dockerfile中的指令并逐行执行.
 - `no-install-recommends`: apt只会下载核心依赖包, 而不是推荐和建议的包.
-
+## 使用`Docker Compose`部署应用
+- `Docker Compose`: 使用声明式的yaml文件定义多服务的应用.
+- Docker Compose默认创建bridge网络.
+- `build`: 基于Dockerfile构建
 
 # 命令
 
@@ -230,3 +233,10 @@
 - `unpause`: 恢复一个或多个容器内的所有进程
 - `update`: 更新一个或多个容器的配置
 - `wait`: 阻塞, 直到一个或多个容器停止, 然后打印它们的退出状态码
+
+
+
+
+## `docker compose [options] COMMAND`
+### options
+- `--ansi string`: 控制何时打印ANSI控制字符never, always, auto(default)
