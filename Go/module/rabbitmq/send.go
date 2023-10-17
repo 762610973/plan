@@ -4,6 +4,7 @@ import (
 	"context"
 	amqp "github.com/rabbitmq/amqp091-go"
 	"log/slog"
+	"time"
 )
 
 func main() {
@@ -19,7 +20,7 @@ func main() {
 		return
 	}
 	defer ch.Close()
-	queue, err := ch.QueueDeclare("hello", false, false, false, false, nil)
+	queue, err := ch.QueueDeclare("hello", true, false, false, false, nil)
 	if err != nil {
 		slog.Error("failed to declare a queue", err.Error())
 		return
@@ -29,7 +30,7 @@ func main() {
 		context.Background(),
 		"", queue.Name, false, false,
 		amqp.Publishing{
-			ContentType: "text/plain",
+			ContentType: time.Now().String(),
 			Body:        []byte(body),
 		})
 	if err != nil {

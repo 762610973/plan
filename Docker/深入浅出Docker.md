@@ -180,6 +180,21 @@
 - Docker Compose默认创建bridge网络.
 - `build`: 基于Dockerfile构建
 
+## Docker Swarm
+- `Swarm`将一个或多个Docker节点组织起来, 使得用户能够以集群方式管理它们.
+- 集群方面: 内置有加密的分布式集群存储, 加密网络, 公用tls, 安全集群接入令牌以及一套简化数字证书管理的pki. 用户可以自如地添加或删除节点
+- 编排方面: Swarm提供了一套丰富的api使得部署和管理复杂的为服务应用变得易如反掌. 通过将应用定义在声明式配置文件中, 就可以使用原生的Docker命令完成部署
+- 一个Swarm由一个或多个Docker节点组成. 节点会被配置为管理节点或工作节点.
+- 管理节点负责集群控制面, 监控集群状态, 分发任务至工作节点等.
+- 工作节点接收来自管理节点的任务并执行.
+- Swarm的配置和状态信息保存于etcd中.
+- 部署奇数个管理节点: 减少脑裂
+- 不要部署太多管理节点(3个或5个).
+- 重启一个旧的管理节点或进行备份恢复仍有可能对集群造成影响. docker提供了自动锁机制锁定swarm
+- 服务的默认复制模式是副本模式, 会部署期望数量的服务副本, 尽可能将副本均匀分布在整个集群中
+- 全局模式: 每个节点上仅运行一个副本.
+- 滚动升级
+
 # 命令
 
 ## `docker container COMMAND`
@@ -235,8 +250,19 @@
 - `wait`: 阻塞, 直到一个或多个容器停止, 然后打印它们的退出状态码
 
 
-
-
 ## `docker compose [options] COMMAND`
 ### options
 - `--ansi string`: 控制何时打印ANSI控制字符never, always, auto(default)
+
+## docker swarm 
+- `init`: initialize a swarm
+- `join`: join a swarm as a node or a manager
+- `ca`: display and rotate the root CA
+- `join-token`: manage join tokens
+- `leave`: leave the swarm
+- `unlock`: unlock swarm
+- `unlock-key`: manage the unlock key
+- `update`: update the swarm
+## docker service
+- `ls`
+- `ps`

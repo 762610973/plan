@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	conn, err := amqp.Dial("amqp://guest:guest@192.168.10.228:5672")
+	conn, err := amqp.Dial("amqp://guest:guest@192.168.31.22:5672")
 	if err != nil {
 		slog.Error("failed to connect to rabbitmq", err.Error())
 		return
@@ -18,7 +18,7 @@ func main() {
 		return
 	}
 	defer ch.Close()
-	queue, err := ch.QueueDeclare("audit_host_packets", true, false, false, false, nil)
+	queue, err := ch.QueueDeclare("hello", true, false, false, false, nil)
 	if err != nil {
 		slog.Error("failed to declare a queue", "err:", err.Error())
 		return

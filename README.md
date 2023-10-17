@@ -191,6 +191,7 @@
 - 2023.10.07:whale2: Docker Container
 - 2023.10.11:whale2: 应用容器化
 - 2023.10.13:whale2: Docker Compose
+- 2023.10.17:whale2: Docker Swarm
 
 ## K8s
 
