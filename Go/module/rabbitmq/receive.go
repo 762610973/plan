@@ -3,6 +3,7 @@ package main
 import (
 	amqp "github.com/rabbitmq/amqp091-go"
 	"log/slog"
+	"time"
 )
 
 func main() {
@@ -31,5 +32,6 @@ func main() {
 	for {
 		v := <-msgs
 		slog.Info("receive message: ", slog.String("value", string(v.Body)))
+		time.Sleep(time.Second * 2)
 	}
 }

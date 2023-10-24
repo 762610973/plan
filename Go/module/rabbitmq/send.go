@@ -4,7 +4,8 @@ import (
 	"context"
 	amqp "github.com/rabbitmq/amqp091-go"
 	"log/slog"
-	"time"
+	"math/rand"
+	"strconv"
 )
 
 func main() {
@@ -20,22 +21,25 @@ func main() {
 		return
 	}
 	defer ch.Close()
-	queue, err := ch.QueueDeclare("hello", true, false, false, false, nil)
-	if err != nil {
-		slog.Error("failed to declare a queue", err.Error())
-		return
-	}
-	body := "HELLO WORLD!"
+	// 声明交换机
+	//ch.ExchangeDeclare()
+	// 声明队列
+	//ch.QueueDeclare()
+	// 绑定
+	//ch.QueueBind()
+	body := []byte(strconv.FormatInt(rand.Int63(), 10))
+	var bindingKey string
 	err = ch.PublishWithContext(
 		context.Background(),
-		"", queue.Name, false, false,
+		"test", bindingKey, false, false,
 		amqp.Publishing{
-			ContentType: time.Now().String(),
-			Body:        []byte(body),
+			DeliveryMode: amqp.Persistent,
+			ContentType:  "text/plain",
+			Body:         body,
 		})
 	if err != nil {
 		slog.Error("publish failed", err.Error())
 		return
 	}
-	slog.Info("send success", "the message is", "hello world!")
+	slog.Info("send success", "the message is", string(body))
 }
