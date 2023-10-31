@@ -27,6 +27,8 @@
   * [汇编](#汇编)
   * [Redis](#redis)
   * [MySQL](#mysql)
+    * [MySQL实战45讲](#mysql实战45讲)
+    * [高性能MySQL](#高性能mysql)
   * [ES](#es)
   * [Nginx](#nginx)
   * [ETCD](#etcd)
@@ -37,6 +39,7 @@
       * [HOT100](#hot100)
       * [代码随想录](#代码随想录)
       * [剑指offer](#剑指offer)
+      * [SQL](#sql)
 <!-- TOC -->
 # PLAN
 > 记录定制的计划、进度、笔记
@@ -51,6 +54,7 @@
 
 ### 深入理解计算机系统
 - 2023.10.04:open_book: 第一章: 计算机系统漫游
+- 2023.10.31:open_book: 第二章: 信息存储
 ### 现代操作系统
 
 ### 计算机网络自顶向下
@@ -106,7 +110,7 @@
 - 2023.09.30:money_mouth_face: net/http source code read.
 - 2023.10.01:money_mouth_face: net/http source code read(learned a lot).
 - 2023.10.01:money_mouth_face: channel case.
-
+- 2023.10.31:money_mouth_face: sync.Once源码解读.
 
 ### 设计模式
 #### 刘丹冰
