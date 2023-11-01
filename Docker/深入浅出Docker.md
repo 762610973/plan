@@ -241,6 +241,11 @@
   - ![](../images/docker/host-ingress.png)
 - Docker使用Libnetwork实现了基础服务发现功能, 同时还实现了服务网格, 支持对入站流量实现容器级别负载均衡.
 
+## docker volume
+- 块存储
+- 文件存储
+- 对象存储
+
 # 命令
 
 ## `docker container COMMAND`
