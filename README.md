@@ -210,6 +210,7 @@
 
 ## MySQL
 ### MySQL实战45讲
+- 2023.11.02:floppy_disk: 第一讲和第二讲: SQL如何执行, update如何执行.
 ### 高性能MySQL
 
 

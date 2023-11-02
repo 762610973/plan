@@ -1,0 +1,27 @@
+# 01| 基础架构: 一条SQL查询语句是如何执行的
+- ![MySQL的逻辑架构图](../../images/db/MySQL逻辑架构图.png)
+- server层涵盖MySQL的大多数核心服务功能, 以及所有内置函数, 所有夸存储引擎的功能都在这一层实现.
+- 存储引擎负责数据的存储和提取, 是插件式的.
+- 一个表上有更新的时候, 跟这个表有关的查询会失效.
+# 02| 日志系统: 一条SQL更新语句是如何执行的
+- 更新流程设计两个重要的日志模块
+  - redo log(重做日志), 是物理日志, 是循环写的.
+  - binlog(归档日志), 是逻辑日志, 记录的是这个语句的原始逻辑. 是追加写的.
+- 如果每一次更新操作都需要写进磁盘, 然后磁盘也要找到对应的那条记录, 然后再更新, 整个过程IO成本, 查找成本都很高.
+- WAL(writer-ahead logging): 先写日志再写磁盘
+  - 当有一条记录需要更新的时候, InnoDB引擎就会先把记录写到redo log里面, 并更新内存, 此时更新算作完成
+  - InnoDB引擎在适当的时候, 将这个操作记录更新到磁盘.
+  - InnoDB的redo log是固定大小的.
+  - ![](../../images/db/redo-log.png)
+  - write pos是当前记录的位置, checkpoint是当前要擦除的位置.
+  - redo log使得及时数据库异常重启, 之前提交的记录都不会丢失, 这个能力称为crash-safe. 是InnoDB引擎独有的. 
+- binlog是server层特有的日志.
+- ![update流程图](../../images/db/update流程图.png)
+- 两阶段提交, 以下两种方式, 如果第一个写完了, 然后崩溃了, 会导致回复时数据不一致.
+  - 先写redo log后写binlog
+  - 先写binlog 后写redo log
+- redo log的写入拆成了两个步骤: `prepare`和`commit`
+- 参数
+  - `innodb_flush_log_at_trx_commit`, 每次事务的redo log直接持久化到磁盘
+  - `sync_binlog`: 每次事务的binlog都持久化到磁盘.
+- 保证数据库的一致性, 需要两份日志一致.
