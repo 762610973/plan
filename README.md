@@ -211,6 +211,7 @@
 ## MySQL
 ### MySQL实战45讲
 - 2023.11.02:floppy_disk: 第一讲和第二讲: SQL如何执行, update如何执行.
+- 2023.11.02:floppy_disk: 第三讲: 事务隔离, 为什么你改了我还看不见.
 ### 高性能MySQL
 
 
