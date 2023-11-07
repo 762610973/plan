@@ -110,8 +110,9 @@
 - 2023.09.30:money_mouth_face: net/http source code read.
 - 2023.10.01:money_mouth_face: net/http source code read(learned a lot).
 - 2023.10.01:money_mouth_face: channel case.
-- 2023.10.31:money_mouth_face: sync.Once源码解读.
-- 2023.11.06:money_mouth_face: sync.WaitGroup源码解读.
+- 2023.10.31:money_mouth_face: `sync.Once`源码解读.
+- 2023.11.06:money_mouth_face: `sync.WaitGroup`源码解读.
+- 2023.11.07:money_mouth_face: `sync.Map`源码解读.
 
 ### 设计模式
 #### 刘丹冰

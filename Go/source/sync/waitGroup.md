@@ -40,6 +40,7 @@ func (wg *WaitGroup) Add(delta int) {
 	// counter > 0
 	
 	// 正常情况下先调用Add再调用Wait, 此时w是0, counter大与0
+	// !期望是先Add再Wait, 如果先Wait再Add, 就会出现下面的情况.
 	if w != 0 && delta > 0 && counter == int32(delta) {
 		// waiter不为0, 说明有调用Wait阻塞的, delta大于0说明在Add, 然后counter==delta说明在初始化添加, 此时同时调用Wait会阻塞住的.
 		// Add和Wait不能并发调用.
@@ -50,8 +51,8 @@ func (wg *WaitGroup) Add(delta int) {
 		return
 	}
 	// 计数器已经为0了, 现在不能同时发生状态突变
-		// Add不能与Wait同时发生
-		// 如果Wait看到计数器为0, 不会增加Waiter
+	// 	- Add不能与Wait同时发生
+	//  - 如果Wait看到计数器为0, 不会增加Waiter
 	// 做一个廉价的判断检测是否滥用.
 	if wg.state.Load() != state {	// Add和Wait不能并发调用.
 		panic("sync: WaitGroup misuse: Add called concurrently with Wait")
