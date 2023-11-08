@@ -25,6 +25,31 @@ func main() {
 - go1.13的time包生产一个timerproc的goroutine用于唤醒挂在timer上的时间未到期的goroutine.
 - go1.14去掉了这个用于唤醒的goroutine, 取而代之在调度循环的各个地方, sysmon里都是唤醒timer的代码, timer唤醒更及时.
 
+# 如何用汇编打同事的脸
+- `go tool compile -S main.go`: 将源代码编译成.o文件, 并输出汇编代码
+- `go build main.go && go tool objdump ./main`: 反汇编, 从可执行文件反编译成汇编
+```go
+package main
+
+func main() {
+	go func() {
+		println(1+2)
+    }()
+}
+```
+- 查找go关键字对应runtime里哪个函数
+  - `go tool compile -S main.go | grep "main.go:4"`
+  - `go build main.go && go tool objdump ./main | grep "main.go:4"`
+- ![](../../images/go/newproc.png)
+```go
+go build mian.go
+dlv exec ./mian.exe
+b mian.go:5
+c
+disass
+si
+n
+```
 # 初识AST的威力
 > abstract syntax tree
 - ![](../../images/go/规则二叉树.png)
