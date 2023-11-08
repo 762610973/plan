@@ -5,7 +5,6 @@
     * [深入理解计算机系统](#深入理解计算机系统)
     * [现代操作系统](#现代操作系统)
     * [计算机网络自顶向下](#计算机网络自顶向下)
-    * [七周七数据库](#七周七数据库)
     * [数据库系统概论](#数据库系统概论)
   * [Rust](#rust)
     * [深入浅出Rust](#深入浅出rust)
@@ -60,7 +59,6 @@
 ### 计算机网络自顶向下
 - 2023.09.25:open_book: 第一章
 
-### 七周七数据库
 
 ### 数据库系统概论
 
@@ -92,7 +90,8 @@
 - 2023.08.18:blush: [泛型](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU2ODc4NzUxMg==&action=getalbum&album_id=2218002393592627201&scene=173&from_msgid=2247485263&from_itemidx=1&count=3&nolastread=1#wechat_redirect)
 - 2023.10.03:blush: [slice](https://www.bilibili.com/video/BV1Bz4y1s7g1)
 - 2023.10.03:blush: [slice-case](https://mp.weixin.qq.com/s/uNajVcWr4mZpof1eNemfmQ)
-- 2023.11.07:blush: [曹大带我学Go](https://mp.weixin.qq.com/s/RmEtL869Sd-FjB_73tFSaw)
+- 2023.11.07:blush: [曹大带我学Go](https://mp.weixin.qq.com/s/RmEtL869Sd-FjB_73tFSaw): 调度本质, goroutine执行顺序
+- 2023.11.08:blush: [曹大带我学Go](https://mp.weixin.qq.com/s/RmEtL869Sd-FjB_73tFSaw): 初识AST的威力
 
 ### Cache
 - 2023.09.06:blush: init three projects
