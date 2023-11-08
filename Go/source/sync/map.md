@@ -8,6 +8,9 @@
 3. 动态调整, miss次数多了之后, 将dirty数据提升为read, 避免总是从dirty中加锁读取.
 4. double-checking, 加锁之后还要再检查read字段, 确定真的不存在才操作dirty字段
 5. 延迟删除, 删除一个键值总是打标机, 只有在提升dirty字段为read字段的时候才清理删除的数据(只迁移没有被标记为删除得kv).
+
+## 流程总结
+![load](../../../images/go/sync_map_load.png)
 ## 结构
 ```go
 type Map struct {
@@ -29,19 +32,7 @@ type entry struct {
 
 // 用于标记已从dirty map中删除的item, 如果一个item被删除, 标记为expunged
 var expunged = new(any)
-func (m *Map) dirtyLocked() {
-	if m.dirty != nil {	// dirty已经存在, 不需要创建
-		return
-	}
-	// 如果dirty为nil, 从read字段中复制一个出来dirty对象
-	read := m.loadReadOnly()
-	m.dirty = make(map[any]*entry, len(read.m))
-	for k, e := range read.m {
-		if !e.tryExpungeLocked() {	// 将unpunged的键值对复制到dirty中.
-			m.dirty[k] = e
-		}
-	}
-}
+
 ```
 ## 方法
 ```go
@@ -92,6 +83,7 @@ func (e *entry) trySwap(i *any) (*any, bool) {
 		}
 	}
 }
+// missLocked 从dirty中查找时调用, miss次数大于dirty时, 将dirty提升为read
 func (m *Map) missLocked() {
 	m.misses++
 	// miss次数小于dirty长度, 直接返回
@@ -104,6 +96,20 @@ func (m *Map) missLocked() {
 	m.dirty = nil
 	// miss清零
 	m.misses = 0
+}
+// dirtyLocked dirty存在直接返回, 不存在复制read到dirty中.
+func (m *Map) dirtyLocked() {
+	if m.dirty != nil {	// dirty已经存在, 不需要创建
+		return
+	}
+	// 如果dirty为nil, 从read字段中复制一个出来dirty对象
+	read := m.loadReadOnly()
+	m.dirty = make(map[any]*entry, len(read.m))
+	for k, e := range read.m {
+		if !e.tryExpungeLocked() {	// 将unpunged的键值对复制到dirty中.
+			m.dirty[k] = e
+		}
+	}
 }
 ```
 ```go
