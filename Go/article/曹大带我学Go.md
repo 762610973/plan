@@ -208,3 +208,32 @@ func gostartcall(buf *gobuf, fn, ctxt unsafe.Pointer) {
   - `proc.go的func main(), 最后执行exit(0)`
 - 普通goroutine执行完毕后, 直接进入goexit函数, 做一些清理工作.
 - goexit被插入到普通goroutine的栈上, goroutine执行完之后再回到goexit函数.
+
+# 如何优雅地指定配置项
+```go
+package main
+
+type Options struct{}
+
+type Option interface {
+  apply(*Options) error
+}
+
+type optionFunc func(*Options) error
+
+func (f optionFunc) apply(opts *Options) error {
+	return f(opts)
+}
+
+func Init(arg int, opts ...Option) (*Options, error) {
+// ...optionFunc也可以
+	var opt *Options
+    for _, o := range opts {
+        if err := o.apply(opt); err != nil {
+            return nil, err
+        }
+    }
+
+  return opt, nil
+}
+```

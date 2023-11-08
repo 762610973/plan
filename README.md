@@ -91,7 +91,7 @@
 - 2023.10.03:blush: [slice](https://www.bilibili.com/video/BV1Bz4y1s7g1)
 - 2023.10.03:blush: [slice-case](https://mp.weixin.qq.com/s/uNajVcWr4mZpof1eNemfmQ)
 - 2023.11.07:blush: [曹大带我学Go](https://mp.weixin.qq.com/s/RmEtL869Sd-FjB_73tFSaw): 调度本质, goroutine执行顺序
-- 2023.11.08:blush: [曹大带我学Go](https://mp.weixin.qq.com/s/RmEtL869Sd-FjB_73tFSaw): 初识AST的威力, 如何用汇编打同事的脸, 哪里来的goexit
+- 2023.11.08:blush: [曹大带我学Go](https://mp.weixin.qq.com/s/RmEtL869Sd-FjB_73tFSaw): 初识AST的威力, 如何用汇编打同事的脸, 哪里来的goexit, 如何优雅地指定配置项
 
 ### Cache
 - 2023.09.06:blush: init three projects
