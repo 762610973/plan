@@ -6,6 +6,7 @@
 - 如果runnext为空, goroutine顺利放入runnext, 以最高优先级得到运行, 优先被消费.
 - Go程序启动创建P, 创建初始的m0, m0启动一个调度循环, 不断地找g, 运行, 再找g
 - 随程序运行, m更多地被创建出来, 生产者不断地生产g, m的调度循环不断地消费g
+
 # 迷惑的goroutine执行顺序
 ```go
 func main() {
@@ -41,15 +42,29 @@ func main() {
   - `go tool compile -S main.go | grep "main.go:4"`
   - `go build main.go && go tool objdump ./main | grep "main.go:4"`
 - ![](../../images/go/newproc.png)
+- 
 ```go
+package main
+
+func main() {
+  var m map[int]int
+  m[1] = 1
+}
+
 go build mian.go
 dlv exec ./mian.exe
+// 打断点
 b mian.go:5
+// continue
 c
+// 展示汇编代码
 disass
+// step in
 si
+// next 进入到函数中
 n
 ```
+
 # 初识AST的威力
 > abstract syntax tree
 - ![](../../images/go/规则二叉树.png)
@@ -119,7 +134,7 @@ func isLeaf(bop ast.Node) bool {
 		return false
 	}
 
-	// 二元表达式的最小单位，左节点是标识符，右节点是值
+	// 二元表达式的最小单位,左节点是标识符,右节点是值
 	_, okL := expr.X.(*ast.Ident)
 	_, okR := expr.Y.(*ast.BasicLit)
 	if okL && okR {
@@ -129,4 +144,67 @@ func isLeaf(bop ast.Node) bool {
 	return false
 }
 ```
+
 # 哪里来的goexit
+```go
+package main
+
+import "time"
+
+func main() {
+	go func() {
+		println("hello world")
+	}()
+
+	time.Sleep(10 * time.Second)
+}
+```
+- ![](../../images/go/goexit.png)
+- 调用关系(runtime)
+  1. asm_amd64.s: goexit()
+  2. proc.go: main()
+  3. fn := main_main -> fn()
+- 调用关系: `goexit(asm_amd64.s) -> goexit1(proc.go) -> goexit0(proc.go/主要功能是将goroutine各个字段清零, 放入gFree队列, 等待将来复用.)`
+- `goexit`函数的地址是在创建goroutine的过程中, 塞到栈上的. 让CPU"误以为": func() 是由 goexit函数调用的. 这样一来, 当func()执行完毕时, 会返回到goexit函数做一些清理工作.
+- ![newg的栈底塞了一个goexit函数的地址](../../images/go/goexit2.png)
+- `newproc -> newproc1 -> gostartcallfn -> gostartcall`
+- newg是创建的goroutine, 每个新建的goroutine都会执行这写代码, sched结构体保存的是goroutine的执行现场
+  - 每当goroutine被调离CPU, 它的执行进度就是保存到这里.
+  - 进度主要就是`SP、BP、PC`, 分别表示栈顶地址、栈底地址、指令位置, 等goroutine再次得到 CPU 的执行权时, 会把`SP、BP、PC`加载到寄存器中, 从而从断点处恢复运行
+```plan9_x86
+// The top-most function running on a goroutine
+// returns to goexit+PCQuantum.
+TEXT runtime·goexit(SB),NOSPLIT|TOPFRAME|NOFRAME,$0-0
+	BYTE	$0x90	// NOP
+	CALL	runtime·goexit1(SB)	// does not return
+	// traceback from goexit1 must hit code range of goexit
+	BYTE	$0x90	// NOP
+```
+```go
+// Finishes execution of the current goroutine.
+func goexit1() {
+	if raceenabled {
+		racegoend()
+	}
+	if traceEnabled() {
+		traceGoEnd()
+	}
+	mcall(goexit0)
+}
+```
+```go
+func gostartcall(buf *gobuf, fn, ctxt unsafe.Pointer) {
+	// sp(stack pointer)
+	sp := buf.sp
+	sp -= goarch.PtrSize
+	// 将buf.pc(goexit的地址)放到栈顶, 其实是return addr, 将来func执行完就会回到父函数继续执行, 这里的父函数是goexit.
+	*(*uintptr)(unsafe.Pointer(sp)) = buf.pc
+	buf.sp = sp
+	buf.pc = uintptr(fn)
+	buf.ctxt = ctxt
+}
+```
+- main goroutine 执行完会执行exit调用, 整个进程退出. 这也是为什么只要main goroutine执行完了就不会等其他goroutine, 直接退出.
+  - `proc.go的func main(), 最后执行exit(0)`
+- 普通goroutine执行完毕后, 直接进入goexit函数, 做一些清理工作.
+- goexit被插入到普通goroutine的栈上, goroutine执行完之后再回到goexit函数.

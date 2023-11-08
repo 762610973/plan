@@ -38,3 +38,5 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+*.ilk
+*.o
