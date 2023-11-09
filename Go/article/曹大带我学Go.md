@@ -207,7 +207,7 @@ func gostartcall(buf *gobuf, fn, ctxt unsafe.Pointer) {
 - main goroutine 执行完会执行exit调用, 整个进程退出. 这也是为什么只要main goroutine执行完了就不会等其他goroutine, 直接退出.
   - `proc.go的func main(), 最后执行exit(0)`
 - 普通goroutine执行完毕后, 直接进入goexit函数, 做一些清理工作.
-- goexit被插入到普通goroutine的栈上, goroutine执行完之后再回到goexit函数.
+- goexit被插入到普通goroutine的栈上, goroutine执行完之后再回到goexit函数.    
 
 # 如何优雅地指定配置项
 ```go
@@ -237,3 +237,48 @@ func Init(arg int, opts ...Option) (*Options, error) {
   return opt, nil
 }
 ```
+
+# 一个打点引发的事故
+> 使用pprof分析问题
+
+# 开始积累自己的工具库
+> 工具库整理收纳
+> 博客
+> 笔记
+
+# 如何给Go提性能优化的pr
+> Go源码使用Gerrit托管的, 按照Gerrit的流程来操作.
+
+# 从map的extra字段谈起.
+- `map[string]int -> map[[12]byte]int`
+- string底层是指针, 所以当string作为map的key时, GC阶段会扫描整个map
+- 数组[12]byte是一个值类型, 不会被GC扫描
+- **尽量不要在大map中保存指针**
+- key/value大于128Byte的时候, 会退化成指针类型(所有显示*T以及内部有pointer的对象都是指针类型).
+- 当map的key/value是非指针类型时, GC不会对所有的bucket进行扫描
+- 为了不让overflow的bucket被GC错误地回收掉, 在hmap里用extra.overflow指针指向它, 从而在三色标记里将其标记为黑色.
+- 主动调用GC以及开启pprof都可观察优化效果.
+
+# 面向火焰图编程
+> 优化平顶山
+- 性能优化的最终目标就是在延迟可以接受的场景下, 尽可能提高系统的吞吐量
+## 指标
+- 服务角度
+  - 请求量
+  - 错误数
+  - 延迟
+- 用户角度
+  - 延迟(latency)
+  - 吞吐量(throughput)
+- 对于Go服务
+  - 每秒钟GC次数
+  - GC停顿时长
+  - GC占用的CPU大小
+  - 堆内存占用大小
+  - goroutine数量
+  - 申请, 释放的内存大小
+  - 申请的对象数
+- 性能优化
+  - 业务层
+  - 应用层
+  - 底层
