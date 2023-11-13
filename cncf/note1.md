@@ -2,3 +2,43 @@
 - `PaaS`: Platform-as-a-Service 平台即服务
 - `SaaS`: Software-as-a-Service 软件即服务
 - `CaaS`: Container-as-a-Service 容器即服务
+- 网关宗旨: 对外暴露统一访问接口
+  - 负载均衡
+  - 协议转换
+  - 用户鉴权
+  - 业务代码
+  - ...
+- cncf已经成为一个标准集合, 云世界的posix.
+- CRI: 容器运行时接口
+- 应用上云的新型架构: K8S+ServiceMesh
+- ServiceMesh: 服务网格
+- Serverless: 无服务器上云方案
+- 概念
+  - 应用12要素
+  - 蓝绿部署(Blue/Green Deployment)
+  - 构建包(BuildPacks)
+  - 云应用平台
+  - 云提供商界面
+  - 容器(Containers)
+  - 持续集成和持续部署(Continuous Integration/Continuous Delivery[CI/CD])
+  - Devops 开发, 运维均需考虑的交集
+  - IaaS
+  - PaaS
+  - SaaS
+  - FaaS
+  - CaaS
+  - 微服务
+  - 私有云
+  - 公有云
+  - 混合云
+  - 多云架构
+  - 开源
+  - 无服务器(Serverless)
+  - 静态文件(StaticFile)
+  - Stemcell
+  - 虚拟机(Virtual Machine)
+  - 虚拟化(Virtualization)
+- 云原生定义
+  - 云原生技术有利于各组织在公有云, 私有云和混合云等新型动态环境中, 构建和运行可弹性扩展的应用. 云原生的代表技术包括容器, 服务网格, 微服务, 不可变基础设施和和声明式API(配置文件, 请求, 可视化操作...). 运行配置文件
+  - 构建容错性好, 易于管理和便于观察的松耦合系统.
+  - 云原生计算基金会致力于培育和维护一个厂商中立的开源生态系统, 来推广云原生技术.
