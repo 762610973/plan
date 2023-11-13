@@ -216,7 +216,7 @@ package main
 type Options struct{}
 
 type Option interface {
-  apply(*Options) error
+	apply(*Options) error
 }
 
 type optionFunc func(*Options) error
