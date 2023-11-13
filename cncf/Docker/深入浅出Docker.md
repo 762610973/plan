@@ -56,7 +56,7 @@
 
 ## Docker Engine
 > 用来运行和管理容器的核心软件
-- ![DockerEngine](../images/docker/DockerEngine1.png)
+- ![DockerEngine](../../images/docker/DockerEngine1.png)
 - 组成: Docker Client, Docker daemon, containerd, runc
 - Docker daemon: API和其他特性, 不再包含任何容器运行时的代码, 所有的容器运行代码在一个单独的OCI兼容层(runc)来实现
   - daemon使用一种CRUD风格的api, 通过grpc与containerd进行通信
@@ -66,7 +66,7 @@
   - 然后runc与操作系统内核接口进行通信, 基于所有必要的工具来创建容器
   - 容器进程作为runc的子进程启动, 启动完毕后, runc自动退出
   - **已成为kubernetes中默认的常见的容器运行时**
-- ![DockerStart](../images/docker/DockerStart.png)
+- ![DockerStart](../../images/docker/DockerStart.png)
 - 将所有的用于启动, 管理容器的逻辑和代码从daemon中移除, 意味着容器运行时与Docker daemon是解耦的, 有时称之为"无守护进程的容器"
   - 旧模型中, 所有容器运行时的逻辑都在daemon中实现, 启动和停止daemon都会导致宿主机上所有运行中的容器被砍掉.
 - shim: 实现无daemon容器
@@ -204,9 +204,9 @@
   - 支持接入现有VLAN
 - Libnetwork提供了本地服务发现和基础的容器负载均衡解决方案.
 - CNM是设计标准, 规定了Docker网络架构的基础组成要素.
-  - ![CNM](../images/docker/CNM.png)
-  - ![CNM](../images/docker/CNM2.png)
-  - ![CNM](../images/docker/CNM3.png)
+  - ![CNM](../../images/docker/CNM.png)
+  - ![CNM](../../images/docker/CNM2.png)
+  - ![CNM](../../images/docker/CNM3.png)
   - 容器A和容器B运行在同一个主机上, 但其网络堆栈在操作系统层面是互相独立的, 这一点由沙盒机制保证.
   - 终端与常见的网络适配器类似, 只能接入某一个网络. 如果需要接入到多个网络, 需要多个终端.
   - **沙盒**(sandbox)是一个独立的网络栈, 包括以太网接口, 端口, 路由表以及DNS配置.
@@ -218,19 +218,19 @@
   - linux: bridge, overlay, macvlan
   - windows: nat, overlay, transport, l2 bridge
   - 第三方远程驱动: calico, contiv, kuryr以及weave
-  - ![net](../images/docker/net.png)
+  - ![net](../../images/docker/net.png)
 - 单机桥接网络
   - 单机: 意味着该网络只能在单个Docker主机上运行, 并且只能与所在Docker主机上的容器进行连接
   - 桥接: 意味着这是802.1.d桥接的一种实现(二层交换机)
   - Linux主机上, Docker网络由bridge驱动创建, bridge底层是基于Linux内核中久经考验达15年之久的Linux Bridge技术
   - 创建一个bridge网络, 还会在主机内核中创建一个新的Linux网桥.
-  - ![](../images/docker/port_map.png)
+  - ![](../../images/docker/port_map.png)
 - 多机覆盖网络
   - 允许单个网络覆盖多个主机, 不同主机上的容器间就可以在链路层实现通信.覆盖网络是理想的容器间通信方式, 支持完全容器化的应用, 并且具有良好的伸缩性.
   - macvlan
     - 性能优异, 无需端口映射或者额外桥接, 可以直接通过主机接口(子接口)访问容器接口.
     - 缺点是需要将主机网卡(nic)设置为混杂模式(promiscuous), 公有云不可行
-    - ![](../images/docker/conn-net.png)
+    - ![](../../images/docker/conn-net.png)
 - 每个Docker主机为容器提供了默认的日志驱动以及配置
 - 容器日志生效的前提是应用进程在容器内部PID为1, 并且将正常日志输出到STDOUT，将异常日志输出到STDERR. 日志驱动就会将这些"日志"转发到日志驱动配置指定的位置
 - 服务发现允许容器和Swarm服务通过名称相互定位. 唯一要求是需要处于同一个网络中.
@@ -238,7 +238,7 @@
 - Swarm支持两种服务发布模式, 两种模式均保证服务从集群外可以访问.
   - ingress模式(默认): 采用service mesh或者swarm mode service mesh的四层路由网络来实现
   - host模式
-  - ![](../images/docker/host-ingress.png)
+  - ![](../../images/docker/host-ingress.png)
 - Docker使用Libnetwork实现了基础服务发现功能, 同时还实现了服务网格, 支持对入站流量实现容器级别负载均衡.
 
 ## docker volume

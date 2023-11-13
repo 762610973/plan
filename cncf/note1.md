@@ -1,0 +1,4 @@
+- `IaaS`: Infrastructure-as-a-Service 基础设施即服务
+- `PaaS`: Platform-as-a-Service 平台即服务
+- `SaaS`: Software-as-a-Service 软件即服务
+- `CaaS`: Container-as-a-Service 容器即服务
