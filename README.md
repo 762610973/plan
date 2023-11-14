@@ -24,6 +24,7 @@
     * [Docker](#docker)
       * [深入浅出Docker](#深入浅出docker)
     * [K8s](#k8s)
+    * [ETCD](#etcd)
   * [汇编](#汇编)
   * [Redis](#redis)
   * [MySQL](#mysql)
@@ -31,7 +32,6 @@
     * [高性能MySQL](#高性能mysql)
   * [ES](#es)
   * [Nginx](#nginx)
-  * [ETCD](#etcd)
   * [CPP](#cpp)
   * [算法](#算法)
     * [Hello Algorithm](#hello-algorithm)
@@ -40,6 +40,8 @@
       * [代码随想录](#代码随想录)
       * [剑指offer](#剑指offer)
       * [SQL](#sql)
+  * [Network](#network)
+    * [计算机网络: 自顶向下方法](#计算机网络-自顶向下方法)
 <!-- TOC -->
 # PLAN
 > 记录定制的计划、进度、笔记
@@ -115,6 +117,7 @@
 - 2023.11.06:money_mouth_face: `sync.WaitGroup`源码解读.
 - 2023.11.07:money_mouth_face: `sync.Map`源码解读.
 - 2023.11.12:money_mouth_face: `go tool pprof`学习.
+- 2023.11.14:money_mouth_face: `sync.Mutex`源码初步阅读.
 
 ### 设计模式
 #### 刘丹冰
@@ -205,6 +208,10 @@
 
 ### K8s
 
+### ETCD
+> 极客时间实战课
+- 2023.09.12:cloud: 开篇词
+
 ## 汇编
 >  [汇编](https://www.bilibili.com/video/BV1Wu411B72F)、王爽老师的书
 
@@ -240,10 +247,6 @@
 - 2023.09.07:watermelon: 负载均衡和反向代理的基本概念与基本配置
 - 2023.09.18:watermelon: 负载均衡策略, 动静分离
 
-## ETCD
-> 极客时间实战课
-
-- 2023.09.12:cloud: 开篇词
 
 ## CPP
 [](./CPP)

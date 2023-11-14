@@ -14,3 +14,7 @@ var (
 	_ = sync.RWMutex{}
 	_ = sync.Map{}
 )
+
+func main() {
+
+}
