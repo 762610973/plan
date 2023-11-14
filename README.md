@@ -64,8 +64,7 @@
 ### 数据库系统概论
 
 ## Rust
-> **<span style="font-size: 18px;">[Rust镜像代理](https://rsproxy.cn/)</span>**
-> 
+> **<span style="font-size: 18px;">[Rust镜像代理](https://rsproxy.cn/)</span>** 
 > **<span style="font-size: 18px;">[MSVC](https://visualstudio.microsoft.com/zh-hans/visual-cpp-build-tools/)</span>**
 
 ### 深入浅出Rust
@@ -213,6 +212,7 @@
 - 2023.10.09:keyboard: 寄存器, mov和add指令, 内存的分段表示. Debug使用, CS,IP和代码段 
 - 2023.10.10:keyboard: jmp指令, 内存中字的存储.
 - 2023.11.13:keyboard: 栈及操作的实现, 段, DS和数据段
+- 2023.11.13:keyboard: 暂时结束.
 
 ## Redis
 
