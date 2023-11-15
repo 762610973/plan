@@ -118,6 +118,7 @@
 - 2023.11.07:money_mouth_face: `sync.Map`源码解读.
 - 2023.11.12:money_mouth_face: `go tool pprof`学习.
 - 2023.11.14:money_mouth_face: `sync.Mutex`源码初步阅读.
+- 2023.11.15:money_mouth_face: `sync.Mutex`源码深入阅读.
 
 ### 设计模式
 #### 刘丹冰
