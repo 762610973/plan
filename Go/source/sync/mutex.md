@@ -1,6 +1,7 @@
 # `sync.Mutex`
 ## 结构
 ```go
+package main
 type Mutex struct {
 	// state是一个复合型字段, 一个字段包含多个意义, 可以通过尽可能少的内存来实现互斥锁
 	// mutexWaiters|mutexStarving|mutexWoken|mutexLocked
@@ -18,6 +19,11 @@ const (
 )
 ```
 ## 方法
+- 饥饿模式: 等待超过1ms
+- 新来的goroutine和从队列唤醒的goroutine一起去抢锁, 唤醒按照先来先到的原则
+- 没抢到不是直接去排队, 而是自旋
+- 正常模式给新的goroutine机会, 一起去抢锁
+- 饥饿模式照顾老的goroutine, 所有goroutine都排队, 按照队列顺序
 ```go
 func (m *Mutex) Lock() {
 	// Fast path: 幸运case, 直接获取到锁.
@@ -28,7 +34,7 @@ func (m *Mutex) Lock() {
 		}
 		return
 	}
-	// 便于内联优化
+	// 单独抽出一个放到一个函数里, 方便fast path被内联
 	m.lockSlow()
 }
 func (m *Mutex) lockSlow() {
@@ -69,10 +75,11 @@ func (m *Mutex) lockSlow() {
 		// 所有goroutine的目的都是获取锁, 但是如果当前处于饥饿状态, 则都不允许, 统统去排队.
 		
 		// 非饥饿状态抢锁
+		// mutexStarving为100, 按位与的结果取决于old的starving位的值
 		if old&mutexStarving == 0 {
 			new |= mutexLocked	// 非饥饿状态, 加锁
 		}
-		// 如果锁被持有, 或者处于饥饿状态, 那么waiter+1
+		// 如果锁被持有, 或者处于饥饿状态, 那么waiter+1, new+8
 		if old&(mutexLocked|mutexStarving) != 0 {
 			new += 1 << mutexWaiterShift
 		}
@@ -202,5 +209,6 @@ func (m *Mutex) TryLock() bool {
 	return true
 }
 ```
+
 - ![](../../../images/go/Lock.png)
 - ![](../../../images/go/Unlock.png)

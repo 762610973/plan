@@ -34,4 +34,5 @@ func main() {
 	rawNums := []int{1, 7, 4, 8, 3, 5, 9}
 	quickSort(rawNums, 0, len(rawNums)-1)
 	fmt.Println(rawNums)
+	rawNums = append(rawNums[:1], rawNums[2:]...)
 }
