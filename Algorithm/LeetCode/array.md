@@ -260,3 +260,33 @@ func sortedSquares(nums []int) []int {
 }
 ```
 
+- [minimum-size-subarray-sum](https://leetcode.cn/problems/minimum-size-subarray-sum/)
+- 求最小的因数集合
+```go
+package main
+func main() {
+	var fn func(int)
+	m := make(map[int]struct{})
+	fn = func(num int) {
+		// 从2到num遍历,用num整除i
+		for i := 2; i < num; i++ {
+			// 能整除, 说明是
+			if num%i == 0 {
+				if !is(i) {
+					m[i] = struct{}{}
+				}
+			}
+		}
+	}
+	fn(100)
+}
+func is(num int) bool {
+	for i := 2; i < num; i++ {
+		if num%i == 0 {
+			return true
+		}
+	}
+	return false
+}
+```
+- 

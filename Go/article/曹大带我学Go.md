@@ -8,18 +8,19 @@
 - 随程序运行, m更多地被创建出来, 生产者不断地生产g, m的调度循环不断地消费g
 
 # 迷惑的goroutine执行顺序
-```go
-func main() {
-	runtime.GOMAXPROCS(1)
-	for i := 0; i < 10; i++ {
-		go func(i int) {
-			fmt.Println(i)
-		}(i)
-	}
-	time.Sleep(1 * time.Second)
-}
+- ```go
+  package main
+  func main() {
+      runtime.GOMAXPROCS(1)
+      for i := 0; i < 10; i++ {
+          go func(i int) {
+              fmt.Println(i)
+          }(i)
+      }
+      time.Sleep(1 * time.Second)
+  }
+  ```
 // 顺序是9,0,1,2,3,4,5,6,7,8
-```
 - 本地只有一个p,for循环中生产出的goroutine都会进入到p的runnext和local queue
   - i从1开始, runnext已经有goroutine在了, 这是会把old goroutine移到p的本地队列中, 再把new goroutine放到runnext中, 重复这个过程.
   - 最后i为9, 新goroutine被放到runnext, 其余goroutine都在本地队列.
@@ -29,15 +30,15 @@ func main() {
 # 如何用汇编打同事的脸
 - `go tool compile -S main.go`: 将源代码编译成.o文件, 并输出汇编代码
 - `go build main.go && go tool objdump ./main`: 反汇编, 从可执行文件反编译成汇编
-```go
-package main
-
-func main() {
-	go func() {
-		println(1+2)
-    }()
-}
-```
+- ```go
+  package main
+  
+  func main() {
+      go func() {
+          println(1+2)
+      }()
+  }
+  ```
 - 查找go关键字对应runtime里哪个函数
   - `go tool compile -S main.go | grep "main.go:4"`
   - `go build main.go && go tool objdump ./main | grep "main.go:4"`
@@ -68,97 +69,98 @@ n
 # 初识AST的威力
 > abstract syntax tree
 - ![](../../images/go/规则二叉树.png)
-```go
-func main() {
-	m := map[string]int{"orders": 10000, "driving_years": 18}
-	rule := "orders > 1000 && driving_years > 5"
-	fmt.Println(Eval(m, rule))
-}
-
-func Eval(m map[string]int, expr string) (bool, error) {
-	// 解析表达式
-	exprAst, err := parser.ParseExpr(expr)
-	if err != nil {
-		return false, err
-	}
-	fileSet := token.NewFileSet()
-	// 打印 ast
-	if err = ast.Print(fileSet, exprAst); err != nil {
-		return false, err
-	}
-
-	return judge(exprAst, m), nil
-}
-
-// dfs
-func judge(bop ast.Node, m map[string]int) bool {
-	// 叶子结点
-	if isLeaf(bop) {
-		// 断言成二元表达式
-		expr := bop.(*ast.BinaryExpr)
-		x := expr.X.(*ast.Ident)    // 左边
-		y := expr.Y.(*ast.BasicLit) // 右边
-
-		// 如果是 ">" 符号
-		if expr.Op == token.GTR {
-			left := m[x.Name]
-			right, _ := strconv.Atoi(y.Value)
-			return left > right
-		}
-		return false
-	}
-
-	// 不是叶子节点那么一定是 binary expression（我们目前只处理二元表达式）
-	expr, ok := bop.(*ast.BinaryExpr)
-	if !ok {
-		println("this cannot be true")
-		return false
-	}
-
-	// 递归地计算左节点和右节点的值
-	switch expr.Op {
-	case token.LAND:
-		return judge(expr.X, m) && judge(expr.Y, m)
-	case token.LOR:
-		return judge(expr.X, m) || judge(expr.Y, m)
-	}
-
-	println("unsupported operator")
-	return false
-}
-
-// 判断是否是叶子节点
-func isLeaf(bop ast.Node) bool {
-	expr, ok := bop.(*ast.BinaryExpr)
-	if !ok {
-		return false
-	}
-
-	// 二元表达式的最小单位,左节点是标识符,右节点是值
-	_, okL := expr.X.(*ast.Ident)
-	_, okR := expr.Y.(*ast.BasicLit)
-	if okL && okR {
-		return true
-	}
-
-	return false
-}
-```
+  ```go
+  package main
+  func main() {
+      m := map[string]int{"orders": 10000, "driving_years": 18}
+      rule := "orders > 1000 && driving_years > 5"
+      fmt.Println(Eval(m, rule))
+  }
+  
+  func Eval(m map[string]int, expr string) (bool, error) {
+      // 解析表达式
+      exprAst, err := parser.ParseExpr(expr)
+      if err != nil {
+          return false, err
+      }
+      fileSet := token.NewFileSet()
+      // 打印 ast
+      if err = ast.Print(fileSet, exprAst); err != nil {
+          return false, err
+      }
+  
+      return judge(exprAst, m), nil
+  }
+  
+  // dfs
+  func judge(bop ast.Node, m map[string]int) bool {
+      // 叶子结点
+      if isLeaf(bop) {
+          // 断言成二元表达式
+          expr := bop.(*ast.BinaryExpr)
+          x := expr.X.(*ast.Ident)    // 左边
+          y := expr.Y.(*ast.BasicLit) // 右边
+  
+          // 如果是 ">" 符号
+          if expr.Op == token.GTR {
+              left := m[x.Name]
+              right, _ := strconv.Atoi(y.Value)
+              return left > right
+          }
+          return false
+      }
+  
+      // 不是叶子节点那么一定是 binary expression（我们目前只处理二元表达式）
+      expr, ok := bop.(*ast.BinaryExpr)
+      if !ok {
+          println("this cannot be true")
+          return false
+      }
+  
+      // 递归地计算左节点和右节点的值
+      switch expr.Op {
+      case token.LAND:
+          return judge(expr.X, m) && judge(expr.Y, m)
+      case token.LOR:
+          return judge(expr.X, m) || judge(expr.Y, m)
+      }
+  
+      println("unsupported operator")
+      return false
+  }
+  
+  // 判断是否是叶子节点
+  func isLeaf(bop ast.Node) bool {
+      expr, ok := bop.(*ast.BinaryExpr)
+      if !ok {
+          return false
+      }
+  
+      // 二元表达式的最小单位,左节点是标识符,右节点是值
+      _, okL := expr.X.(*ast.Ident)
+      _, okR := expr.Y.(*ast.BasicLit)
+      if okL && okR {
+          return true
+      }
+  
+      return false
+  }
+  ```
 
 # 哪里来的goexit
-```go
-package main
-
-import "time"
-
-func main() {
-	go func() {
-		println("hello world")
-	}()
-
-	time.Sleep(10 * time.Second)
-}
-```
+- ```go
+  package main
+  
+  import "time"
+  
+  func main() {
+      go func() {
+          println("hello world")
+      }()
+  
+      time.Sleep(10 * time.Second)
+  }
+  ```
 - ![](../../images/go/goexit.png)
 - 调用关系(runtime)
   1. asm_amd64.s: goexit()
@@ -210,33 +212,33 @@ func gostartcall(buf *gobuf, fn, ctxt unsafe.Pointer) {
 - goexit被插入到普通goroutine的栈上, goroutine执行完之后再回到goexit函数.    
 
 # 如何优雅地指定配置项
-```go
-package main
-
-type Options struct{}
-
-type Option interface {
-	apply(*Options) error
-}
-
-type optionFunc func(*Options) error
-
-func (f optionFunc) apply(opts *Options) error {
-	return f(opts)
-}
-
-func Init(arg int, opts ...Option) (*Options, error) {
-// ...optionFunc也可以
-	var opt *Options
-    for _, o := range opts {
-        if err := o.apply(opt); err != nil {
-            return nil, err
-        }
-    }
-
-  return opt, nil
-}
-```
+- ```go
+  package main
+  
+  type Options struct{}
+  
+  type Option interface {
+      apply(*Options) error
+  }
+  
+  type optionFunc func(*Options) error
+  
+  func (f optionFunc) apply(opts *Options) error {
+      return f(opts)
+  }
+  
+  func Init(arg int, opts ...Option) (*Options, error) {
+  // ...optionFunc也可以
+      var opt *Options
+      for _, o := range opts {
+          if err := o.apply(opt); err != nil {
+              return nil, err
+          }
+      }
+  
+    return opt, nil
+  }
+  ```
 
 # 一个打点引发的事故
 > 使用pprof分析问题
