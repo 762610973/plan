@@ -1,3 +1,5 @@
+# array
+
 - [binary-search](https://leetcode.cn/problems/binary-search/)
 ```go
 package main
@@ -18,6 +20,7 @@ func binarySearch(nums []int, target int) int {
 	return -1
 }
 ```
+
 - [search-insert-position](https://leetcode.cn/problems/search-insert-position/)
 ```go
 package main
@@ -39,8 +42,8 @@ func searchInsert(nums []int, target int) int {
 	return left
 }
 ```
-- [find-first-and-last-position-of-element-in-sorted-array](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
 
+- [find-first-and-last-position-of-element-in-sorted-array](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
 ```go
 package main
 // 非递减顺序搜索target的开始和结束位置
@@ -89,7 +92,6 @@ func searchRange(nums []int, target int) []int {
 ```
 
 - [sqrtx](https://leetcode.cn/problems/sqrtx)
-
 ```go
 package main
 // 计算非负整数x的算数平方根
@@ -112,8 +114,8 @@ func mySqrt(x int) int {
 ```
 
 - [valid-perfect-square](https://leetcode.cn/problems/valid-perfect-square)
-
 ```go
+package main
 // 判断num是否是完全平方数
 func isPerfectSquare(num int) bool {
 	left, right := 0,num
@@ -134,8 +136,8 @@ func isPerfectSquare(num int) bool {
 ```
 
 - [remove-element](https://leetcode.cn/problems/remove-element/)
-
 ```go
+package main
 // 原地移除所有等于val的元素, 返回移除后数组长度
 func removeElement(nums []int, val int) int {
     // slow记录不相等的元素
@@ -153,8 +155,8 @@ func removeElement(nums []int, val int) int {
 ```
 
 - [remove-duplicates-from-sorted-array](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
-
 ```go
+package main
 // 原地删除有序数组中的重复项, 使得每个元素出现一次, 保持相对顺序, 返回总和
 func removeDuplicates(nums []int) int {
 	length := len(nums)
@@ -176,8 +178,8 @@ func removeDuplicates(nums []int) int {
 ```
 
 - [move-zeroes](https://leetcode.cn/problems/move-zeroes/)
-
 ```go
+package main
 // 将所有的0移动到数组末尾, 保持非零元素的相对顺序 
 func moveZeroes(nums []int)  {
 	length := len(nums)
@@ -194,8 +196,8 @@ func moveZeroes(nums []int)  {
 ```
 
 - [backspace-string-compare](https://leetcode.cn/problems/backspace-string-compare/)
-
 ```go
+package main
 func backspaceCompare(s string, t string) bool {
 	return help1(s) == help1(t)
    	// return help2(s) == help2(t)
@@ -233,7 +235,6 @@ func help2(str string) string {
 ```
 
 - [squares-of-a-sorted-array](https://leetcode.cn/problems/squares-of-a-sorted-array/)
-
 ```go
 package main
 func sortedSquares(nums []int) []int {
@@ -261,9 +262,33 @@ func sortedSquares(nums []int) []int {
 ```
 
 - [minimum-size-subarray-sum](https://leetcode.cn/problems/minimum-size-subarray-sum/)
-- 求最小的因数集合
 ```go
 package main
+func minSubArrayLen(target int, nums []int) int {
+	res := 1 << 31
+	sum := 0
+	left := 0
+	for idx, val := range nums {
+		sum += val
+		for sum >= target {
+			res = min(res, idx-left+1)
+			sum -= nums[left]
+			left++
+		}
+	}
+	// 如果res没有改变, 说明数组的总和小于target
+	if res == 1 << 31 {
+		return 0
+	}
+
+	return res
+}
+```
+
+- 最小的因数集合
+```go
+package main
+// 求最小的因数集合
 func main() {
 	var fn func(int)
 	m := make(map[int]struct{})
@@ -289,4 +314,13 @@ func is(num int) bool {
 	return false
 }
 ```
-- 
+
+- [minimum-window-substring](https://leetcode.cn/problems/minimum-window-substring/)
+```go
+package main
+// s覆盖t的最小子串
+func minWindow(s string, t string) string {
+	
+	return ""
+}
+```

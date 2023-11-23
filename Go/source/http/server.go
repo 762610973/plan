@@ -54,5 +54,5 @@ func handle() {
 		slog.Error("listen failed", err)
 	}
 	server := http.Server{}
-	server.Close()
+	_ = server.Close()
 }
