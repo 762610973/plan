@@ -242,11 +242,10 @@
 - 2023.11.08:floppy_disk: 第七讲: 行锁功过: 怎么减少行锁对性能的影响.
 #### 高性能MySQL
 
-### ES
-
 ### MongoDB
 - 2023.12.04:battery: 历史, 特色, 优势, 安装, 数据导入.
 
+### ES
 - 2023.07.28:tiger:安装`elasticsearch`以及`kibana`和环境
 - 2023.09.11:tiger:geek time elasticsearch简介
 - 2023.09.16:tiger:geek time 文档, 索引, 分片

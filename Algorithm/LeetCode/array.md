@@ -324,3 +324,21 @@ func minWindow(s string, t string) string {
 	return ""
 }
 ```
+
+- [spiral-matrix-ii](https://leetcode.cn/problems/spiral-matrix-ii/)
+```go
+package main
+func generateMatrix(n int) [][]int {
+	res := make([][]int, n)
+	for i := 0; i < n; i++ {
+		res[i] = make([]int,n)
+	}
+	total := n * n
+	left, right := 0, n-1
+	top, low := 0, n-1
+	index := 1
+	
+
+	return res
+}
+```
