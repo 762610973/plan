@@ -102,7 +102,7 @@ func (m *Mutex) lockSlow() {
 			// 老状态没上锁并且处于正常模式, 那么一定上锁成功
 			// 老状态没上锁, 但是是饥饿模式, 需要排队等候
 			if old&(mutexLocked|mutexStarving) == 0 {
-				break // locked the mutex with CAS
+				break // locked the mutex with CAS 
 			}
 			// 如果是等待过的goroutine, 则进入队列头部, 之后会优先出队
 			queueLifo := waitStartTime != 0
