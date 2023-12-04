@@ -1,0 +1,4 @@
+- 什么是MongoDB: 一个以JSON为数据模型的文档数据库
+- 为什么叫文档数据库: 文档来自JSON Document
+- 文档型数据库是一种非关系型数据库, 它将数据存储为一系列的文档, 通常使用JSON、BSON或XML格式.
+- ![](../../images/db/mongo1.png)

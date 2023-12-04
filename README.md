@@ -27,11 +27,13 @@
     * [K8s](#k8s)
     * [ETCD](#etcd)
   * [汇编](#汇编)
-  * [Redis](#redis)
-  * [MySQL](#mysql)
-    * [MySQL实战45讲](#mysql实战45讲)
-    * [高性能MySQL](#高性能mysql)
-  * [ES](#es)
+  * [DB](#db)
+    * [Redis](#redis)
+    * [MySQL](#mysql)
+      * [MySQL实战45讲](#mysql实战45讲)
+      * [高性能MySQL](#高性能mysql)
+    * [ES](#es)
+    * [MongoDB](#mongodb)
   * [Nginx](#nginx)
   * [CPP](#cpp)
   * [算法](#算法)
@@ -200,6 +202,7 @@
 ## CNCF
 - 2023.11.13:cloud: 云原生基本概念, 介绍, 技术栈
 - 2023.12.04:cloud: docker部分命令(再次复习, 仍然获益匪浅)
+
 ### Docker
 #### 深入浅出Docker
 > [](./books/深入浅出Docker.pdf)
@@ -227,18 +230,22 @@
 - 2023.11.13:keyboard: 栈及操作的实现, 段, DS和数据段
 - 2023.11.13:keyboard: 暂时结束.
 
-## Redis
+## DB
+### Redis
 
-## MySQL
-### MySQL实战45讲
+### MySQL
+#### MySQL实战45讲
 - 2023.11.02:floppy_disk: 第一讲和第二讲: SQL如何执行, update如何执行.
 - 2023.11.05:floppy_disk: 第三讲: 事务隔离, 为什么你改了我还看不见.
 - 2023.11.06:floppy_disk: 第四讲, 第五讲: 深入浅出索引.
 - 2023.11.06:floppy_disk: 第六讲: 全局锁和表锁: 给表加个字段怎么有这么多阻碍.
 - 2023.11.08:floppy_disk: 第七讲: 行锁功过: 怎么减少行锁对性能的影响.
-### 高性能MySQL
+#### 高性能MySQL
 
-## ES
+### ES
+
+### MongoDB
+- 2023.12.04:battery: 历史, 特色, 优势, 安装, 数据导入.
 
 - 2023.07.28:tiger:安装`elasticsearch`以及`kibana`和环境
 - 2023.09.11:tiger:geek time elasticsearch简介
