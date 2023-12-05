@@ -320,8 +320,86 @@ func is(num int) bool {
 package main
 // s覆盖t的最小子串
 func minWindow(s string, t string) string {
+	if len(s) < len(t) {
+		return ""
+	}
+	tMap := make(map[byte]int, len(t))
+	for i := 0; i < len(t); i++ {
+		tMap[t[i]]++
+	}
+	resL, resR := -1, -1
+	left := 0
+	minLen := len(s)+1
+	sMap := make(map[byte]int, len(s))
+	contain := func() bool {
+		for k,v := range tMap {
+			if sMap[k] < v {
+				return false
+			}
+		}
+
+		return true
+	}
+
+	for i := 0; i < len(s); i++ {
+		if tMap[s[i]] > 0 {
+			sMap[s[i]] ++
+		}
+		for contain() && i-left + 1 >= len(t){
+			if i-left+1 < minLen {
+				minLen = i-left+1
+				resL, resR = left, i+1
+			}
+			sMap[s[left]]--
+			left++
+		}
+	}
+	if resL == -1 {
+		return ""
+	}
 	
-	return ""
+	return s[resL:resR]
+}
+func minWindow(s string, t string) string {
+	tMap := make(map[byte]int)
+	sMap := make(map[byte]int)
+	// 统计t
+	for i := range t {
+		tMap[t[i]]++
+	}
+	equalNum := 0
+	start, resLen := 0, math.MaxInt32
+	left, right := 0,0
+	for right < len(s) {
+		nowVal := s[right]
+		right++
+		// t中存在
+		if tMap[nowVal] > 0 {
+			sMap[nowVal]++
+			if sMap[nowVal] == tMap[nowVal] {
+				equalNum++
+			}
+		}
+		for equalNum == len(tMap) {
+			if right - left < resLen {
+				resLen = right - left
+				start = left
+			}
+			d := s[left]
+			left++
+			// 存在最左边那个
+			if tMap[d] > 0 {
+				if sMap[d] == tMap[d] {
+					equalNum--
+				}
+				sMap[d]--
+			}
+		}
+	}
+	if resLen == math.MaxInt32 {
+		return ""
+	}
+	return s[start:start+resLen]
 }
 ```
 
@@ -337,7 +415,28 @@ func generateMatrix(n int) [][]int {
 	left, right := 0, n-1
 	top, low := 0, n-1
 	index := 1
-	
+	for index <= total {
+		for i := left; i <= right; i++ {
+			res[top][i] = index
+			index++
+		}
+		top++
+		for i := top; i <= low; i++ {
+			res[i][right] = index
+			index++
+		}
+		right--
+		for i := right; i >= left; i-- {
+			res[low][i] = index
+			index++
+		}
+		low--
+		for i := low; i >= top; i-- {
+			res[i][left] = index
+			index++
+		}
+		left++
+	}
 
 	return res
 }
