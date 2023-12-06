@@ -32,3 +32,5 @@
 - docker exec -it --privileged mynginx /bin/bash
 - docker exec -it -u 0:0 mynginx /bin/bash: 0用户以root用户进入
 - i: 交互模式, t: 分配一个新的终端
+- docker diff: 检查容器里文件结构的更改.A: 添加文件或目录. D: 文件或者目录删除. C: 文件或者目录更改.
+- docker run -it busybox:latest 以交互模式启动.
