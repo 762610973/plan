@@ -16,6 +16,7 @@
       * [刘丹冰](#刘丹冰)
       * [鸟窝](#鸟窝)
     * [CGO](#cgo)
+    * [fyne](#fyne)
   * [前端](#前端)
     * [HTML](#html)
     * [CSS](#css)
@@ -32,8 +33,8 @@
     * [MySQL](#mysql)
       * [MySQL实战45讲](#mysql实战45讲)
       * [高性能MySQL](#高性能mysql)
-    * [ES](#es)
     * [MongoDB](#mongodb)
+    * [ES](#es)
   * [Nginx](#nginx)
   * [CPP](#cpp)
   * [算法](#算法)
@@ -141,6 +142,9 @@
 
 ### CGO
 - 2023.11.23:star_and_crescent: CGO, 启动!
+
+### fyne
+- 2023.12.07:fishing_pole_and_fish: fyne, 启动!
 
 ## 前端
 > **<span style="font-size: 18px;">[html+css](https://www.bilibili.com/video/BV1p84y1P7Z5)</span>**
