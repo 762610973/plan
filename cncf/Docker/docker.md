@@ -34,3 +34,14 @@
 - i: 交互模式, t: 分配一个新的终端
 - docker diff: 检查容器里文件结构的更改.A: 添加文件或目录. D: 文件或者目录删除. C: 文件或者目录更改.
 - docker run -it busybox:latest 以交互模式启动.
+
+## docker文件系统
+### 镜像在底层存储
+- 镜像为容器提供了一个基础的文件系统.
+- 镜像由一系列层组成, 每层代表Dockerfile中的一条指令. 除最后一层外的每一层都是只读的.
+- GraphDriver
+  - LowerDir: 底层目录. Dockerfile的每一个命令都可能引起了系统的修改, 和git一样, 只记录变化.
+  - MergeDir: 合并目录
+  - UpperDir: 上层目录
+  - WorkDir: 工作目录
+- 
